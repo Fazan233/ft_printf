@@ -13,13 +13,10 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # define MODE_FLAGS 5
-
-char g_modeflags[MODE_FLAGS][3] =
-{
-	"h", "hh", "l", "ll", "L"
-};
-
-char *g_conversions = "cspdiouxXfeg";
+# define CONVERSIONS "cspdiouxXfeg"
+# define FLAGS "+- #0"
+#include <stdio.h>
+#include "libft/libft.h"
 
 typedef struct		s_format
 {
@@ -31,12 +28,16 @@ typedef struct		s_format
 	unsigned int	width:1;
 	unsigned int	precision:1;
 	unsigned int	size:1;
-	int				w_val;
-	int				p_val;
 	char			s_val[3];
 	char			type;
+	int				w_val;
+	int				p_val;
 }					t_format;
 
-void	find_flags(char *str);
+void	find_flags(char *str, t_format *form);
+void	flags(t_format *form, char **str);
+int		size(t_format *form, char **str);
+void	precision(t_format *form, char **str);
+void	width(t_format *form, char **str);
 
 #endif
