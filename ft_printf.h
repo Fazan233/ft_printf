@@ -12,12 +12,14 @@
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+# define MODE_FLAGS 5
 
-char g_flags[3][] =
+char g_modeflags[MODE_FLAGS][3] =
 {
-	"Hello",
-	"angry"
+	"h", "hh", "l", "ll", "L"
 };
+
+char *g_conversions = "cspdiouxXfeg";
 
 typedef struct		s_format
 {
@@ -34,5 +36,7 @@ typedef struct		s_format
 	char			s_val[3];
 	char			type;
 }					t_format;
+
+void	find_flags(char *str);
 
 #endif
