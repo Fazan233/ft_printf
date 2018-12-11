@@ -35,11 +35,9 @@ void	print_flags(t_format *form)
 
 int main()
 {
-//	printf("%i\n", sizeof(t_format));
-
-//	printf("%i\n", sizeof(t_format));
 	t_format form;
-	find_flags(".23-23Ld", &form);
-	print_flags(&form);
+//	find_flags("23Ls", &form);
+//	print_flags(&form);
+	printf("%0100.0p", 'o');
 	return (0);
 }

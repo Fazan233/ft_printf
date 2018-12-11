@@ -24,7 +24,7 @@ void	flags_to_zero(t_format *form)
 	form->size = 0;
 }
 
-void	find_flags(char *str, t_format *form)
+int	find_flags(char *str, t_format *form)
 {
 	flags_to_zero(form);
 	while (1)
@@ -37,12 +37,14 @@ void	find_flags(char *str, t_format *form)
 			precision(form, &str);
 		else if (size(form, &str))
 			form->size = 1;
-		else if (ft_strchr(CONVERSIONS, *str))
-		{
-			form->type = *str;
-			break ;
-		}
 		else
-			break;
+		{
+			if (ft_strchr(CONVERSIONS, *str))
+			{
+				form->type = *(str++);
+				return (1);
+			}
+            return (0);
+		}
 	}
 }

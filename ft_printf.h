@@ -34,7 +34,7 @@ typedef struct		s_format
 	int				p_val;
 }					t_format;
 
-void	find_flags(char *str, t_format *form);
+int     find_flags(char *str, t_format *form);
 void	flags(t_format *form, char **str);
 int		size(t_format *form, char **str);
 void	precision(t_format *form, char **str);
