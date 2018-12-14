@@ -15,8 +15,11 @@
 # define MODE_FLAGS 5
 # define CONVERSIONS "cspdiouxXfeg"
 # define FLAGS "+- #0"
-#include <stdio.h>
-#include "libft/libft.h"
+# include <stdio.h>
+# include "libft/libft.h"
+
+enum	e_convers {c, s, p, d, i, o, u, x, X, f, e, g};
+enum	e_size {hh, h, ll, l, L};
 
 typedef struct		s_format
 {
@@ -29,15 +32,15 @@ typedef struct		s_format
 	unsigned int	precision:1;
 	unsigned int	size:1;
 	char			s_val[3];
-	char			type;
+	enum e_convers			type;
 	int				w_val;
 	int				p_val;
 }					t_format;
 
-int     find_flags(char *str, t_format *form);
-void	flags(t_format *form, char **str);
-int		size(t_format *form, char **str);
-void	precision(t_format *form, char **str);
-void	width(t_format *form, char **str);
+int					find_flags(char *str, t_format *form);
+void				flags(t_format *form, char **str);
+int					size(t_format *form, char **str);
+void				precision(t_format *form, char **str);
+void				width(t_format *form, char **str);
 
 #endif

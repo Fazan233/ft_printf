@@ -38,6 +38,6 @@ int main()
 	t_format form;
 //	find_flags("23Ls", &form);
 //	print_flags(&form);
-	printf("%0100.0p", 'o');
+	printf("%p", 'o');
 	return (0);
 }
