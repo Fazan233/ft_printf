@@ -6,7 +6,6 @@
 
 void	width(t_format *form, char **str)
 {
-	form->width = 1;
 	form->w_val = ft_atoi(*str);
 	while (ft_isdigit(**str))
 		*str = *str + 1;

@@ -12,14 +12,8 @@ int		size(t_format *form, char **str)
 
 	i = -1;
 	while (++i < MODE_FLAGS)
-	{
 		if (!ft_strncmp(*str, g_modeflags[i], ft_strlen(g_modeflags[i])))
-		{
-			*str = *str + ft_strlen(g_modeflags[i]);
-			ft_strcpy(form->s_val, g_modeflags[i]);
-			return (1);
-		}
-	}
+			form->s_val = i;
 	*str = *str + ft_strlen(g_modeflags[i]);
-	return (0);
+	return ((i == MODE_FLAGS) ? 0 : 1);
 }

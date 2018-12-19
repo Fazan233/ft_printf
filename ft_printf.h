@@ -17,6 +17,7 @@
 # define FLAGS "+- #0"
 # include <stdio.h>
 # include "libft/libft.h"
+# include <stdarg.h>
 
 enum	e_convers {c, s, p, d, i, o, u, x, X, f, e, g};
 enum	e_size {hh, h, ll, l, L};
@@ -28,11 +29,10 @@ typedef struct		s_format
 	unsigned int	space:1;
 	unsigned int	sharp:1;
 	unsigned int	zero:1;
-	unsigned int	width:1;
 	unsigned int	precision:1;
 	unsigned int	size:1;
-	char			s_val[3];
-	enum e_convers			type;
+	int				s_val;
+	int				type;
 	int				w_val;
 	int				p_val;
 }					t_format;
@@ -42,5 +42,10 @@ void				flags(t_format *form, char **str);
 int					size(t_format *form, char **str);
 void				precision(t_format *form, char **str);
 void				width(t_format *form, char **str);
+int 				conversion(t_format *form, char **str);
+char	*f_c(t_format *form, va_list *ap);
+char	*f_s(t_format *form, va_list *ap);
+int		ft_printf(char *str, ...);
+void	get_strwidth(t_format *form, char **str, int count);
 
 #endif

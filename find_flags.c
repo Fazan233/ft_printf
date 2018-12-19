@@ -19,7 +19,7 @@ void	flags_to_zero(t_format *form)
 	form->space = 0;
 	form->sharp = 0;
 	form->zero = 0;
-	form->width = 0;
+	form->w_val = 0;
 	form->precision = 0;
 	form->size = 0;
 }
@@ -38,13 +38,6 @@ int	find_flags(char *str, t_format *form)
 		else if (size(form, &str))
 			form->size = 1;
 		else
-		{
-			if (ft_strchr(CONVERSIONS, *str))
-			{
-				form->type = *(str++);
-				return (1);
-			}
-            return (0);
-		}
+			return ((conversion(form, &str)) ? 1 : 0);
 	}
 }

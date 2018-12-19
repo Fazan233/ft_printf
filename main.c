@@ -21,23 +21,25 @@ void	print_flags(t_format *form)
 	printf("space:     %*d\n", width, form->space);
 	printf("sharp:     %*d\n", width, form->sharp);
 	printf("zero:      %*d\n", width, form->zero);
-	printf("width:     %*d\n", width, form->width);
-	if (form->width)
+	printf("width:     %*d\n", width, form->w_val);
+	if (form->w_val)
 		printf("width val is - %d\n", form->w_val);
 	printf("precision: %*d\n", width, form->precision);
 	if (form->precision)
 		printf("precision val is - %d\n", form->p_val);
-	printf("size:      %*d\n", width, form->size);
+	printf("size:      %d\n", form->size);
 	if (form->size)
-		printf("mode val is - %s\n", form->s_val);
-	printf("type:      %*c\n", width, form->type);
+		printf("mode val is - %d\n", (int)form->s_val);
+	printf("type:      %d\n", form->type);
 }
 
 int main()
 {
-	t_format form;
-//	find_flags("23Ls", &form);
-//	print_flags(&form);
-	printf("%p", 'o');
+//	t_format form;
+//	if (find_flags("22.4u", &form))
+//		print_flags(&form);
+	char *str = "%-20.3s\n";
+	printf(str, "YolaCola");
+	ft_printf(str + 1, "YolaCola");
 	return (0);
 }
