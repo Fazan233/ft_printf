@@ -38,8 +38,8 @@ int main()
 //	t_format form;
 //	if (find_flags("22.4u", &form))
 //		print_flags(&form);
-	char *str = "%-20.3s\n";
-	printf(str, "YolaCola");
-	ft_printf(str + 1, "YolaCola");
+	char *str = "%#11p\n";
+	printf(str, str - 1);
+	ft_printf(str + 1, str);
 	return (0);
 }

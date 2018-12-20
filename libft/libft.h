@@ -91,4 +91,5 @@ size_t			ft_list_size(t_list *begin_list);
 void			ft_print_list(t_list *lst);
 void			ft_list_reverse(t_list **begin_list);
 int				get_next_line(const int fd, char **line);
+char			*ft_itoa_base(int nbr, int base);
 #endif

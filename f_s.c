@@ -24,7 +24,7 @@ void	alloc_good_width(t_format *form, char **str, int len)
 			get_strwidth(form, str, tmp);
 	}
 	else
-		ft_strdup(len + 1);
+		*str = (char*)ft_memalloc(len + 1);
 }
 
 void	oper_with_minus(t_format *form, char *str, char *buf, int len_buf)
@@ -33,24 +33,20 @@ void	oper_with_minus(t_format *form, char *str, char *buf, int len_buf)
 	int 	tmp;
 
 	len_str = ft_strlen(str);
-
-	if (form->minus)
+	tmp = (len_buf < form->p_val) ? len_buf : form->p_val;
+	if (!form->w_val && !form->precision)
+		ft_strcpy(str, buf);
+	else if (form->minus)
 	{
 		ft_memset(str, ' ', len_str);
 		if (form->precision)
-		{
-			tmp = (len_buf < form->p_val) ? len_buf : form->p_val;
 			ft_memmove(str, buf, tmp);
-		}
 		else
 			ft_memmove(str, buf, len_buf);
 	}
 	else
 		if (form->precision)
-		{
-			tmp = (len_buf < form->p_val) ? len_buf : form->p_val;
 			ft_memmove(str + (len_str - tmp), buf, tmp);
-		}
 		else
 			ft_memmove(str + (len_str - len_buf), buf, len_buf);
 }

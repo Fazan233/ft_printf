@@ -43,9 +43,9 @@ int					size(t_format *form, char **str);
 void				precision(t_format *form, char **str);
 void				width(t_format *form, char **str);
 int 				conversion(t_format *form, char **str);
-char	*f_c(t_format *form, va_list *ap);
-char	*f_s(t_format *form, va_list *ap);
-int		ft_printf(char *str, ...);
-void	get_strwidth(t_format *form, char **str, int count);
+char				*f_c(t_format *form, va_list *ap);
+char				*f_s(t_format *form, va_list *ap);
+int					ft_printf(char *str, ...);
+void				get_strwidth(t_format *form, char **str, int count);
 
 #endif
