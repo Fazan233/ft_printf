@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_reverse.c                                  :+:      :+:    :+:   */
+/*   ft_lstprint.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npiatiko <npiatiko@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/06 13:59:15 by npiatiko          #+#    #+#             */
-/*   Updated: 2018/11/06 14:00:40 by npiatiko         ###   ########.fr       */
+/*   Created: 2018/11/06 21:46:47 by vuslysty          #+#    #+#             */
+/*   Updated: 2018/11/06 21:51:22 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_list_reverse(t_list **begin_list)
+void	ft_lstprint(t_list *list)
 {
-	t_list *reverse;
-	t_list *tmp;
+	int	i;
 
-	reverse = NULL;
-	while (*begin_list)
+	i = 0;
+	if (!list)
+		return ;
+	while (list)
 	{
-		tmp = (*begin_list)->next;
-		(*begin_list)->next = reverse;
-		reverse = *begin_list;
-		*(begin_list) = tmp;
+		ft_putnbr(++i);
+		ft_putstr(" -> ");
+        ft_putstr(list->content);
+        ft_putstr("    ");
+        ft_putnbr((int)list->content_size);
+		ft_putchar('\n');
+		list = list->next;
 	}
-	*(begin_list) = reverse;
 }

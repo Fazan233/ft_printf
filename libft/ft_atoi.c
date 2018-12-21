@@ -3,36 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npiatiko <npiatiko@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/29 15:51:34 by npiatiko          #+#    #+#             */
-/*   Updated: 2018/10/29 18:12:25 by npiatiko         ###   ########.fr       */
+/*   Created: 2018/10/26 14:07:09 by vuslysty          #+#    #+#             */
+/*   Updated: 2018/11/06 14:16:23 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+static int				ft_is_whitespace(char c)
 {
-	unsigned long long	nbr;
-	int					isnegative;
-
-	isnegative = 1;
-	nbr = 0;
-	while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\r'
-		|| *str == '\f' || *str == '\v')
-		str++;
-	if (*str == '+' || *str == '-')
-		if (*str++ == '-')
-			isnegative = -1;
-	while (*str >= '0' && *str <= '9')
-	{
-		nbr = nbr * 10 + *str - '0';
-		if (nbr > 9223372036854775807 && isnegative == 1)
-			return (-1);
-		else if (nbr > 9223372036854775807 && isnegative == -1)
-			return (0);
-		str++;
-	}
-	return (nbr * isnegative);
+	if (c == ' ' || c == '\t' || c == '\n' ||
+		c == '\v' || c == '\f' || c == '\r')
+		return (1);
+	return (0);
 }
+
+int						ft_atoi(const char *str)
+{
+	unsigned long int	res;
+	int					i;
+	int					sign;
+
+	res = 0;
+	sign = 1;
+	i = 0;
+	while (ft_is_whitespace(str[i]))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+		if (str[i++] == '-')
+			sign = -1;
+	while (str[i] == 0)
+		i++;
+	while ((str[i] != '\0') && ft_isdigit(str[i]))
+	{
+		res = res * 10 + (str[i] - '0');
+		if (sign == 1 && res >= 9223372036854775807)
+			return (-1);
+		else if (sign == -1 && res > 9223372036854775807)
+			return (0);
+		i++;
+	}
+	return ((int)(res * sign));
+}
+
+

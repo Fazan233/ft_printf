@@ -3,43 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npiatiko <npiatiko@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/05 14:16:33 by npiatiko          #+#    #+#             */
-/*   Updated: 2018/11/05 16:15:34 by npiatiko         ###   ########.fr       */
+/*   Created: 2018/11/05 16:03:34 by vuslysty          #+#    #+#             */
+/*   Updated: 2018/11/06 14:22:04 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_lstadd_end(t_list **lst, t_list *new)
-{
-	t_list *tmp;
-
-	tmp = (*lst);
-	if ((*lst) == NULL)
-	{
-		(*lst) = new;
-		(*lst)->next = NULL;
-		return ;
-	}
-	else
-		while (tmp->next)
-			tmp = tmp->next;
-	tmp->next = new;
-	tmp = tmp->next;
-	tmp->next = NULL;
-}
-
 t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list *tmp;
+	t_list	*temp;
+	t_list	*begin_tmp;
 
-	tmp = NULL;
-	while (lst)
+	if (lst == NULL)
+		return (NULL);
+	temp = f(lst);
+	begin_tmp = temp;
+	if (begin_tmp == NULL)
+		return (NULL);
+	while (lst->next)
 	{
-		ft_lstadd_end(&tmp, f(lst));
 		lst = lst->next;
+		temp->next = f(lst);
+		if (temp->next == NULL)
+			return (NULL);
+		temp = temp->next;
 	}
-	return (tmp);
+	return (begin_tmp);
 }

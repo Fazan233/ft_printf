@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_list.c                                    :+:      :+:    :+:   */
+/*   ft_pow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npiatiko <npiatiko@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/06 13:46:08 by npiatiko          #+#    #+#             */
-/*   Updated: 2018/11/06 13:58:31 by npiatiko         ###   ########.fr       */
+/*   Created: 2018/11/05 21:15:54 by vuslysty          #+#    #+#             */
+/*   Updated: 2018/11/05 21:22:49 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_print_list(t_list *lst)
+int		ft_pow(int n, int pow)
 {
-	while (lst)
-	{
-		ft_putstr((char*)(lst->content));
-		ft_putchar('\n');
-		lst = lst->next;
-	}
+	if (pow == 0)
+		return (1);
+	if (pow == 1)
+		return (n);
+	if (pow > 1)
+		return (n * ft_pow(n, pow - 1));
+	return (0);
 }

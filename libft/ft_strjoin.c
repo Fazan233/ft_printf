@@ -3,38 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npiatiko <npiatiko@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/31 16:06:24 by npiatiko          #+#    #+#             */
-/*   Updated: 2018/10/31 17:38:56 by npiatiko         ###   ########.fr       */
+/*   Created: 2018/10/31 12:43:24 by vuslysty          #+#    #+#             */
+/*   Updated: 2018/10/31 12:53:05 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char		*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	len;
-	char	*tmp;
+	char	*newstr;
 
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
-	len = ft_strlen(s1) + ft_strlen(s2);
-	if ((tmp = ft_strnew(len)) == 0)
+	newstr = ft_memalloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (newstr == NULL)
 		return (NULL);
-	while (*s1 || *s2)
-		if (*s1)
-		{
-			*tmp = *s1;
-			tmp++;
-			s1++;
-		}
-		else if (*s2)
-		{
-			*tmp = *s2;
-			tmp++;
-			s2++;
-		}
-	*tmp = '\0';
-	return (tmp - len);
+	ft_strcpy(newstr, s1);
+	ft_strcat(newstr, s2);
+	return (newstr);
 }

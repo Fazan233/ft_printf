@@ -21,7 +21,7 @@ static char	write_digit_base(int n)
 }
 
 static void	rec_itoa_base(unsigned int nbr, int base, int *len,
-							 char **str)
+									char **str)
 {
 	(*len)++;
 	if (nbr < (unsigned int)base)
@@ -50,4 +50,3 @@ char		*ft_itoa_base(int nbr, int base)
 	*str = '\0';
 	return (str - len);
 }
-

@@ -3,39 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npiatiko <npiatiko@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/31 17:42:28 by npiatiko          #+#    #+#             */
-/*   Updated: 2018/11/01 12:13:57 by npiatiko         ###   ########.fr       */
+/*   Created: 2018/10/31 12:54:45 by vuslysty          #+#    #+#             */
+/*   Updated: 2018/11/07 14:31:58 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s)
+static int	ft_whitespaces(char const *s)
 {
-	size_t			len;
-	char			*tmp;
-	unsigned int	start;
+	if (*s == '\n' || *s == ' ' || *s == '\t')
+		return (1);
+	else
+		return (0);
+}
 
+char		*ft_strtrim(char const *s)
+{
+	char	*newstr;
+	int		i;
+	int		j;
+
+	i = 0;
 	if (s == NULL)
 		return (NULL);
-	len = ft_strlen(s);
-	tmp = (char*)(s);
-	start = 0;
-	while ((*tmp == ' ' || *tmp == '\n' || *tmp == '\t'))
+	while (ft_whitespaces(&s[i]))
+		i++;
+	j = ft_strlen(s) - 1;
+	while (ft_whitespaces(&s[j]) && j >= 0)
+		j--;
+	if (i > j)
 	{
-		start++;
-		tmp++;
-		len--;
+		newstr = ft_strdup("");
+		return (newstr);
 	}
-	if (len == 0)
-		return ((char*)(ft_strsub(s, start, len)));
-	tmp = (char*)(tmp + len - 1);
-	while ((*tmp == ' ' || *tmp == '\n' || *tmp == '\t'))
-	{
-		len--;
-		tmp--;
-	}
-	return ((char*)(ft_strsub(s, start, len)));
+	newstr = ft_strsub(s, i, j - i + 1);
+	if (newstr == NULL)
+		return (NULL);
+	return (newstr);
 }

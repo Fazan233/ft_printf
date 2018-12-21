@@ -7,19 +7,25 @@
 char	*f_c(t_format *form, va_list *ap)
 {
 	char	*str;
+	int 	c;
 
+	c = va_arg(*ap, int);
 	if (form->w_val > 1)
 	{
 		get_strwidth(form, &str, form->w_val);
 		if (form->minus)
-			str[0] = (char)va_arg(*ap, int);
+		{
+			if (c == 0)
+
+			else
+				str[0] = c;
+		}
 		else
-			str[form->w_val - 1] = (char)va_arg(*ap, int);
+			str[form->w_val - 1] = c;
 	}
 	else
 	{
-		str = (char*)ft_memalloc(2);
-		str[0] = (char)va_arg(*ap, int);
+		str = ft_strdup("\u0000");
 	}
 	return (str);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npiatiko <npiatiko@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/05 13:32:45 by npiatiko          #+#    #+#             */
-/*   Updated: 2018/11/05 13:55:32 by npiatiko         ###   ########.fr       */
+/*   Created: 2018/11/02 18:33:32 by vuslysty          #+#    #+#             */
+/*   Updated: 2018/11/05 15:43:34 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 void	ft_lstdelone(t_list **alst, void (*del)(void*, size_t))
 {
-	del((*alst)->content, (*alst)->content_size);
-	free((*alst));
-	*alst = NULL;
+	t_list	*temp;
+
+	temp = *alst;
+	if (temp)
+	{
+		del(temp->content, temp->content_size);
+		ft_memdel((void**)alst);
+	}
 }

@@ -38,8 +38,8 @@ int main()
 //	t_format form;
 //	if (find_flags("22.4u", &form))
 //		print_flags(&form);
-	char *str = "%#11p\n";
-	printf(str, str - 1);
-	ft_printf(str + 1, str);
+	char *str = "%10c\n";
+	printf(str, 0);
+	ft_printf(str + 1, 0);
 	return (0);
 }

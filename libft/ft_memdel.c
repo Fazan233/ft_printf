@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npiatiko <npiatiko@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/31 12:32:30 by npiatiko          #+#    #+#             */
-/*   Updated: 2018/10/31 13:04:14 by npiatiko         ###   ########.fr       */
+/*   Created: 2018/10/30 18:39:15 by vuslysty          #+#    #+#             */
+/*   Updated: 2018/11/06 14:46:40 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

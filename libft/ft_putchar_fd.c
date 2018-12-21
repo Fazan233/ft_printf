@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npiatiko <npiatiko@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/05 10:13:14 by npiatiko          #+#    #+#             */
-/*   Updated: 2018/11/05 10:13:58 by npiatiko         ###   ########.fr       */
+/*   Created: 2018/10/31 14:01:28 by vuslysty          #+#    #+#             */
+/*   Updated: 2018/10/31 14:04:40 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

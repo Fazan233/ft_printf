@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_bits.c                                    :+:      :+:    :+:   */
+/*   ft_lstadd_end.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npiatiko <npiatiko@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/06 13:34:33 by npiatiko          #+#    #+#             */
-/*   Updated: 2018/11/06 13:34:36 by npiatiko         ###   ########.fr       */
+/*   Created: 2018/11/07 11:46:14 by vuslysty          #+#    #+#             */
+/*   Updated: 2018/11/07 12:13:22 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-void	ft_print_bits(unsigned char octet)
+void		ft_lstadd_end(t_list **list, t_list *new)
 {
-	int				i;
-	unsigned char	tmp;
-	int				bits[8];
+	t_list	*temp;
 
-	tmp = octet;
-	i = -1;
-	while (++i < 8)
+	if (new == NULL)
+		return ;
+	temp = *list;
+	if (temp == NULL)
+		*list = new;
+	else
 	{
-		bits[i] = tmp % 2;
-		tmp = tmp / 2;
-	}
-	while (--i != -1)
-	{
-		tmp = bits[i] + '0';
-		write(1, &tmp, 1);
+		while (temp->next != NULL)
+			temp = temp->next;
+		temp->next = new;
 	}
 }

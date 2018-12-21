@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_push_back.c                                :+:      :+:    :+:   */
+/*   ft_lstprintone.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npiatiko <npiatiko@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/06 13:31:58 by npiatiko          #+#    #+#             */
-/*   Updated: 2018/11/06 13:33:32 by npiatiko         ###   ########.fr       */
+/*   Created: 2018/11/06 21:34:26 by vuslysty          #+#    #+#             */
+/*   Updated: 2018/11/06 21:45:40 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_list_push_back(t_list **lst, t_list *new)
+void	ft_lstprintone(t_list *list)
 {
-	t_list *tmp;
-
-	tmp = (*lst);
-	if ((*lst) == NULL)
-	{
-		(*lst) = new;
-		(*lst)->next = NULL;
+	if (!list)
 		return ;
+	while (*(char*)(list->content))
+	{
+		ft_putchar(*(char*)(list->content));
+		(list->content)++;
 	}
-	else
-		while (tmp->next)
-			tmp = tmp->next;
-	tmp->next = new;
-	tmp = tmp->next;
-	tmp->next = NULL;
 }

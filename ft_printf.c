@@ -12,7 +12,7 @@ int		ft_printf(char *str, ...)
 	va_start(ap, str);
 	if (find_flags(str, &form))
 	{
-		ft_putstr(f_p(&form, &ap));
+		ft_putstr(f_c(&form, &ap));
 	}
 	va_end(ap);
 	return (1);

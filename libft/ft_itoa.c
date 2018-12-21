@@ -3,36 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npiatiko <npiatiko@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/02 11:54:24 by npiatiko          #+#    #+#             */
-/*   Updated: 2018/11/02 15:36:33 by npiatiko         ###   ########.fr       */
+/*   Created: 2018/11/01 17:35:50 by vuslysty          #+#    #+#             */
+/*   Updated: 2018/11/01 18:12:56 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int n)
+static int	nbrlen(int n)
 {
-	char			*str;
-	long long		nbr;
-	unsigned char	i;
+	int		len;
 
-	i = n < 0 ? 2 : 1;
-	nbr = n < 0 ? -(long long)n : n;
-	while ((n = n / 10) != 0)
-		i++;
-	if ((str = ft_strnew(i)) == NULL)
-		return (NULL);
-	if (nbr == 0 && i--)
-		*str = '0';
-	while (nbr)
+	len = 0;
+	if (n < 0)
+		len++;
+	while (n || len == 0)
 	{
-		i--;
-		*(str + i) = nbr % 10 + '0';
-		nbr = nbr / 10;
+		n /= 10;
+		len++;
 	}
-	if (i)
-		*str = '-';
-	return (str);
+	return (len);
+}
+
+static void	rec(int nb, int *i, char *str)
+{
+	if (nb / 10 != 0)
+		rec(nb / 10, i, str);
+	if (nb < 0)
+		str[(*i)++] = (nb % 10 * (-1)) + '0';
+	else
+		str[(*i)++] = (nb % 10) + '0';
+}
+
+char		*ft_itoa(int n)
+{
+	char	*nbr;
+	int		i;
+
+	nbr = (char*)ft_memalloc(sizeof(char) * (nbrlen(n) + 1));
+	if (nbr == NULL)
+		return (NULL);
+	i = 0;
+	if (n < 0)
+		nbr[i++] = '-';
+	rec(n, &i, nbr);
+	nbr[i] = '\0';
+	return (nbr);
 }

@@ -3,39 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npiatiko <npiatiko@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/26 15:39:37 by npiatiko          #+#    #+#             */
-/*   Updated: 2018/10/29 10:41:27 by npiatiko         ###   ########.fr       */
+/*   Created: 2018/10/24 20:07:09 by vuslysty          #+#    #+#             */
+/*   Updated: 2018/11/06 15:04:00 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+size_t		ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	lend;
-	size_t	lens;
-	char	*tmp;
+	size_t	len_dst;
+	size_t	len_src;
+	size_t	i;
 
-	lens = 0;
-	tmp = (char*)src;
-	while (*(tmp++))
-		lens++;
-	tmp = dst;
-	lend = 0;
-	while (*(tmp++))
-		lend++;
-	if (dstsize <= lend)
-		return (dstsize + lens);
-	tmp = dst + lend;
-	while (dstsize - lend - 1 && *src)
-	{
-		*tmp = *src;
-		tmp++;
-		src++;
-		dstsize--;
-	}
-	*tmp = 0;
-	return (lend + lens);
+	len_dst = ft_strlen(dst);
+	len_src = ft_strlen(src);
+	if (len_dst >= dstsize)
+		return (dstsize + len_src);
+	i = 0;
+	while (dst[i] != '\0')
+		i++;
+	while (i < dstsize - 1 && *src)
+		dst[i++] = *((char*)src++);
+	dst[i] = '\0';
+	return (len_dst + len_src);
 }

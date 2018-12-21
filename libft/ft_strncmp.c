@@ -3,32 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npiatiko <npiatiko@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/29 15:27:46 by npiatiko          #+#    #+#             */
-/*   Updated: 2018/10/31 11:41:18 by npiatiko         ###   ########.fr       */
+/*   Created: 2018/10/25 13:04:17 by vuslysty          #+#    #+#             */
+/*   Updated: 2018/11/06 17:13:03 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strncmp(const char *s1, const char *s2, size_t n)
+int			ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	unsigned char *s1tmp;
-	unsigned char *s2tmp;
+	t_byte *p_s1;
+	t_byte *p_s2;
+	size_t i;
 
-	s1tmp = (unsigned char*)s1;
-	s2tmp = (unsigned char*)s2;
 	if (n == 0)
 		return (0);
-	n--;
-	while (*s1tmp && *s2tmp && n)
-	{
-		if (*s1tmp != *s2tmp)
-			return (*s1tmp - *s2tmp);
-		s1tmp++;
-		s2tmp++;
-		n--;
-	}
-	return (*s1tmp - *s2tmp);
+	p_s1 = (t_byte*)s1;
+	p_s2 = (t_byte*)s2;
+	i = 0;
+	while (p_s1[i] == p_s2[i] && p_s1[i] != '\0' && p_s2[i] != '\0' && --n > 0)
+		i++;
+	return ((int)(p_s1[i] - p_s2[i]));
 }
