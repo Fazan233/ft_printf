@@ -4,28 +4,20 @@
 
 #include "ft_printf.h"
 
-char	*f_c(t_format *form, va_list *ap)
+size_t	f_c(t_format *form, va_list *ap, void **buf)
 {
-	char	*str;
 	int 	c;
 
 	c = va_arg(*ap, int);
 	if (form->w_val > 1)
 	{
-		get_strwidth(form, &str, form->w_val);
+		get_strwidth(form, buf, form->w_val);
 		if (form->minus)
-		{
-			if (c == 0)
-
-			else
-				str[0] = c;
-		}
+			((char*)*buf)[0] = (char)c;
 		else
-			str[form->w_val - 1] = c;
+			((char*)*buf)[form->w_val - 1] = (char)c;
 	}
 	else
-	{
-		str = ft_strdup("\u0000");
-	}
-	return (str);
+		*buf = ft_memdup(&c, 1);
+	return (form->w_val > 1 ? form->w_val : 1);
 }

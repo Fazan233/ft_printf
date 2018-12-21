@@ -8,11 +8,14 @@ int		ft_printf(char *str, ...)
 {
 	va_list		ap;
 	t_format 	form;
+	void		*buf;
+	size_t 		len;
 
 	va_start(ap, str);
 	if (find_flags(str, &form))
 	{
-		ft_putstr(f_c(&form, &ap));
+		len = f_c(&form, &ap, &buf);
+		ft_putmem(buf, len);
 	}
 	va_end(ap);
 	return (1);

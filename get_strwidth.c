@@ -4,10 +4,10 @@
 
 #include "ft_printf.h"
 
-void	get_strwidth(t_format *form, char **str, int count)
+void	get_strwidth(t_format *form, void **str, int count)
 {
-	*str = (char*)ft_memalloc(count + 1);
-	if (form->zero)
+	*str = malloc(count);
+	if (form->zero && !form->minus)
 		ft_memset(*str, '0', count);
 	else
 		ft_memset(*str, ' ', count);

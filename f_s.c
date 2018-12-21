@@ -51,16 +51,15 @@ void	oper_with_minus(t_format *form, char *str, char *buf, int len_buf)
 			ft_memmove(str + (len_str - len_buf), buf, len_buf);
 }
 
-char	*f_s(t_format *form, va_list *ap)
+size_t	f_s(t_format *form, va_list *ap, void **str)
 {
-	char	*str;
 	char 	*buf;
 	int 	len;
 
 	buf = ft_strdup(va_arg(*ap, char*));
 	len = ft_strlen(buf);
-	alloc_good_width(form, &str, len);
-	oper_with_minus(form, str, buf, len);
+	alloc_good_width(form, str, len);
+	oper_with_minus(form, *str, buf, len);
 	free(buf);
-	return (str);
+	return ();
 }
