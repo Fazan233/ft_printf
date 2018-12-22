@@ -4,27 +4,23 @@
 
 #include "ft_printf.h"
 
-void	alloc_good_width(t_format *form, char **str, int len)
+void	alloc_good_width(t_format *f, char **str, int len)
 {
-	int 	tmp;
-
-	if (form->precision && !form->w_val)
-		if (form->p_val > len)
-			get_strwidth(form, str, len);
-		else
-			get_strwidth(form, str, form->p_val);
-	else if (form->w_val && !form->precision)
-		get_strwidth(form, str, form->w_val);
-	else if (form->precision && form->w_val)
+	if (f->precision || f->w_val)
 	{
-		tmp = (form->p_val > form->w_val) ? form->p_val : form->w_val;
-		if (form->p_val > form->w_val && form->p_val > len)
-			get_strwidth(form, str, form->w_val > len ? form->w_val : len);
+		if (f->precision && f->w_val)
+			if (f->precision > f->p_val && f->p_val <= len)
+				*str = (char*)ft_memalloc(f->p_val + 1);
+			else
+				*str = (char*)ft_memalloc(f->w_val + 1);
+		else if (f->precision)
+			*str = (char*)ft_memalloc(1 + f->p_val <= len ? f->p_val : len);
 		else
-			get_strwidth(form, str, tmp);
+			*str = (char*)ft_memalloc(f->w_val + 1);
 	}
 	else
 		*str = (char*)ft_memalloc(len + 1);
+	
 }
 
 void	oper_with_minus(t_format *form, char *str, char *buf, int len_buf)
