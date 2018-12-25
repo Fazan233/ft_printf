@@ -95,5 +95,6 @@ t_list					*ft_strsplitlist(char *str, char c);
 void					ft_lstadd_end(t_list **list, t_list *new);
 char					*ft_itoa_base(int nbr, int base);
 void                    sort_list(t_list **begin);
+void		*ft_memalloc_chr(size_t size, char c);
 
 #endif

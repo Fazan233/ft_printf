@@ -38,9 +38,10 @@ int main()
 //	t_format form;
 //	if (find_flags("22.4u", &form))
 //		print_flags(&form);
-	char *str = "%-2.10s\n";
-	printf(str, 0);
-//	ft_printf(str + 1, 0);
+	char *s = "Hello";
+	char *str = "%2.1s\n";
+	printf(str, 5);
+//	ft_printf(str + 1, 5);
 //	ft_putmem("Hello", 500);
 	return (0);
 }
