@@ -9,18 +9,20 @@ void	alloc_good_width(t_format *f, char **str, int len)
 	if (f->precision || f->w_val)
 	{
 		if (f->precision && f->w_val)
-			if (f->p_val > f->w_val && f->p_val <= len)
+			if (f->p_val <= len && f->w_val <= f->p_val)
 				*str = (char*)ft_memalloc_chr(f->p_val + 1, ' ');
-			else
+			else if (f->w_val > len || f->w_val > f->p_val)
 				*str = (char*)ft_memalloc_chr(f->w_val + 1, ' ');
+			else
+				*str = (char*)ft_memalloc_chr(len + 1, ' ');
 		else if (f->precision)
-			*str = (char*)ft_memalloc_chr(1 + (f->p_val <= len ? f->p_val : len), ' ');
+			*str = (char*)ft_memalloc_chr(1 + (f->p_val <= len ?
+					f->p_val : len), ' ');
 		else
 			*str = (char*)ft_memalloc_chr(f->w_val + 1, ' ');
 	}
 	else
 		*str = (char*)ft_memalloc_chr(len + 1, ' ');
-	
 }
 
 size_t	oper_with_minus(t_format *f, char **str, char *buf, int len_buf)

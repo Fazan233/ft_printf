@@ -4,63 +4,64 @@
 
 #include "ft_printf.h"
 
-char 	*ret_nbr(size_t adr)
+int		check_minus(t_format *f, char **str, char *buf, int len_buf)
 {
-	char 	*nbr_str;
-	char 	*buf;
-	int		len;
+	char	*tmp;
+	int 	len_str;
+	int 	len_tmp;
 
-	buf = ft_itoa_base(adr, 16);
-	len = ft_strlen(buf);
-	nbr_str = (char*)malloc(9);
-	ft_memset(nbr_str, '0', 8);
-	ft_memmove(nbr_str + (8 - len), buf, len);
+	len_str = ft_strlen(*str);
+	tmp = buf;
+	buf = f->precision && f->p_val > len_buf ?
+			ft_memalloc_chr(f->p_val + 3, '0') : ft_memalloc_chr(len_buf + 3, '0');
+	buf[1] = 'x';
+	len_tmp = ft_strlen(buf);
+	ft_memmove(buf + (len_tmp - len_buf), tmp, len_buf);
+	if (f->minus)
+		ft_memmove(*str, buf, len_tmp);
+	else
+		ft_memmove(*str + (len_str - len_tmp), buf, len_tmp);
 	free(buf);
-	return (nbr_str);
+	return (len_str);
 }
 
-void	check_minus(t_format *form, char *str, size_t adr, int size)
+int		get_good_width(t_format *f, char **str, size_t adr)
 {
 	char	*buf;
+	int 	len;
 
-	buf = ret_nbr(adr);
-	if (form->minus)
+	buf = ft_longtoa_base(adr, 16);
+	len = ft_strlen(buf);
+	if (f->precision || f->w_val)
 	{
-		if (form->sharp)
-			ft_memmove(str, "0X", 2);
-		ft_memmove(str + (form->minus ? 2 : 0), buf, 8);
-	}
-	else
-	{
-		if (form->sharp)
-			ft_memmove(str + (size - 10), "0X", 2);
-		ft_memmove(str + (size - 8), buf, 8);
-	}
-}
-
-void	get_good_width(t_format *form, char **str, size_t adr)
-{
-	int 	tmp;
-
-	if (form->w_val || form->sharp)
-		if (form->sharp && form->w_val)
-			*str = ft_memalloc(tmp = form->w_val > 10 ? form->w_val + 1 : 11);
-		else if (form->w_val)
-			*str = ft_memalloc(tmp = form->w_val > 8 ? form->w_val + 1 : 9);
+		if (f->precision && f->w_val)
+			if (f->w_val >= f->p_val + 2 && f->w_val >= len + 2)
+				*str = ft_memalloc_chr(f->w_val + 1, ' ');
+			else if (f->w_val < f->p_val && f->p_val > len + 2)
+				*str = ft_memalloc_chr(f->p_val + 3, ' ');
+			else
+				*str = ft_memalloc_chr(len + 3, ' ');
+		else if (f->precision)
+			*str = ft_memalloc_chr((f->p_val >= len ? f->p_val : len) +
+					3, ' ');
 		else
-			*str = ft_memalloc(tmp = 11);
+			*str = ft_memalloc_chr((f->w_val >= len + 2 ? f->w_val + 1 : len + 3),
+					' ');
+	}
 	else
-		*str = ft_memalloc(tmp = 9);
-	ft_memset(*str, ' ', tmp - 1);
-	check_minus(form, *str, adr, tmp - 1);
+		*str = ft_memalloc_chr(len + 3, ' ');
+	return (check_minus(f, str, buf, len));
 }
 
-char 	*f_p(t_format *form, va_list *ap)
+size_t	*f_p(t_format *form, va_list *ap, char **str)
 {
-	char 	*str;
 	void	*addres;
 
 	addres = va_arg(*ap, void*);
-	get_good_width(form, &str, addres);
-	return (str);
+	if (form->zero && form->w_val && !form->precision && !form->minus)
+	{
+		form->precision = 1;
+		form->p_val = form->w_val - 2;
+	}
+	return ((size_t)get_good_width(form, str, addres));
 }

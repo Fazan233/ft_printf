@@ -45,11 +45,11 @@ void				width(t_format *form, char **str);
 int 				conversion(t_format *form, char **str);
 size_t	f_c(t_format *form, va_list *ap, void **buf);
 size_t	f_s(t_format *form, va_list *ap, void **str);
-char				*f_p(t_format *form, va_list *ap);
 int					ft_printf(char *str, ...);
 void	get_strwidth(t_format *form, void **str, int count);
 void 	*ft_memjoin(void *mem1, size_t len1, void *mem2, size_t len2);
 void	*ft_memdup(void *mem, size_t len);
 void	ft_putmem(void *mem, size_t len);
+size_t	*f_p(t_format *form, va_list *ap, char **str);
 
 #endif

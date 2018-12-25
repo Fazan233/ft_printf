@@ -3,5 +3,5 @@ project(printf C)
 
 set(CMAKE_C_STANDARD 99)
 AUX_SOURCE_DIRECTORY(libft LIBA)
-add_executable(printf ${LIBA} find_flags.c ft_printf.h main.c flags.c precision.c width.c size_mode.c f_c.c conversion.c ft_printf.c f_s.c get_strwidth.c f_p.c count_digits.c ft_memjoin.c ft_memdup.c ft_putmem.c libft/ft_memalloc_chr.c)
+add_executable(printf ${LIBA} find_flags.c ft_printf.h main.c flags.c precision.c width.c size_mode.c f_c.c conversion.c ft_printf.c f_s.c get_strwidth.c f_p.c count_digits.c ft_memjoin.c ft_memdup.c ft_putmem.c libft/ft_memalloc_chr.c libft/ft_sizet_to_a.c)
 link_libraries(libft/libft.a)
