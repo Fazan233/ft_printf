@@ -14,8 +14,8 @@ int		ft_printf(char *str, ...)
 	va_start(ap, str);
 	if (find_flags(str, &form))
 	{
-		len = f_p(&form, &ap, &buf);
-		ft_putmem(buf, len);
+		f_d(&form, &ap);
+//		ft_putmem(buf, len);
 	}
 	va_end(ap);
 	return (1);

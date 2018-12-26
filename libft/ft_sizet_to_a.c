@@ -12,27 +12,32 @@ static char write_digit_base(int n)
 		return ('a' + (n - 10));
 }
 
-static void rec_longtoa_base(size_t n, int base, int *len, char **str)
+static void rec_toa_base(void *n, int base, char **str, char c)
 {
-	(*len)++;
+	static int len = 1;
 	if (n < base)
-		*str = (char*)ft_memalloc(sizeof(char) * (*len + 1));
+	{
+		*str = (char *) ft_memalloc(sizeof(char) * (len + 1));
+		len = 1;
+	}
 	else
-		rec_longtoa_base(n / base, base, len, str);
+	{
+		len++;
+		rec_toa_base(n / base, base, str);
+	}
 	**str = write_digit_base((int)(n % base));
 	(*str)++;
 }
 
-char	*ft_longtoa_base(size_t n, int base)
+char	*ft_toa_base(void *n, int base, char c)
 {
 	char	*str;
-	int 	len;
 
-	len = 0;
-	if (n == 0)
+	if (*(int*)n == 0)
 		return (ft_strdup("0"));
 	if (base < 2 || base > 16)
 		return (NULL);
-	rec_longtoa_base(n, base, &len, &str);
+	rec_toa_base(n, base, &str, c);
+
 	return (str - len);
 }

@@ -39,9 +39,10 @@ int main()
 //	if (find_flags("22.4u", &form))
 //		print_flags(&form);
 	char *s = "Hello";
-	char *str = "%060p\n";
-	printf(str, s);
-	ft_printf(str + 1, s);
+	char *str = "%Ld\n";
+	long long i = -4232433949999999;
+	printf(str, i);
+	ft_printf(str + 1, i);
 //	ft_putmem("Hello", 500);
 	return (0);
 }

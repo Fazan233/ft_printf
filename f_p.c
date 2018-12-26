@@ -4,53 +4,55 @@
 
 #include "ft_printf.h"
 
-int		check_minus(t_format *f, char **str, char *buf, int len_buf)
+int		check_minus(t_format *f, char **str, char *buf, int lenb)
 {
 	char	*tmp;
-	int 	len_str;
-	int 	len_tmp;
+	int 	lens;
+	int 	lent;
 
-	len_str = ft_strlen(*str);
+	lens = ft_strlen(*str);
 	tmp = buf;
-	buf = f->precision && f->p_val > len_buf ?
-			ft_memalloc_chr(f->p_val + 3, '0') : ft_memalloc_chr(len_buf + 3, '0');
-	buf[1] = 'x';
-	len_tmp = ft_strlen(buf);
-	ft_memmove(buf + (len_tmp - len_buf), tmp, len_buf);
-	if (f->minus)
-		ft_memmove(*str, buf, len_tmp);
+	if (f->precision && f->p_val > lenb)
+		buf = ft_memalloc_chr(f->p_val + 3, '0');
 	else
-		ft_memmove(*str + (len_str - len_tmp), buf, len_tmp);
+		buf = ft_memalloc_chr(lenb + 3, '0');
+	buf[1] = 'x';
+	lent = ft_strlen(buf);
+	ft_memmove(buf + (lent - lenb), tmp, lenb);
+	if (f->minus)
+		ft_memmove(*str, buf, lent);
+	else
+		ft_memmove(*str + (lens - lent), buf, lent);
 	free(buf);
-	return (len_str);
+	return (lens);
 }
 
 int		get_good_width(t_format *f, char **str, size_t adr)
 {
 	char	*buf;
-	int 	len;
+	int 	l;
 
-	buf = ft_longtoa_base(adr, 16);
-	len = ft_strlen(buf);
+	buf = ft_ulongtoa_base(adr, 16);
+	l = ft_strlen(buf);
 	if (f->precision || f->w_val)
 	{
 		if (f->precision && f->w_val)
-			if (f->w_val >= f->p_val + 2 && f->w_val >= len + 2)
+			if (f->w_val >= f->p_val + 2 && f->w_val >= l + 2)
 				*str = ft_memalloc_chr(f->w_val + 1, ' ');
-			else if (f->w_val < f->p_val && f->p_val > len + 2)
+			else if (f->w_val < f->p_val && f->p_val > l + 2)
 				*str = ft_memalloc_chr(f->p_val + 3, ' ');
 			else
-				*str = ft_memalloc_chr(len + 3, ' ');
+				*str = ft_memalloc_chr(l + 3, ' ');
 		else if (f->precision)
-			*str = ft_memalloc_chr((f->p_val >= len ? f->p_val : len) +
+			*str = ft_memalloc_chr((f->p_val >= l ? f->p_val : l) +
 					3, ' ');
 		else
-			*str = ft_memalloc_chr((f->w_val >= len + 2 ? f->w_val + 1 : len + 3),
+			*str = ft_memalloc_chr((f->w_val >= l + 2 ? f->w_val + 1 : l + 3),
 					' ');
 	}
 	else
-		*str = ft_memalloc_chr(len + 3, ' ');
-	return (check_minus(f, str, buf, len));
+		*str = ft_memalloc_chr(l + 3, ' ');
+	return (check_minus(f, str, buf, l));
 }
 
 size_t	*f_p(t_format *form, va_list *ap, char **str)

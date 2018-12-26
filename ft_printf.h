@@ -19,9 +19,6 @@
 # include "libft/libft.h"
 # include <stdarg.h>
 
-enum	e_convers {c, s, p, d, i, o, u, x, X, f, e, g};
-enum	e_size {hh, h, ll, l, L};
-
 typedef struct		s_format
 {
 	unsigned int	minus:1;
@@ -51,5 +48,9 @@ void 	*ft_memjoin(void *mem1, size_t len1, void *mem2, size_t len2);
 void	*ft_memdup(void *mem, size_t len);
 void	ft_putmem(void *mem, size_t len);
 size_t	*f_p(t_format *form, va_list *ap, char **str);
+size_t	f_d(t_format *f, va_list *ap, char **str);
+void	cast_d(long long int *n, va_list *ap, t_format *f);
+
+
 
 #endif
