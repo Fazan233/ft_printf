@@ -32,7 +32,7 @@ int		get_good_width(t_format *f, char **str, size_t adr)
 	char	*buf;
 	int 	l;
 
-	buf = ft_ulongtoa_base(adr, 16);
+	buf = ft_toa_base(adr, 16, 'u');
 	l = ft_strlen(buf);
 	if (f->precision || f->w_val)
 	{

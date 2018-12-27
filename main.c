@@ -40,9 +40,11 @@ int main()
 //		print_flags(&form);
 	char *s = "Hello";
 	char *str = "%Ld\n";
-	long long i = -4232433949999999;
-	printf(str, i);
-	ft_printf(str + 1, i);
+//	long long i = -4232433949999999;
+//	printf(str, i);
+//	ft_printf(str + 1, i);
 //	ft_putmem("Hello", 500);
+	long long i = -1;
+	ft_putstr(ft_toa_base((int)-1844674407369705161, 10, 's'));
 	return (0);
 }
