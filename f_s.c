@@ -48,7 +48,7 @@ size_t	oper_with_minus(t_format *f, char **str, char *buf, int len_buf)
 	return (len_str);
 }
 
-size_t	f_s(t_format *form, va_list *ap, void **str)
+size_t	f_s(t_format *form, va_list *ap, char **str)
 {
 	char 	*buf;
 	int 	len;

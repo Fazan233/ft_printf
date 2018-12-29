@@ -40,14 +40,14 @@ int					size(t_format *form, char **str);
 void				precision(t_format *form, char **str);
 void				width(t_format *form, char **str);
 int 				conversion(t_format *form, char **str);
-size_t	f_c(t_format *form, va_list *ap, void **buf);
-size_t	f_s(t_format *form, va_list *ap, void **str);
+size_t	f_c(t_format *form, va_list *ap, char **buf);
+size_t	f_s(t_format *form, va_list *ap, char **str);
 int					ft_printf(char *str, ...);
 void	get_strwidth(t_format *form, void **str, int count);
 void 	*ft_memjoin(void *mem1, size_t len1, void *mem2, size_t len2);
 void	*ft_memdup(void *mem, size_t len);
 void	ft_putmem(void *mem, size_t len);
-size_t	*f_p(t_format *form, va_list *ap, char **str);
+size_t	f_p(t_format *form, va_list *ap, char **str);
 size_t	f_d(t_format *f, va_list *ap, char **str);
 void	cast_d(long long int *n, va_list *ap, t_format *f);
 

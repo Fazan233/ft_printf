@@ -32,7 +32,7 @@ int		get_good_width(t_format *f, char **str, size_t adr)
 	char	*buf;
 	int 	l;
 
-	buf = ft_toa_base(adr, 16, 'u');
+	buf = ft_ultoa_base(adr, 16);
 	l = ft_strlen(buf);
 	if (f->precision || f->w_val)
 	{
@@ -55,7 +55,7 @@ int		get_good_width(t_format *f, char **str, size_t adr)
 	return (check_minus(f, str, buf, l));
 }
 
-size_t	*f_p(t_format *form, va_list *ap, char **str)
+size_t	f_p(t_format *form, va_list *ap, char **str)
 {
 	void	*addres;
 
@@ -65,5 +65,5 @@ size_t	*f_p(t_format *form, va_list *ap, char **str)
 		form->precision = 1;
 		form->p_val = form->w_val - 2;
 	}
-	return ((size_t)get_good_width(form, str, addres));
+	return ((size_t)get_good_width(form, str, (size_t)addres));
 }

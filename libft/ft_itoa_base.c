@@ -12,23 +12,18 @@
 
 #include "libft.h"
 
-static char	write_digit_base(int n)
-{
-	if (n >= 0 && n <= 9)
-		return ('0' + n);
-	else
-		return ('A' + (n - 10));
-}
-
-static void	rec_itoa_base(unsigned int nbr, int base, int *len,
-									char **str)
+static void rec_itoa_base(int n, int base, char **str, int *len)
 {
 	(*len)++;
-	if (nbr < (unsigned int)base)
-		*str = (char*)ft_memalloc(sizeof(char) * (*len + 1));
+	if (n > 0 ? n < base : n > -base)
+	{
+		*str = (char*)ft_memalloc(((size_t)(n > 0 ? *len : ++(*len)) + 1));
+		if (n < 0)
+			*((*str)++) = '-';
+	}
 	else
-		rec_itoa_base(nbr / base, base, len, str);
-	**str = write_digit_base((int)(nbr % base));
+		rec_itoa_base(n / base, base, str, len);
+	**str = write_digit_base((n > 0 ? n : -n) % base);
 	(*str)++;
 }
 
@@ -38,15 +33,10 @@ char		*ft_itoa_base(int nbr, int base)
 	int		len;
 
 	len = 0;
-	if (base == 10)
-		return (ft_itoa(nbr));
 	if (nbr == 0)
 		return (ft_strdup("0"));
 	if (base < 2 || base > 16)
 		return (NULL);
-	if (nbr < 0)
-		nbr = -nbr;
-	rec_itoa_base((unsigned int)nbr, base, &len, &str);
-	*str = '\0';
+	rec_itoa_base(nbr, base, &str, &len);
 	return (str - len);
 }

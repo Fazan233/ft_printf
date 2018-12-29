@@ -96,6 +96,8 @@ void					ft_lstadd_end(t_list **list, t_list *new);
 char					*ft_itoa_base(int nbr, int base);
 void                    sort_list(t_list **begin);
 void		*ft_memalloc_chr(size_t size, char c);
-char	*ft_toa_base(unsigned long long n, int base, char c);
+char	*ft_ultoa_base(unsigned long long n, int base);
+char	*ft_ltoa_base(long long n, int base);
+char write_digit_base(int n);
 
 #endif
