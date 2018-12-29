@@ -4,7 +4,7 @@
 
 #include "ft_printf.h"
 
-size_t	f_c(t_format *form, va_list *ap, void **buf)
+size_t	f_c(t_format *form, va_list *ap, char **buf)
 {
 	int 	c;
 

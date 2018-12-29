@@ -4,7 +4,7 @@
 
 #include "ft_printf.h"
 
-int		check_minus(t_format *f, char **str, char *buf, int lenb)
+static int		check_minus(t_format *f, char **str, char *buf, int lenb)
 {
 	char	*tmp;
 	int 	lens;
@@ -24,10 +24,11 @@ int		check_minus(t_format *f, char **str, char *buf, int lenb)
 	else
 		ft_memmove(*str + (lens - lent), buf, lent);
 	free(buf);
+	free(tmp);
 	return (lens);
 }
 
-int		get_good_width(t_format *f, char **str, size_t adr)
+static int		get_good_width(t_format *f, char **str, size_t adr)
 {
 	char	*buf;
 	int 	l;
