@@ -50,7 +50,7 @@ void	ft_putmem(void *mem, size_t len);
 size_t	f_p(t_format *form, va_list *ap, char **str);
 size_t	f_d(t_format *f, va_list *ap, char **str);
 void	cast_d(long long int *n, va_list *ap, t_format *f);
-
+size_t	number_format(char **nbr, t_format *f);
 
 
 #endif
