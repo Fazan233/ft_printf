@@ -18,8 +18,8 @@ int main()
 //	if (find_flags("22.4u", &form))
 //		print_flags(&form);
 	char *s = "Hello";
-	char *str = "%-05d\n";
-	int i = -120;
+	char *str = "%+d\n";
+	int i = 120;
     printf(str, i);
     ft_printf(str + 1, i);
 	return (0);

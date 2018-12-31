@@ -46,7 +46,7 @@ size_t	get_good_width(t_format *f, long long int n, char **str)
     if (f->precision || f->w_val)
         if (f->precision && f->w_val)
             if (f->w_val >= f->p_val && f->w_val > l)
-                size = f->w_val + (f->w_val == f->p_val ? 2 : 1);
+                size = f->w_val + 1;
             else if (f->p_val >= f->w_val && f->p_val > l)
                 size = f->p_val + (n < 0 ? 2 : 1);
             else
