@@ -58,9 +58,9 @@ static int		get_good_width(t_format *f, char **str, size_t adr)
 
 size_t	f_p(t_format *form, va_list *ap, char **str)
 {
-	void	*addres;
+	size_t	addres;
 
-	addres = va_arg(*ap, void*);
+	addres = (size_t)va_arg(*ap, void*);
 	if (form->zero && form->w_val && !form->precision && !form->minus)
 	{
 		form->precision = 1;

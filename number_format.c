@@ -33,21 +33,21 @@ void	min_plus_space(char **nbr, t_format *f, int sign)
 	}
 }
 
-void	check_oxX(t_format *f, char **str)
+void	check_poxX(t_format *f, char **str)
 {
 	char	*tmp;
 
 	tmp = *str;
-	if (f->sharp && (f->type == 5 || f->type == 7 || f->type == 8))
+	if (f->sharp && (f->type == 5 || f->type == 7 || f->type == 8 || f->type == 2))
 	{
 		if (f->type == 5)
 			*str = ft_strjoin("0", *str);
 		else
 			*str = ft_strjoin("0x", *str);
-		if (f->type == 8)
-			ft_strtoupper(*str);
 		free(tmp);
 	}
+	if (f->type == 8)
+		ft_strtoupper(*str);
 }
 
 size_t	number_format(char **nbr, t_format *f)
@@ -60,11 +60,11 @@ size_t	number_format(char **nbr, t_format *f)
 	tmp = ft_strdup(*nbr + sign);
 	free(*nbr);
 	if (f->type == 5)
-		check_oxX(f, &tmp);
+		check_poxX(f, &tmp);
 	len = ft_strlen(tmp);
 	set_nbr(nbr, f, len, tmp);
 	if (f->type != 5)
-		check_oxX(f, nbr);
+		check_poxX(f, nbr);
 	min_plus_space(nbr, f, sign);
 	return (ft_strlen(*nbr));
 }

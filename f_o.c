@@ -6,10 +6,22 @@
 
 size_t	f_o(t_format *f, va_list *ap, char **str)
 {
-	unsigned long long int	n;
+	void	*n;
+	size_t 	len;
 
-	cast_unsigned(&n, ap, f);
+	n = malloc(16);
 	if (f->minus && f->zero)
 		f->zero = 0;
-	return (get_format_number(f, n, str));
+	if (f->type == 2 || (f->type >= 5 && f->type <= 8))
+	{
+		cast_unsigned((unsigned long long *) n, ap, f);
+		len = get_format_number(f, (unsigned long long*)n, str, 1);
+	}
+	else
+	{
+		cast_signed((long long *) n, ap, f);
+		len = get_format_number(f, (long long*)n, str, 0);
+	}
+	free(n);
+	return (len);
 }

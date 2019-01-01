@@ -22,13 +22,13 @@ char	*get_good_func(void *n, t_format *f)
 	return (buf);
 }
 
-size_t	get_format_number(t_format *f, unsigned long long int n, char **str)
+size_t	get_format_number(t_format *f, void *n, char **str, int sig)
 {
 	char    *buf;
 	size_t  lb;
 	size_t  ls;
 
-	buf = get_good_func(&n, f);
+	buf = get_good_func(sig ? (t_ull*)n : (t_ll*)n, f);
 	lb = number_format(&buf, f);
 	if (f->w_val > lb)
 		*str = ft_memalloc_chr((ls = f->w_val) + 1,
