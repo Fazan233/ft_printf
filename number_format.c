@@ -59,10 +59,12 @@ size_t	number_format(char **nbr, t_format *f)
 	sign = (*nbr)[0] == '-' ? 1 : 0;
 	tmp = ft_strdup(*nbr + sign);
 	free(*nbr);
-
+	if (f->type == 5)
+		check_oxX(f, &tmp);
 	len = ft_strlen(tmp);
 	set_nbr(nbr, f, len, tmp);
-	check_oxX(f, nbr);
+	if (f->type != 5)
+		check_oxX(f, nbr);
 	min_plus_space(nbr, f, sign);
 	return (ft_strlen(*nbr));
 }
