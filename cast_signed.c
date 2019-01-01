@@ -4,7 +4,7 @@
 
 #include "ft_printf.h"
 
-void	cast_d(long long int *n, va_list *ap, t_format *f)
+void	cast_signed(long long int *n, va_list *ap, t_format *f)
 {
 	*n = va_arg(*ap, long long int);
 	if (f->size)

@@ -59,6 +59,7 @@ size_t	number_format(char **nbr, t_format *f)
 	sign = (*nbr)[0] == '-' ? 1 : 0;
 	tmp = ft_strdup(*nbr + sign);
 	free(*nbr);
+
 	len = ft_strlen(tmp);
 	set_nbr(nbr, f, len, tmp);
 	check_oxX(f, nbr);

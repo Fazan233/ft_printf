@@ -4,7 +4,7 @@
 
 #include "ft_printf.h"
 
-size_t	get_good_width(t_format *f, long long int n, char **str)
+static size_t	get_good_width(t_format *f, long long int n, char **str)
 {
     char    *buf;
     size_t  lb;
@@ -36,7 +36,7 @@ size_t	f_d(t_format *f, va_list *ap, char **str)
 {
 	long long int	n;
 
-	cast_d(&n, ap, f);
+	cast_signed(&n, ap, f);
 	if (f->minus && f->zero)
 	    f->zero = 0;
 	return (get_good_width(f, n, str));
