@@ -18,9 +18,9 @@ int main()
 //	if (find_flags("22.4u", &form))
 //		print_flags(&form);
 	char *s = "Hello";
-	char *str = "%+010.0d\n";
-	int i = 10;
-    printf(str, 0);
-    ft_printf(str + 1, 0);
+	char *str = "%020\n";
+	int i = -10;
+    printf(str, i);
+    ft_printf(str + 1, i);
 	return (0);
 }

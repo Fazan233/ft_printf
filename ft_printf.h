@@ -51,6 +51,7 @@ size_t	f_p(t_format *form, va_list *ap, char **str);
 size_t	f_d(t_format *f, va_list *ap, char **str);
 void	cast_d(long long int *n, va_list *ap, t_format *f);
 size_t	number_format(char **nbr, t_format *f);
+void	check_oxX(t_format *f, char **str);
 
 
 #endif

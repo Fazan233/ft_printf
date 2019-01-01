@@ -99,5 +99,6 @@ void		*ft_memalloc_chr(size_t size, char c);
 char	*ft_ultoa_base(unsigned long long n, int base);
 char	*ft_ltoa_base(long long n, int base);
 char write_digit_base(int n);
+void 	ft_strtoupper(char *str);
 
 #endif
