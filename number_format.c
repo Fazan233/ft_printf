@@ -31,6 +31,11 @@ void	min_plus_space(char **nbr, t_format *f, int sign)
 	}
 }
 
+void	check_oxX(t_format *f, char **str)
+{
+	char	*tmp;
+}
+
 size_t	number_format(char **nbr, t_format *f)
 {
 	int 	sign;
