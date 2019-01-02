@@ -100,5 +100,8 @@ char	*ft_ultoa_base(unsigned long long n, int base);
 char	*ft_ltoa_base(long long n, int base);
 char write_digit_base(int n);
 void 	ft_strtoupper(char *str);
+void 	*ft_memjoin(void *mem1, size_t len1, void *mem2, size_t len2);
+void	*ft_memdup(void *mem, size_t len);
+void	ft_putmem(void *mem, size_t len);
 
 #endif

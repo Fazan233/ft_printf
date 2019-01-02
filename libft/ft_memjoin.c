@@ -2,7 +2,7 @@
 // Created by Vladyslav USLYSTYI on 21.12.2018.
 //
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 void 	*ft_memjoin(void *mem1, size_t len1, void *mem2, size_t len2)
 {

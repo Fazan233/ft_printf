@@ -48,17 +48,9 @@ size_t	f_c(t_format *form, va_list *ap, char **buf);
 size_t	f_s(t_format *form, va_list *ap, char **str);
 int					ft_printf(char *str, ...);
 void	get_strwidth(t_format *form, void **str, int count);
-void 	*ft_memjoin(void *mem1, size_t len1, void *mem2, size_t len2);
-void	*ft_memdup(void *mem, size_t len);
-void	ft_putmem(void *mem, size_t len);
-size_t	f_p(t_format *form, va_list *ap, char **str);
-size_t	f_d(t_format *f, va_list *ap, char **str);
 void	cast_signed(long long int *n, va_list *ap, t_format *f);
 void	cast_unsigned(unsigned long long int *n, va_list *ap, t_format *f);
 size_t	number_format(char **nbr, t_format *f);
-void	check_oxX(t_format *f, char **str);
-size_t	f_i(t_format *f, va_list *ap, char **str);
-size_t	f_o(t_format *f, va_list *ap, char **str);
-//char	*get_good_func(void *n, t_format *f);
+size_t	f_pdiouxX(t_format *f, va_list *ap, char **str);
 size_t	get_format_number(t_format *f, void *n, char **str, int sig);
 #endif

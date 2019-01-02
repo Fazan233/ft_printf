@@ -4,7 +4,7 @@
 
 #include "ft_printf.h"
 
-size_t	f_o(t_format *f, va_list *ap, char **str)
+size_t	f_pdiouxX(t_format *f, va_list *ap, char **str)
 {
 	void	*n;
 	size_t 	len;
@@ -13,15 +13,10 @@ size_t	f_o(t_format *f, va_list *ap, char **str)
 	if (f->minus && f->zero)
 		f->zero = 0;
 	if (f->type == 2 || (f->type >= 5 && f->type <= 8))
-	{
 		cast_unsigned((unsigned long long *) n, ap, f);
-		len = get_format_number(f, (unsigned long long*)n, str, 1);
-	}
 	else
-	{
 		cast_signed((long long *) n, ap, f);
-		len = get_format_number(f, (long long*)n, str, 0);
-	}
+	len = get_format_number(f, n, str, 0);
 	free(n);
 	return (len);
 }

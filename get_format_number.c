@@ -3,6 +3,7 @@
 //
 
 #include "ft_printf.h"
+#include <stdlib.h>
 
 char	*get_good_func(void *n, t_format *f)
 {
@@ -18,7 +19,7 @@ char	*get_good_func(void *n, t_format *f)
 	if (f->type == 3 || f->type == 4)
 		buf = ft_ltoa_base(*(long long*)n, base);
 	else
-		buf = ft_ltoa_base(*(unsigned long long*)n, base);
+		buf = ft_ultoa_base(*(unsigned long long*)n, base);
 	return (buf);
 }
 
@@ -28,7 +29,7 @@ size_t	get_format_number(t_format *f, void *n, char **str, int sig)
 	size_t  lb;
 	size_t  ls;
 
-	buf = get_good_func(sig ? (t_ull*)n : (t_ll*)n, f);
+	buf = get_good_func(n, f);
 	lb = number_format(&buf, f);
 	if (f->w_val > lb)
 		*str = ft_memalloc_chr((ls = f->w_val) + 1,
