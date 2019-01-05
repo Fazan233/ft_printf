@@ -39,14 +39,14 @@ size_t	get_format_number(t_format *f, void *n, char **str, int sig)
 	if (f->minus)
 		ft_memmove(*str, buf, lb);
 	else
-	if (f->w_val > lb && f->zero && !f->precision &&
-		(buf[0] == '-' || buf[0] == '+' || buf[0] == ' '))
-	{
-		ft_memmove(*str + (ls - lb + 1), buf + 1, lb - 1);
-		(*str)[0] = buf[0];
-	}
-	else
-		ft_memmove(*str + (ls - lb), buf, lb);
+		if (f->w_val > lb && f->zero && !f->precision &&
+			(buf[0] == '-' || buf[0] == '+' || buf[0] == ' '))
+		{
+			ft_memmove(*str + (ls - lb + 1), buf + 1, lb - 1);
+			(*str)[0] = buf[0];
+		}
+		else
+			ft_memmove(*str + (ls - lb), buf, lb);
 	free(buf);
 	return (ls);
 }

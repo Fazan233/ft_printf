@@ -14,7 +14,7 @@ int		ft_printf(char *str, ...)
 	va_start(ap, str);
 	if (find_flags(str, &form))
 	{
-		len = f_pdiouxX(&form, &ap, &buf);
+		len = f_s(&form, &ap, &buf);
 		ft_putmem(buf, len);
 	}
 	va_end(ap);
