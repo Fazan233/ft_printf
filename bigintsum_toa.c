@@ -4,7 +4,7 @@
 
 #include "ft_printf.h"
 
-size_t		get_len_and_makesame(char **num1, char **num2)
+size_t		get_len_and_makesame(char **num1, char **num2, int m)
 {
 	size_t	len1;
 	size_t	len2;
@@ -19,20 +19,20 @@ size_t		get_len_and_makesame(char **num1, char **num2)
 	tmp = ft_memalloc_chr(len + 1, '0');
 	if (len1 > len2)
 	{
-		ft_memmove(tmp, *num2, len2);
+		ft_memmove(tmp + (m ? 0 : len - len2), *num2, len2);
 		free(*num2);
 		*num2 = tmp;
 	}
 	else
 	{
-		ft_memmove(tmp, *num1, len1);
+		ft_memmove(tmp + (m ? 0 : len - len1), *num1, len1);
 		free(*num1);
 		*num1 = tmp;
 	}
 	return (len);
 }
 
-char 	*bigintsum_toa(char *num1, char *num2)
+char 	*bigintsum_toa(char *num1, char *num2, int mode)
 {
 	size_t		len;
 	int 		*mas;
@@ -42,7 +42,7 @@ char 	*bigintsum_toa(char *num1, char *num2)
 	ft_strreverse(num1);
 	num2 = ft_strdup(num2);
 	ft_strreverse(num2);
-	len = get_len_and_makesame(&num1, &num2);
+	len = get_len_and_makesame(&num1, &num2, mode);
 	mas = (int*)ft_memalloc(sizeof(int) * (len + 1));
 	i = -1;
 	while (++i < len)

@@ -14,13 +14,15 @@
 
 int main(void)
 {
-	long double n = 132222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222.22222222222;
-	unsigned char *p = &n;
-	printf("%.50Lf\n%.50Lf\n", n, (n - 3.0));
-	int i = 16;
-	while (--i >= 0)
-		printf("%-3.2x", *(p + i));
-	printf("\n%i", sizeof(long double));
+//	double n = 3.14;
+//	unsigned char *p = &n;
+//	printf("%.50f\n%.50f\n", n, (n - 3.0));
+//	int i = 16;
+//	while (--i >= 0)
+//		printf("%-3.2x", *(p + i));
+//	printf("\n%i", sizeof(long double));
+//	ft_putstr(bigintsum_toa("0099", "099", 1));
+	ft_putstr(pow_bigint_toa(2, 45));
 	return (0);
 }
 

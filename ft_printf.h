@@ -56,6 +56,12 @@ size_t	get_format_number(t_format *f, void *n, char **str, int sig);
 int 	count_digits(size_t digit);
 char	*pow_bigint_toa(size_t n, size_t pow);
 char	*conv_to_strnum(int *mas, int len);
-char 	*bigintsum_toa(char *num1, char *num2);
+/*
+ * 	bigintsum has two mods:
+ * 	1 - ignored '0' befor number (a usual work);
+ * 	0 - calculate numbers with '0' befor number (I wrote it for numbers which
+ * 		has floating point (its decimal part)).
+ */
+char 	*bigintsum_toa(char *num1, char *num2, int mode);
 
 #endif
