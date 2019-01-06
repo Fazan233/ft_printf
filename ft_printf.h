@@ -55,4 +55,7 @@ size_t	f_pdiouxX(t_format *f, va_list *ap, char **str);
 size_t	get_format_number(t_format *f, void *n, char **str, int sig);
 int 	count_digits(size_t digit);
 char	*pow_bigint_toa(size_t n, size_t pow);
+char	*conv_to_strnum(int *mas, int len);
+char 	*bigintsum_toa(char *num1, char *num2);
+
 #endif

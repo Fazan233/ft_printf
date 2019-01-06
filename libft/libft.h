@@ -103,5 +103,6 @@ void 	ft_strtoupper(char *str);
 void 	*ft_memjoin(void *mem1, size_t len1, void *mem2, size_t len2);
 void	*ft_memdup(void *mem, size_t len);
 void	ft_putmem(void *mem, size_t len);
+void	ft_strreverse(char *str);
 
 #endif

@@ -18,7 +18,7 @@ static void rec_itoa_base(int n, int base, char **str, int *len)
 	if (n > 0 ? n < base : n > -base)
 	{
 		*str = (char*)ft_memalloc(((size_t)(n > 0 ? *len : ++(*len)) + 1));
-		if (n < 0)
+		if (n < 0 && base == 10)
 			*((*str)++) = '-';
 	}
 	else

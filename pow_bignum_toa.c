@@ -4,30 +4,6 @@
 
 #include "ft_printf.h"
 
-static char	*conv_to_strnum(int *mas, int len)
-{
-	char	*str;
-	int 	flag;
-	int 	i;
-
-	str = (char*)ft_memalloc(len + 1);
-	flag = 1;
-	i = -1;
-	while (--len >= 0)
-	{
-		if (flag == 1)
-		{
-			if (mas[len] == 0)
-				continue;
-			else
-				flag = 0;
-		}
-		str[++i] = '0' + mas[len];
-	}
-	free(mas);
-	return (str);
-}
-
 char	*pow_bigint_toa(size_t n, size_t pow)
 {
 	int		*mas;
