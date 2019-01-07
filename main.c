@@ -14,16 +14,99 @@
 
 int main(void)
 {
-//	double n = 3.14;
-//	unsigned char *p = &n;
-//	printf("%.50f\n%.50f\n", n, (n - 3.0));
-//	int i = 16;
+	long double a = 2000000000000000000000000000000000000000000000000000000000.5;
+	t_myfloat	mf;
+
+	printf("%Le\n", a);
+	get_float_params(&mf, &a);
+	printf("%s.%s\n", mf.intnum, mf.decimal);
+//	unsigned int *pa = &a;
+//	pa = pa + 3;
+//	int i = 32;
 //	while (--i >= 0)
-//		printf("%-3.2x", *(p + i));
+//		printf("%li", *pa >> i & 0b1);
+//	pa--;
+//	i = 32;
+//	while (--i >= 0)
+//		printf("%li", *pa >> i & 0b1);
+//	pa--;
+//	i = 32;
+//	while (--i >= 0)
+//		printf("%li", *pa >> i & 0b1);
+//	pa--;
+//	i = 32;
+//	while (--i >= 0)
+//		printf("%li", *pa >> i & 0b1);
+//	printf("\n");
+//
+//	short *s_exp = &a;
+//	s_exp += 4;
+//
+//	i = 16;
+//	while (--i >= 0)
+//		printf("%i", *s_exp >> i & 0b1);
+//	*s_exp = *s_exp & (short)0x7fff;
+//
+//	printf("\n");
+//	i = 16;
+//	while (--i >= 0)
+//		printf("%i", *s_exp >> i & 0b1);
+//	printf("\n");
+//	printf("%hi", *s_exp);
+
+
+
+
+
+
+
+
+
+
+//	unsigned char c = 128 >> 2;
+//	printf("%hhu", c);
+
+//	float n1 = -0;
+//	unsigned int *pn1 = &n1;
+//	double n2 = -0.0;
+//	unsigned long *pn2 = &n2;
+//	*pn2 = 0x8000000000000000;
+//	unsigned char *pn22 = &n2;
+//	long double n3 = -1;
+//	unsigned char *pn3 = &n3;
+//	unsigned int *a = pn2;
+//	a++;
+//	*(pn3 + 1) = *(pn3 + 1) & 0b1100000000000000;
+//	int i = 8;
+//	while (--i >= 0)
+//		printf("%.2hhx ", *(pn22 + i));
+//	int j = -1;
+//	printf("\n");
+//	while (++j < 8)
+//	{
+//		i = 64;
+//		while (--i >= 0)
+//			printf("%li", (*pn2 >> i) & 0b1);
+//		printf(" ");
+//
+//	printf("\n");
+//	i = 32;
+//	while (--i >= 0)
+//		printf("%i", (*a >> i) & 0x1);
+//	printf(" ");
+//	}
+//	printf("\n%f\n", n1);
+//	printf("\n%f\n", n2);
+//	printf("%i", sizeof(long));
+//	unsigned int *p = &n;
+//	int i = ABS(8 % 8 - 7);
+//	printf("%.1000f\n%.8x\n%.1000f\n%.16lx\n%.1000Lf\n%.16lx%.16lx", n1, *pn1, n2, *pn2, n3, *(pn3 + 1), *pn3);
+//	printf("%.16x", *p);
 //	printf("\n%i", sizeof(long double));
-//	ft_putstr(bigintsum_toa("0099", "099", 1));
-	ft_putstr(pow_bigint_toa(2, 45));
+//	ft_putstr(bigintsum_toa("9999", "1", 1));
+//	ft_putstr(pow_bigint_toa(2, 450));
 	return (0);
+//	f7f141205bc0180000005621568f4003
 }
 
 //int main(void) /* C89 ANSI */

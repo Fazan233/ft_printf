@@ -15,6 +15,9 @@
 # define MODE_FLAGS 5
 # define CONVERSIONS "cspdiouxXfeg"
 # define FLAGS "+- #0"
+# define ABS(n) ((n) > 0) ? (n) : (n * -1)
+# define MANTISS_LEN 64
+
 # include <stdio.h>
 # include "libft/libft.h"
 # include <stdarg.h>
@@ -37,6 +40,16 @@ typedef struct		s_format
 	int				w_val;
 	int				p_val;
 }					t_format;
+
+typedef struct		s_myfloat
+{
+	int 			s:1;
+	int 			e;
+	t_ull			m;
+	char 			*intnum;
+	char 			*decimal
+}					t_myfloat;
+
 
 int					find_flags(char *str, t_format *form);
 void				flags(t_format *form, char **str);
@@ -63,5 +76,8 @@ char	*conv_to_strnum(int *mas, int len);
  * 		has floating point (its decimal part)).
  */
 char 	*bigintsum_toa(char *num1, char *num2, int mode);
+void	add_0_befor_numstr(char **num, int len_finish);
+void	get_float_params(t_myfloat *mf, long double *n);
+
 
 #endif
