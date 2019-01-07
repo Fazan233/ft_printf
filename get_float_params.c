@@ -20,6 +20,7 @@ static char	*get_decimal(t_myfloat *f, int *i)
 			add_0_befor_numstr(&pow_num, f->e);
 			tmp_dec = decimal;
 			decimal = bigintsum_toa(pow_num, decimal, 0);
+			add_0_befor_numstr(&decimal, f->e);
 			free(tmp_dec);
 			free(pow_num);
 		}
@@ -65,6 +66,7 @@ void	get_float_params(t_myfloat *mf, long double *n)
 {
 	t_ull			*mantiss;
 	unsigned short	*s_exp;
+	char 			*tmp;
 
 	mantiss = n;
 	mf->m = *mantiss;
@@ -73,4 +75,10 @@ void	get_float_params(t_myfloat *mf, long double *n)
 	mf->s = *s_exp >> 15 & 0b1;
 	mf->e = (*s_exp & (short)0x7fff) - 0x3fff;
 	get_float_number(mf);
+	if (mf->s)
+	{
+		tmp = mf->intnum;
+		mf->intnum = ft_strjoin("-", mf->intnum);
+		free(tmp);
+	}
 }

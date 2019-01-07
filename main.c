@@ -14,10 +14,10 @@
 
 int main(void)
 {
-	long double a = 2000000000000000000000000000000000000000000000000000000000.5;
+	long double a = -9.99;
 	t_myfloat	mf;
 
-	printf("%Le\n", a);
+	printf("%.1LE\n", a);
 	get_float_params(&mf, &a);
 	printf("%s.%s\n", mf.intnum, mf.decimal);
 //	unsigned int *pa = &a;

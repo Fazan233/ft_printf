@@ -47,7 +47,7 @@ typedef struct		s_myfloat
 	int 			e;
 	t_ull			m;
 	char 			*intnum;
-	char 			*decimal
+	char 			*decimal;
 }					t_myfloat;
 
 
