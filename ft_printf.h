@@ -70,7 +70,7 @@ void	cast_signed(long long int *n, va_list *ap, t_format *f);
 void	cast_unsigned(unsigned long long int *n, va_list *ap, t_format *f);
 size_t	number_format(char **nbr, t_format *f);
 size_t	f_pdiouxX(t_format *f, va_list *ap, char **str);
-size_t	get_format_number(t_format *f, void *n, char **str, int sig);
+size_t	get_format_number1(t_format *f, void *n, char **str, int sig);
 int 	count_digits(size_t digit);
 char	*pow_bigint_toa(size_t n, size_t pow);
 char	*conv_to_strnum(int *mas, int len);

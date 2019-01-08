@@ -16,7 +16,7 @@ size_t	f_pdiouxX(t_format *f, va_list *ap, char **str)
 		cast_unsigned((unsigned long long *) n, ap, f);
 	else
 		cast_signed((long long *) n, ap, f);
-	len = get_format_number(f, n, str, 0);
+	len = get_format_number1(f, n, str, 0);
 	free(n);
 	return (len);
 }

@@ -10,20 +10,20 @@ char	*get_good_func(void *n, t_format *f)
 	char	*buf;
 	int 	base;
 
-	if (f->type == D || f->type == I || f->type == U)
+	if (f->type == 3 || f->type == 4 || f->type == 6)
 		base = 10;
-	else if (f->type == O)
+	else if (f->type == 5)
 		base = 8;
 	else
 		base = 16;
-	if (f->type == D || f->type == I)
+	if (f->type == 3 || f->type == 4)
 		buf = ft_ltoa_base(*(long long*)n, base);
 	else
 		buf = ft_ultoa_base(*(unsigned long long*)n, base);
 	return (buf);
 }
 
-size_t	get_format_number(t_format *f, void *n, char **str, int sig)
+size_t	get_format_number1(t_format *f, void *n, char **str, int sig)
 {
 	char    *buf;
 	size_t  lb;

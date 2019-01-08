@@ -53,7 +53,7 @@ char	*e_format(t_myfloat *mf, t_format *f)
 	if (f->p_val != 0 || f->sharp)
 		mf->intnum = ft_strjoin_free(mf->intnum, ".", 0);
 	strnum = ft_strjoin(mf->intnum, mf->decimal);
-	//I have to make this function work with e and E
+	//I have to make this function work with e and E     DONE:)
 	strnum = ft_strjoin_free(strnum, f->type == E ? "e" : "E", 0);
 	strnum = ft_strjoin_free(strnum, mf->exp_sign ? "-" : "+", 0);
 	pow = ft_itoa(mf->exp_count);
