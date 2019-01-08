@@ -12,6 +12,19 @@
 
 #include "libft.h"
 
+char		*ft_strjoin_free(char *s1, char *s2, int mode)
+{
+	char 	*tmp;
+
+	tmp = mode ? s2 : s1;
+	if (mode)
+		s2 = ft_strjoin(s1, s2);
+	else
+		s1 = ft_strjoin(s1, s2);
+	free(tmp);
+	return (mode ? s2 : s1);
+}
+
 char		*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*newstr;

@@ -16,16 +16,19 @@ int main(void)
 {
 //	printf("%#.0f", 2.23);
 //	ft_putstr(bigintsum_toa("", "12345", 1));
-	long double a = -9.992;
+	long double a = 000.00000000000000000000000000;
 	t_myfloat	mf;
 	t_format 	f;
 	f.precision = 1;
-	f.p_val = 1;
+	f.p_val = 0;
+	f.sharp = 0;
+
 //	wchar_t d = L'ф';
-	printf("%.1Lf\n", a);
+	printf("%.0LE\n", a);
 	get_float_params(&mf, &a);
-	round_numstr(&mf, &f);
-	printf("%s.%s\n", mf.intnum, mf.decimal);
+//	round_numstr(&mf, &f);
+	printf("%s", e_format(&mf, &f));
+//	printf("%s.%s\n", mf.intnum, mf.decimal);
 //	unsigned int *pa = &a;
 //	pa = pa + 3;
 //	int i = 32;

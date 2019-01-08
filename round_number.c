@@ -6,14 +6,12 @@
 
 void	round_numstr(t_myfloat *mf, t_format *f)
 {
-	size_t	len;
-	char	*tmp;
+	char 	*tmp;
 
-	len = ft_strlen(mf->decimal);
 	!f->precision ? f->p_val = 6 : 0;
-	if (f->p_val > len)
+	if (f->p_val > mf->len_d)
 		add_0_for_numstr(&mf->decimal, f->p_val, 0);
-	else if (f->p_val < len)
+	else if (f->p_val < mf->len_d)
 		if (mf->decimal[f->p_val] >= '5')
 		{
 			mf->decimal[f->p_val] = '\0';

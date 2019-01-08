@@ -60,6 +60,8 @@ static void	get_float_number(t_myfloat *f)
 	i = 0;
 	f->intnum = (f->e < 0) ? ft_strdup("0") : get_intnum(f, &i);
 	f->decimal = (f->e > MANTISS_LEN - 2) ? ft_strdup("0") : get_decimal(f, &i);
+	f->len_i = ft_strlen(f->intnum);
+	f->len_d = ft_strlen(f->decimal);
 }
 
 void	get_float_params(t_myfloat *mf, long double *n)
