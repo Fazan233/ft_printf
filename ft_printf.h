@@ -76,8 +76,9 @@ char	*conv_to_strnum(int *mas, int len);
  * 		has floating point (its decimal part)).
  */
 char 	*bigintsum_toa(char *num1, char *num2, int mode);
-void	add_0_befor_numstr(char **num, int len_finish);
+void	add_0_for_numstr(char **num, int len_finish, int mode);
 void	get_float_params(t_myfloat *mf, long double *n);
+void	round_numstr(t_myfloat *mf, t_format *f);
 
 
 #endif

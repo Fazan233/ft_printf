@@ -4,7 +4,7 @@
 
 #include "libft/libft.h"
 
-void	add_0_befor_numstr(char **num, int len_finish)
+void	add_0_for_numstr(char **num, int len_finish, int mode)
 {
 	int		len_num;
 	char	*tmp;
@@ -13,7 +13,7 @@ void	add_0_befor_numstr(char **num, int len_finish)
 	if (len_num < len_finish)
 	{
 		tmp = (char*)ft_memalloc_chr(len_finish + 1, '0');
-		ft_memmove(tmp + (len_finish - len_num), *num, len_num);
+		ft_memmove(tmp + (mode ? len_finish - len_num : 0), *num, len_num);
 		free(*num);
 		*num = tmp;
 	}

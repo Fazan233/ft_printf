@@ -14,11 +14,17 @@
 
 int main(void)
 {
-	long double a = -9.99;
+//	printf("%#.0f", 2.23);
+//	ft_putstr(bigintsum_toa("", "12345", 1));
+	long double a = -9.992;
 	t_myfloat	mf;
-
-	printf("%.1LE\n", a);
+	t_format 	f;
+	f.precision = 1;
+	f.p_val = 1;
+//	wchar_t d = L'ф';
+	printf("%.1Lf\n", a);
 	get_float_params(&mf, &a);
+	round_numstr(&mf, &f);
 	printf("%s.%s\n", mf.intnum, mf.decimal);
 //	unsigned int *pa = &a;
 //	pa = pa + 3;

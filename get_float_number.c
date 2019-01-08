@@ -17,7 +17,7 @@ char	*get_decimal(t_myfloat *f, int *i)
 		if (f->m >> (MANTISS_LEN - 1 - *i) & 0b1)
 		{
 			pow_num = pow_bigint_toa(5, f->e);
-			add_0_befor_numstr(&pow_num, f->e);
+			add_0_for_numstr(&pow_num, f->e, 1);
 			tmp_dec = decimal;
 			decimal = bigintsum_toa(pow_num, decimal, 0);
 			free(tmp_dec);

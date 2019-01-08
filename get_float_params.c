@@ -17,10 +17,10 @@ static char	*get_decimal(t_myfloat *f, int *i)
 		if (f->m >> (MANTISS_LEN - 1 - *i) & 0b1)
 		{
 			pow_num = pow_bigint_toa(5, f->e);
-			add_0_befor_numstr(&pow_num, f->e);
+			add_0_for_numstr(&pow_num, f->e, 1);
 			tmp_dec = decimal;
 			decimal = bigintsum_toa(pow_num, decimal, 0);
-			add_0_befor_numstr(&decimal, f->e);
+			add_0_for_numstr(&decimal, f->e, 1);
 			free(tmp_dec);
 			free(pow_num);
 		}
@@ -75,10 +75,10 @@ void	get_float_params(t_myfloat *mf, long double *n)
 	mf->s = *s_exp >> 15 & 0b1;
 	mf->e = (*s_exp & (short)0x7fff) - 0x3fff;
 	get_float_number(mf);
-	if (mf->s)
-	{
-		tmp = mf->intnum;
-		mf->intnum = ft_strjoin("-", mf->intnum);
-		free(tmp);
-	}
+//	if (mf->s)
+//	{
+//		tmp = mf->intnum;
+//		mf->intnum = ft_strjoin("-", mf->intnum);
+//		free(tmp);
+//	}
 }
