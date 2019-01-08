@@ -22,6 +22,7 @@
 # include "libft/libft.h"
 # include <stdarg.h>
 
+enum	e_conv{C, S, P, D, I, O, U, X, UPP_X, F, E, UPP_E, G, UPP_G};
 typedef unsigned long long t_ull;
 typedef long long t_ll;
 
@@ -36,7 +37,7 @@ typedef struct		s_format
 	unsigned int	precision:1;
 	unsigned int	size:1;
 	int				s_val;
-	int				type;
+	enum e_conv		type;
 	int				w_val;
 	int				p_val;
 }					t_format;

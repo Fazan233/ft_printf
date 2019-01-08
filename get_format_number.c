@@ -10,13 +10,13 @@ char	*get_good_func(void *n, t_format *f)
 	char	*buf;
 	int 	base;
 
-	if (f->type == 3 || f->type == 4 || f->type == 6)
+	if (f->type == D || f->type == I || f->type == U)
 		base = 10;
-	else if (f->type == 5)
+	else if (f->type == O)
 		base = 8;
 	else
 		base = 16;
-	if (f->type == 3 || f->type == 4)
+	if (f->type == D || f->type == I)
 		buf = ft_ltoa_base(*(long long*)n, base);
 	else
 		buf = ft_ultoa_base(*(unsigned long long*)n, base);

@@ -27,7 +27,7 @@ void	min_plus_space(char **nbr, t_format *f, int sign)
 {
 	char	*tmp;
 
-	if ((f->type >= 3 && f->type <= 4) && (sign || f->plus || f->space))
+	if ((f->type >= D && f->type <= I) && (sign || f->plus || f->space))
 	{
 		tmp = *nbr;
 		if (sign)
@@ -43,16 +43,16 @@ void	check_poxX(t_format *f, char **str)
 	char	*tmp;
 
 	tmp = *str;
-	if (f->sharp && (f->type == 5 || f->type == 7 || f->type == 8 ||
-		f->type == 2))
+	if (f->sharp && (f->type == O || f->type == X || f->type == UPP_X ||
+		f->type == P))
 	{
-		if (f->type == 5)
+		if (f->type == O)
 			*str = ft_strjoin("0", *str);
 		else
 			*str = ft_strjoin("0x", *str);
 		free(tmp);
 	}
-	if (f->type == 8)
+	if (f->type == UPP_X)
 		ft_strtoupper(*str);
 }
 
@@ -65,11 +65,11 @@ size_t	number_format(char **nbr, t_format *f)
 	sign = (*nbr)[0] == '-' ? 1 : 0;
 	tmp = ft_strdup(*nbr + sign);
 	free(*nbr);
-	if (f->type == 5)
+	if (f->type == O)
 		check_poxX(f, &tmp);
 	len = ft_strlen(tmp);
 	set_nbr(nbr, f, len, tmp);
-	if (f->type != 5)
+	if (f->type != O)
 		check_poxX(f, nbr);
 	min_plus_space(nbr, f, sign);
 	return (ft_strlen(*nbr));

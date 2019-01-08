@@ -12,7 +12,7 @@ size_t	f_pdiouxX(t_format *f, va_list *ap, char **str)
 	n = malloc(16);
 	if (f->minus && f->zero)
 		f->zero = 0;
-	if (f->type == 2 || (f->type >= 5 && f->type <= 8))
+	if (f->type == P || (f->type >= O && f->type <= UPP_X))
 		cast_unsigned((unsigned long long *) n, ap, f);
 	else
 		cast_signed((long long *) n, ap, f);
