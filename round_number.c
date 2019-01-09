@@ -4,30 +4,39 @@
 
 #include "ft_printf.h"
 
-void	round_numstr(t_myfloat *mf, t_format *f)
+void	some_condition(t_myfloat *mf, t_format *f)
 {
+	char 	*one;
 	char 	*tmp;
 
+	if (mf->decimal[f->p_val] >= '5')
+	{
+		mf->decimal[f->p_val] = '\0';
+		tmp = mf->decimal;
+		one = ft_strdup("1");
+		add_0_for_numstr(&one, f->p_val, 1);
+		mf->decimal = bigintsum_toa(one, mf->decimal, 0);
+		add_0_for_numstr(&mf->decimal, f->p_val, 1);
+		free(tmp);
+		if (f->p_val != ft_strlen(mf->decimal))
+		{
+			tmp = mf->intnum;
+			mf->intnum = bigintsum_toa(mf->intnum, "1", 1);
+			free(tmp);
+			tmp = mf->decimal;
+			mf->decimal = ft_strdup(mf->decimal + 1);
+			free(tmp);
+		}
+	}
+	else
+		mf->decimal[f->p_val] = '\0';
+}
+
+void	round_numstr(t_myfloat *mf, t_format *f)
+{
 	!f->precision ? f->p_val = 6 : 0;
 	if (f->p_val > mf->len_d)
 		add_0_for_numstr(&mf->decimal, f->p_val, 0);
 	else if (f->p_val < mf->len_d)
-		if (mf->decimal[f->p_val] >= '5')
-		{
-			mf->decimal[f->p_val] = '\0';
-			tmp = mf->decimal;
-			mf->decimal = bigintsum_toa("1", mf->decimal, 1);
-			free(tmp);
-			if (f->p_val != ft_strlen(mf->decimal))
-			{
-				tmp = mf->intnum;
-				mf->intnum = bigintsum_toa(mf->intnum, "1", 1);
-				free(tmp);
-				tmp = mf->decimal;
-				mf->decimal = ft_strdup(mf->decimal + 1);
-				free(tmp);
-			}
-		}
-		else
-			mf->decimal[f->p_val] = '\0';
+		some_condition(mf, f);
 }

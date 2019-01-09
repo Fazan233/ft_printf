@@ -25,7 +25,8 @@ void	e_minus(t_myfloat *mf, t_format *f)
 {
 	char *tmp;
 
-	while (mf->decimal[mf->exp_count++] == '0');
+	while (mf->decimal[mf->exp_count++] == '0')
+		;
 	if (mf->len_d == 1 && mf->decimal[0] == '0')
 		mf->exp_count = 0;
 
@@ -57,7 +58,7 @@ char	*e_format(t_myfloat *mf, t_format *f)
 	strnum = ft_strjoin_free(strnum, f->type == E ? "e" : "E", 0);
 	strnum = ft_strjoin_free(strnum, mf->exp_sign ? "-" : "+", 0);
 	pow = ft_itoa(mf->exp_count);
-	add_0_for_numstr(&pow, 2, 0);
+	add_0_for_numstr(&pow, 2, 1);
 	strnum = ft_strjoin_free(strnum, pow, 0);
 	free(pow);
 	return (strnum);

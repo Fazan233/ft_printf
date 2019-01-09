@@ -6,9 +6,10 @@
 
 void	cast_float(long double *n, va_list *ap, t_format *f)
 {
-	*n = va_arg(*ap, long double);
 	if (!f->size || (f->size && f->s_val != 4))
-		*n = (double)*n;
+		*n = va_arg(*ap, double);
+	else
+		*n = va_arg(*ap, long double);
 }
 
 size_t	f_feEgG(t_format *f, va_list *ap, char **str)
@@ -19,5 +20,6 @@ size_t	f_feEgG(t_format *f, va_list *ap, char **str)
 	if (f->minus && f->zero)
 		f->zero = 0;
 	cast_float(&n, ap, f);
-
+	len = get_format_number2(f, &n, str);
+	return (len);
 }

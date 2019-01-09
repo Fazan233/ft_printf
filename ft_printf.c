@@ -11,10 +11,11 @@ int		ft_printf(char *str, ...)
 	char		*buf;
 	size_t 		len;
 
+	buf = ft_memalloc(1000);
 	va_start(ap, str);
 	if (find_flags(str, &form))
 	{
-		len = f_s(&form, &ap, &buf);
+		len = f_feEgG(&form, &ap, &buf);
 		ft_putmem(buf, len);
 	}
 	va_end(ap);

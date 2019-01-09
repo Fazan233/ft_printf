@@ -17,11 +17,9 @@ void	set_conversation(t_format *f, int *i)
 	*i == 8 ? f->type = UPP_X : 0;
 	*i == 9 ? f->type = F : 0;
 	*i == 10 ? f->type = E : 0;
-	*i == 11 ? f->type = UPP_X : 0;
-	*i == 12 ? f->type = E : 0;
-	*i == 13 ? f->type = UPP_E : 0;
-	*i == 14 ? f->type = G : 0;
-	*i == 15 ? f->type = UPP_G : 0;
+	*i == 11 ? f->type = UPP_E : 0;
+	*i == 12 ? f->type = G : 0;
+	*i == 13 ? f->type = UPP_G : 0;
 }
 
 int 	conversion(t_format *form, char **str)

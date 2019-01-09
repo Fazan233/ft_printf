@@ -13,7 +13,7 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # define MODE_FLAGS 5
-# define CONVERSIONS "cspdiouxXfeg"
+# define CONVERSIONS "cspdiouxXfeEgG"
 # define FLAGS "+- #0"
 # define ABS(n) ((n) > 0) ? (n) : (n * -1)
 # define MANTISS_LEN 64
@@ -29,6 +29,7 @@ typedef long long t_ll;
 
 typedef struct		s_format
 {
+	unsigned int	sign:1;
 	unsigned int	minus:1;
 	unsigned int	plus:1;
 	unsigned int	space:1;
@@ -44,8 +45,8 @@ typedef struct		s_format
 
 typedef struct		s_myfloat
 {
-	int 			exp_sign:1;
-	int 			s:1;
+	unsigned int 	exp_sign:1;
+	unsigned int 	s:1;
 	int 			e;
 	t_ull			m;
 	char 			*intnum;
@@ -73,6 +74,10 @@ size_t	f_pdiouxX(t_format *f, va_list *ap, char **str);
 size_t	get_format_number1(t_format *f, void *n, char **str, int sig);
 int 	count_digits(size_t digit);
 char	*pow_bigint_toa(size_t n, size_t pow);
+/*
+ * 		Convert massive of integers to massive of characters.
+ * 		In result we have number in string.
+ */
 char	*conv_to_strnum(int *mas, int len);
 /*
  * 	bigintsum has two mods:
@@ -81,9 +86,17 @@ char	*conv_to_strnum(int *mas, int len);
  * 		has floating point (its decimal part)).
  */
 char 	*bigintsum_toa(char *num1, char *num2, int mode);
+/*
+ * 	1 - add zeros start
+ * 	0 - add zeros end
+ */
 void	add_0_for_numstr(char **num, int len_finish, int mode);
 void	get_float_params(t_myfloat *mf, long double *n);
 void	round_numstr(t_myfloat *mf, t_format *f);
 char	*e_format(t_myfloat *mf, t_format *f);
+char 	*f_format(t_myfloat *mf, t_format *f);
+size_t	get_format_number2(t_format *f, long double *n, char **str);
+size_t	f_feEgG(t_format *f, va_list *ap, char **str);
+void	min_plus_space(char **nbr, t_format *f);
 
 #endif

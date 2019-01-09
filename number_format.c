@@ -23,14 +23,15 @@ void	set_nbr(char **nbr, t_format *f, size_t len, char *tmp)
 	free(tmp);
 }
 
-void	min_plus_space(char **nbr, t_format *f, int sign)
+void	min_plus_space(char **nbr, t_format *f)
 {
 	char	*tmp;
 
-	if ((f->type >= D && f->type <= I) && (sign || f->plus || f->space))
+	if (((f->type >= D && f->type <= I) || (f->type >= F && f->type <= UPP_G)) &&
+		(f->sign || f->plus || f->space))
 	{
 		tmp = *nbr;
-		if (sign)
+		if (f->sign)
 			*nbr = ft_strjoin("-", *nbr);
 		else
 			*nbr = ft_strjoin((f->plus ? "+" : " "), *nbr);
@@ -58,12 +59,11 @@ void	check_poxX(t_format *f, char **str)
 
 size_t	number_format(char **nbr, t_format *f)
 {
-	int 	sign;
 	size_t 	len;
 	char	*tmp;
 
-	sign = (*nbr)[0] == '-' ? 1 : 0;
-	tmp = ft_strdup(*nbr + sign);
+	f->sign = (*nbr)[0] == '-' ? 1 : 0;
+	tmp = ft_strdup(*nbr + f->sign);
 	free(*nbr);
 	if (f->type == O)
 		check_poxX(f, &tmp);
@@ -71,6 +71,6 @@ size_t	number_format(char **nbr, t_format *f)
 	set_nbr(nbr, f, len, tmp);
 	if (f->type != O)
 		check_poxX(f, nbr);
-	min_plus_space(nbr, f, sign);
+	min_plus_space(nbr, f);
 	return (ft_strlen(*nbr));
 }

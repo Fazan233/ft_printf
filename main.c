@@ -14,20 +14,26 @@
 
 int main(void)
 {
+	double a = -0.00000000023472389749823;
+	char *str = "%+024.20e\n";
+	printf(str, a);
+	ft_printf(str + 1, a);
+
+
 //	printf("%#.0f", 2.23);
 //	ft_putstr(bigintsum_toa("", "12345", 1));
-	long double a = 000.00000000000000000000000000;
-	t_myfloat	mf;
-	t_format 	f;
-	f.precision = 1;
-	f.p_val = 0;
-	f.sharp = 0;
-
-//	wchar_t d = L'ф';
-	printf("%.0LE\n", a);
-	get_float_params(&mf, &a);
-//	round_numstr(&mf, &f);
-	printf("%s", e_format(&mf, &f));
+//	long double a = 000.00000000000000000000000000;
+//	t_myfloat	mf;
+//	t_format 	f;
+//	f.precision = 1;
+//	f.p_val = 0;
+//	f.sharp = 0;
+//
+////	wchar_t d = L'ф';
+//	printf("%.0LE\n", a);
+//	get_float_params(&mf, &a);
+////	round_numstr(&mf, &f);
+//	printf("%s", e_format(&mf, &f));
 //	printf("%s.%s\n", mf.intnum, mf.decimal);
 //	unsigned int *pa = &a;
 //	pa = pa + 3;
