@@ -14,11 +14,17 @@
 
 int main(void)
 {
-	long double a = -1.251;
-	char *str = "%.0Lg\n";
-	printf(str, a);
-	ft_printf(str + 1, a);
-
+//	long double a = 7.0;
+//	char *str = "Hello\n";
+//	int i = 23;
+//	int ast = 5;
+//	char *format = "%+0*i\n";
+//	printf(format, 10, ast, i);
+//	ft_printf(format + 1, 10, ast, i);
+//	char a = 0b10100010;
+//	char b = 0b11000010;
+//	ft_putchar(b);
+	ft_putchar(63352);
 
 //	printf("%#.0f", 2.23);
 //	ft_putstr(bigintsum_toa("", "12345", 1));

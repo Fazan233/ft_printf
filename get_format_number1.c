@@ -20,6 +20,8 @@ char	*get_good_func(void *n, t_format *f)
 		buf = ft_ltoa_base(*(long long*)n, base);
 	else
 		buf = ft_ultoa_base(*(unsigned long long*)n, base);
+	if (f->type != P && buf[0] == '0' && f->precision && f->p_val == 0)
+		buf[0] = '\0';
 	return (buf);
 }
 

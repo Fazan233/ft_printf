@@ -64,7 +64,7 @@ static void	get_float_number(t_myfloat *f)
 	f->len_d = ft_strlen(f->decimal);
 }
 
-void	get_float_params(t_myfloat *mf, long double *n)
+int		get_float_params(t_myfloat *mf, long double *n)
 {
 	t_ull			*mantiss;
 	unsigned short	*s_exp;
@@ -75,12 +75,9 @@ void	get_float_params(t_myfloat *mf, long double *n)
 	s_exp = n;
 	s_exp += 4;
 	mf->s = *s_exp >> 15 & 0b1;
+	if (*s_exp == 0xffff || *s_exp == 0x7fff)
+		return (1);
 	mf->e = (*s_exp & (short)0x7fff) - 0x3fff;
 	get_float_number(mf);
-//	if (mf->s)
-//	{
-//		tmp = mf->intnum;
-//		mf->intnum = ft_strjoin("-", mf->intnum);
-//		free(tmp);
-//	}
+	return (0);
 }

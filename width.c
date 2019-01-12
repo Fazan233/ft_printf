@@ -4,9 +4,17 @@
 
 #include "ft_printf.h"
 
-void	width(t_format *form, char **str)
+void	width(t_format *form, char **str, va_list *ap)
 {
-	form->w_val = ft_atoi(*str);
-	while (ft_isdigit(**str))
+	if (**str == '*')
+	{
+		form->w_val = va_arg(*ap, int);
 		*str = *str + 1;
+	}
+	else
+	{
+		form->w_val = ft_atoi(*str);
+		while (ft_isdigit(**str))
+			*str = *str + 1;
+	}
 }

@@ -16,6 +16,7 @@ void	some_condition(t_myfloat *mf, t_format *f)
 		one = ft_strdup("1");
 		add_0_for_numstr(&one, f->p_val, 1);
 		mf->decimal = bigintsum_toa(one, mf->decimal, 0);
+		free(one);
 		add_0_for_numstr(&mf->decimal, f->p_val, 1);
 		free(tmp);
 		if (f->p_val != ft_strlen(mf->decimal))

@@ -7,19 +7,28 @@
 char	*get_good_flag(long double *n, t_format *f)
 {
 	char 		*numstr;
+	int 		inf;
 
 	t_myfloat	mf;
-	get_float_params(&mf, n);
+	inf = get_float_params(&mf, n);
 	f->sign = mf.s;
-	if (f->type == F)
+	if (inf)
+	{
+		numstr = ft_strdup("inf");
+		f->zero = 0;
+	}
+	else if (f->type == F)
 		numstr = f_format(&mf, f);
 	else if(f->type == E || f->type == UPP_E)
 		numstr = e_format(&mf, f);
 	else
 		numstr = g_format(&mf, f);
 	min_plus_space(&numstr, f);
-	free(mf.intnum);
-	free(mf.decimal);
+	if (!inf)
+	{
+		free(mf.intnum);
+		free(mf.decimal);
+	}
 	return (numstr);
 }
 
@@ -31,7 +40,6 @@ size_t	get_format_number2(t_format *f, long double *n, char **str)
 
 	buf = get_good_flag(n, f);
 	lb = ft_strlen(buf);
-//	lb = number_format(&buf, f);
 	if (f->w_val > lb)
 		*str = ft_memalloc_chr((ls = f->w_val) + 1,
 							   f->zero ? '0' : ' ');
@@ -50,5 +58,4 @@ size_t	get_format_number2(t_format *f, long double *n, char **str)
 		ft_memmove(*str + (ls - lb), buf, lb);
 	free(buf);
 	return (ls);
-
 }

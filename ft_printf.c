@@ -12,9 +12,9 @@ int		ft_printf(char *str, ...)
 	size_t 		len;
 
 	va_start(ap, str);
-	if (find_flags(str, &form))
+	if (find_flags(str, &form, &ap))
 	{
-		len = f_feEgG(&form, &ap, &buf);
+		len = f_pdiouxX(&form, &ap, &buf);
 		ft_putmem(buf, len);
 		free(buf);
 	}

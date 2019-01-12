@@ -57,11 +57,11 @@ typedef struct		s_myfloat
 }					t_myfloat;
 
 
-int					find_flags(char *str, t_format *form);
+int					find_flags(char *str, t_format *form, va_list *ap);
 void				flags(t_format *form, char **str);
 int					size(t_format *form, char **str);
-void				precision(t_format *form, char **str);
-void				width(t_format *form, char **str);
+void	precision(t_format *form, char **str, va_list *ap);
+void	width(t_format *form, char **str, va_list *ap);
 int 				conversion(t_format *form, char **str);
 size_t	f_c(t_format *form, va_list *ap, char **buf);
 size_t	f_s(t_format *form, va_list *ap, char **str);
@@ -91,7 +91,7 @@ char 	*bigintsum_toa(char *num1, char *num2, int mode);
  * 	0 - add zeros end
  */
 void	add_0_for_numstr(char **num, int len_finish, int mode);
-void	get_float_params(t_myfloat *mf, long double *n);
+int		get_float_params(t_myfloat *mf, long double *n);
 void	round_numstr(t_myfloat *mf, t_format *f);
 char	*e_format(t_myfloat *mf, t_format *f);
 char 	*f_format(t_myfloat *mf, t_format *f);
