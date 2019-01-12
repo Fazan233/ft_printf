@@ -14,8 +14,8 @@
 
 int main(void)
 {
-	double a = -0.00000000023472389749823;
-	char *str = "%+024.20e\n";
+	long double a = 14244343;
+	char *str = "%.15Lg\n";
 	printf(str, a);
 	ft_printf(str + 1, a);
 

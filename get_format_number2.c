@@ -13,9 +13,13 @@ char	*get_good_flag(long double *n, t_format *f)
 	f->sign = mf.s;
 	if (f->type == F)
 		numstr = f_format(&mf, f);
-	else //(f->type == E || f->type == UPP_E)
+	else if(f->type == E || f->type == UPP_E)
 		numstr = e_format(&mf, f);
+	else
+		numstr = g_format(&mf, f);
 	min_plus_space(&numstr, f);
+	free(mf.intnum);
+	free(mf.decimal);
 	return (numstr);
 }
 
