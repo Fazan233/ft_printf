@@ -28,7 +28,7 @@ char	*have_precision(t_myfloat *mf, t_format *f, int const *zeros)
 char	*dont_have_precision(t_myfloat *mf, t_format *f, int const *zeros)
 {
 	f->precision = 1;
-	if (mf->len_i > 6 || (mf->intnum[0] && *zeros > 3))
+	if (mf->len_i > 6 || (mf->intnum[0] == '0' && *zeros > 3))
 	{
 		f->p_val = 5;
 		f->type = f->type == G ? E : UPP_E;
@@ -58,9 +58,11 @@ void	check_sharp(char **strnum)
 		a = b;
 		while (*(--a) == '0')
 			*a = '\0';
+		if (*a == '.')
+			*a = '\0';
 		*strnum = ft_strjoin_free(*strnum, b, 0);
 	}
-	if (ft_strchr(*strnum, '.'))
+	else if (ft_strchr(*strnum, '.'))
 	{
 		len = ft_strlen(*strnum);
 		while ((*strnum)[len - 1] == '0' && len > 0)
@@ -78,6 +80,7 @@ char 	*g_format(t_myfloat *mf, t_format *f)
 	zeros = 0;
 	while (mf->decimal[zeros] == '0')
 		zeros++;
+	f->p_val == 0 ? f->p_val = 1 : 0;
 	if (f->precision)
 		strnum = have_precision(mf, f, &zeros);
 	else
