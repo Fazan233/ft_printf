@@ -18,6 +18,14 @@
 # define ABS(n) ((n) > 0) ? (n) : (n * -1)
 # define MANTISS_LEN 64
 
+# define PF_RED			"\033[31m"
+# define PF_GREEN		"\033[32m"
+# define PF_YELLOW		"\033[33m"
+# define PF_BLUE		"\033[34m"
+# define PF_PURPLE		"\033[35m"
+# define PF_CYAN		"\033[36m"
+# define PF_EOC	"\033[0m"
+
 # include <stdio.h>
 # include "libft/libft.h"
 # include <stdarg.h>
@@ -56,8 +64,20 @@ typedef struct		s_myfloat
 	int 			exp_count;
 }					t_myfloat;
 
+typedef struct		s_pf
+{
+	va_list			ap;
+	t_format 		form;
+	void			*form_str;
+	void 			*buf;
+	size_t 			len_buf;
+	size_t			len;
+	int 			i;
+	t_byte 			*tmp;
+}					t_pf;
 
-int					find_flags(char *str, t_format *form, va_list *ap);
+
+int					find_flags(char **str, t_format *form, va_list *ap);
 void				flags(t_format *form, char **str);
 int					size(t_format *form, char **str);
 void	precision(t_format *form, char **str, va_list *ap);

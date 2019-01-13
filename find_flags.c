@@ -24,20 +24,21 @@ void	flags_to_zero(t_format *form)
 	form->size = 0;
 }
 
-int	find_flags(char *str, t_format *form, va_list *ap)
+int	find_flags(char **str, t_format *form, va_list *ap)
 {
+//	*str = *str + 1;
 	flags_to_zero(form);
 	while (1)
 	{
-		if (ft_strchr(FLAGS, *str))
-			flags(form, &str);
-		else if (*str == '*' || (ft_isdigit(*str) && *str != '0'))
-			width(form, &str, ap);
-		else if (*str == '.')
-			precision(form, &str, ap);
-		else if (size(form, &str))
+		if (ft_strchr(FLAGS, **str))
+			flags(form, str);
+		else if (**str == '*' || (ft_isdigit(**str) && **str != '0'))
+			width(form, str, ap);
+		else if (**str == '.')
+			precision(form, str, ap);
+		else if (size(form, str))
 			form->size = 1;
 		else
-			return ((conversion(form, &str)) ? 1 : 0);
+			return ((conversion(form, str)) ? 1 : 0);
 	}
 }

@@ -12,12 +12,12 @@
 
 #include "libft.h"
 
-void		print_chr(unsigned char c)
+static void		print_chr(unsigned char c)
 {
 	write(1, &c, 1);
 }
 
-void		ft_putchar(size_t c)
+void			ft_putchar(size_t c)
 {
 	if (c < 128)
 		print_chr(c);

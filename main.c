@@ -14,6 +14,17 @@
 
 int main(void)
 {
+	char *form = "%0100p\n";
+
+	char	c = 'a';
+	int i = -54321;
+
+	if (printf(form, i) != ft_printf(form, i))
+		ft_printf("all bad");
+
+
+//	write(1, "\033[0;40mHello, world!",10 + 10);
+
 //	long double a = 7.0;
 //	char *str = "Hello\n";
 //	int i = 23;
@@ -24,7 +35,7 @@ int main(void)
 //	char a = 0b10100010;
 //	char b = 0b11000010;
 //	ft_putchar(b);
-	ft_putchar(63352);
+//	printf("{CYAN}");
 
 //	printf("%#.0f", 2.23);
 //	ft_putstr(bigintsum_toa("", "12345", 1));
