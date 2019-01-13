@@ -18,13 +18,13 @@
 # define ABS(n) ((n) > 0) ? (n) : (n * -1)
 # define MANTISS_LEN 64
 
-# define PF_RED			"\033[31m"
-# define PF_GREEN		"\033[32m"
-# define PF_YELLOW		"\033[33m"
-# define PF_BLUE		"\033[34m"
-# define PF_PURPLE		"\033[35m"
-# define PF_CYAN		"\033[36m"
-# define PF_EOC	"\033[0m"
+# define RED		"\033[31m"
+# define GREEN		"\033[32m"
+# define YELLOW		"\033[33m"
+# define BLUE		"\033[34m"
+# define PURPLE		"\033[35m"
+# define CYAN		"\033[36m"
+# define EOC		"\033[0m"
 
 # include <stdio.h>
 # include "libft/libft.h"

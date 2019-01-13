@@ -14,14 +14,32 @@
 
 int main(void)
 {
-	char *form = "%0100p\n";
+	char *form = "%p\n";
 
-	char	c = 'a';
-	int i = -54321;
+	int d = -23;
 
-	if (printf(form, i) != ft_printf(form, i))
-		ft_printf("all bad");
+//	ft_printf("%p\n", d);
+//	ft_printf("%f", d);
+	ft_printf("hello{RED}adf");
+//	printf("%01000000llu\n", d);
 
+//	ft_printf("%p\n", d);
+//	printf("%p\n%f", d, d);
+//	void *v = &d;
+//	*(double*)v = 41;
+//
+//	printf("%f", d);
+//	printf("%p\n", d);
+//	printf("%p\n", &v);
+//	printf("");
+//	char	c = 'a';
+//	t_ull i = 1123124123124213214;
+//	long double f = 432634212345.8698;
+//
+//	if (printf(form, f) != ft_printf(form, f))
+//		ft_printf("all bad");
+
+//	ft_printf("%llx", adr);
 
 //	write(1, "\033[0;40mHello, world!",10 + 10);
 

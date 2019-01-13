@@ -9,7 +9,7 @@ void	cast_unsigned(unsigned long long int *n, va_list *ap, t_format *f)
 	if (f->type == P)
 	{
 		f->sharp = 1;
-		*n = (unsigned long long) va_arg(*ap, void*);
+		*n = (va_arg(*ap, void*));
 	}
 	else
 		*n = va_arg(*ap, unsigned long long int);
