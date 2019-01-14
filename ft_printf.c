@@ -35,18 +35,11 @@ void	set_values(t_pf *pf, char **str)
 
 void	can_set_color(t_pf *pf, char **str)
 {
-	char 	*tmp = *str;
-//	int 	i;
+//	char 	*tmp = *str;
 
-	tmp--;
-	if (!ft_strncmp(tmp, "{RED}", 5))
-	{
-		pf->form_str = ft_memjoin(pf->form_str, pf->len, RED, ft_strlen(RED));
-		pf->len += ft_strlen(RED);
-		*str = *str + ft_strlen(RED);
-		pf->tmp = *str;
-		pf->i = 0;
-	}
+	if (!ft_strncmp(*str, "{RED}", 5))
+		set_color()
+
 }
 
 void	move_str(t_pf *pf, char **str)
@@ -55,12 +48,10 @@ void	move_str(t_pf *pf, char **str)
 
 	while (**str != 0)
 	{
-		if (**str != '%' && (++(pf->i)))
-		{
-			if (*((*str)++) == '{')
-				can_set_color(pf, str);
+		if (**str == '{')
+			can_set_color(pf, str);
+		if (*((*str)++) != '%' && (++(pf->i)))
 			continue;
-		}
 		*str = *str + 1;
 		t = pf->form_str;
 		pf->form_str = ft_memjoin(pf->form_str, pf->len, pf->tmp, pf->i);
