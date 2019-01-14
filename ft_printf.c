@@ -56,7 +56,6 @@ void	move_str(t_pf *pf, char **str)
 			pf->i++;
 			continue;
 		}
-		*str = *str + 1;
 		t = pf->form_str;
 		pf->form_str = ft_memjoin(pf->form_str, pf->len, pf->tmp, pf->i);
 		free(t);
@@ -65,7 +64,7 @@ void	move_str(t_pf *pf, char **str)
 			good_flags(pf, str);
 		else
 		{
-			str = pf->tmp + pf->i + 1;
+			*str = pf->tmp + pf->i + 1;
 			pf->tmp += pf->i;
 			pf->i = 1;
 		}

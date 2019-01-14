@@ -18,9 +18,13 @@ int main(void)
 
 	int d = -23;
 
+//	printf("%20c", 0);
+	ft_printf("{CYAN}%020w", 0);
+//	ft_putstr("HELLO\nANGRY\nWORLD");
 //	ft_printf("%p\n", d);
 //	ft_printf("%f", d);
-	ft_printf("{RED}{BOLD}Привіт {CYAN}there{EOC}, {YELLOW}{BGRED}{BOLD}Alyona{EOC}\n{BOLD}{INVERSE}I've done that, {PURPLE}mazafaka");
+//	printf("%020i", 453);
+//	ft_printf("{RED}{BOLD}Привіт {CYAN}there{EOC}, {YELLOW}{BGRED}Alyona{EOC}\n{BOLD}{INVERSE}I've done that, {PURPLE}mazafaka\n%020i", 5234);
 //	printf("%01000000llu\n", d);
 
 //	ft_printf("%p\n", d);
