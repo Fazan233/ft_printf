@@ -26,7 +26,6 @@ void	flags_to_zero(t_format *form)
 
 int	find_flags(char **str, t_format *form, va_list *ap)
 {
-//	*str = *str + 1;
 	flags_to_zero(form);
 	while (1)
 	{

@@ -82,7 +82,6 @@ size_t	text_color(t_pf *pf, char **str)
 void	set_color(t_pf *pf, char *color, size_t i, char **str)
 {
 	int		color_len;
-	char 	*tmp;
 
 	color_len = ft_strlen(color);
 	ft_putmem(pf->tmp, pf->i);

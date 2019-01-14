@@ -6,8 +6,6 @@
 
 void	good_flags(t_pf *pf, char **str)
 {
-	char 	*t;
-
 	if (pf->form.type == C)
 		pf->len_buf = f_c(&pf->form, &pf->ap, &pf->buf);
 	else if (pf->form.type == S)
@@ -21,15 +19,6 @@ void	good_flags(t_pf *pf, char **str)
 	free(pf->buf);
 	pf->tmp = *str;
 	pf->i = 0;
-//	ft_putmem(pf->tmp, pf->i);
-}
-
-void	set_values(t_pf *pf, char **str)
-{
-	pf->i = 0;
-	pf->len = 0;
-	pf->tmp = *str;
-	pf->form_str = malloc(0);
 }
 
 void	can_set_color(t_pf *pf, char **str)
@@ -42,10 +31,33 @@ void	can_set_color(t_pf *pf, char **str)
 		addition_options(pf, str);
 }
 
+void	condition(t_pf *pf, char **str)
+{
+	if (**str == '%')
+	{
+		ft_putmem(*str, 1);
+		*str = *str + 1;
+		pf->tmp = *str;
+		pf->i = 0;
+		pf->len++;
+	}
+	else if (**str != 0 && find_flags(str, &pf->form, &pf->ap))
+		good_flags(pf, str);
+	else if (**str != '\0' || pf->len > 0)
+	{
+		*str = pf->tmp + pf->i + 1;
+		pf->tmp += pf->i;
+		pf->i = 1;
+	}
+	else
+	{
+		pf->i = 0;
+		pf->len = -1;
+	}
+}
+
 void	move_str(t_pf *pf, char **str)
 {
-	char	*t;
-
 	while (**str != 0)
 	{
 		if (**str == '{')
@@ -57,14 +69,7 @@ void	move_str(t_pf *pf, char **str)
 		}
 		ft_putmem(pf->tmp, pf->i);
 		pf->len += pf->i;
-		if (find_flags(str, &pf->form, &pf->ap))
-			good_flags(pf, str);
-		else
-		{
-			*str = pf->tmp + pf->i + 1;
-			pf->tmp += pf->i;
-			pf->i = 1;
-		}
+		condition(pf, str);
 	}
 }
 
@@ -74,7 +79,9 @@ int		ft_printf2(char *str, ...)
 	char 		*temp;
 
 	va_start(pf.ap, str);
-	set_values(&pf, &str);
+	pf.i = 0;
+	pf.len = 0;
+	pf.tmp = str;
 	move_str(&pf, &str);
 	ft_putmem(pf.tmp, pf.i);
 	pf.len += pf.i;

@@ -91,9 +91,9 @@ typedef struct		s_pf
 	void			*form_str;
 	void 			*buf;
 	size_t 			len_buf;
-	size_t			len;
+	int				len;
 	int 			i;
-	t_byte 			*tmp;
+	char 			*tmp;
 }					t_pf;
 
 
