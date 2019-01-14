@@ -85,13 +85,9 @@ void	set_color(t_pf *pf, char *color, size_t i, char **str)
 	char 	*tmp;
 
 	color_len = ft_strlen(color);
-	tmp = pf->form_str;
-	pf->form_str = ft_memjoin(pf->form_str, pf->len, pf->tmp, pf->i);
-	free(tmp);
+	ft_putmem(pf->tmp, pf->i);
 	pf->len += pf->i;
-	tmp = pf->form_str;
-	pf->form_str = ft_memjoin(pf->form_str, pf->len, color, color_len);
-	free(tmp);
+	ft_putmem(color, color_len);
 	pf->len += color_len;
 	*str = *str + (i - 1);
 	pf->tmp = *str + 1;

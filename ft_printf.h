@@ -143,5 +143,6 @@ void	set_color(t_pf *pf, char *color, size_t i, char **str);
 size_t	text_color(t_pf *pf, char **str);
 size_t	bg_color(t_pf *pf, char **str);
 size_t	addition_options(t_pf *pf, char **str);
+int		ft_printf2(char *str, ...);
 
 #endif

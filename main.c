@@ -14,12 +14,14 @@
 
 int main(void)
 {
-	char *form = "%p\n";
+	char *form = "{CYAN}{BGRED}%040.20d";
 
 	int d = -23;
 
 //	printf("%20c", 0);
-	ft_printf("{CYAN}%020w", 0);
+
+//	 ft_printf("{CYAN}{BGRED}%040.20d", 20);
+	ft_printf2("{INVERSE}%040.20d", 20);
 //	ft_putstr("HELLO\nANGRY\nWORLD");
 //	ft_printf("%p\n", d);
 //	ft_printf("%f", d);
