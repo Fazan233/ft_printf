@@ -119,5 +119,6 @@ size_t	get_format_number2(t_format *f, long double *n, char **str);
 size_t	f_feEgG(t_format *f, va_list *ap, char **str);
 void	min_plus_space(char **nbr, t_format *f);
 char 	*g_format(t_myfloat *mf, t_format *f);
+void	set_color(t_pf *pf, char *color, size_t i, char **str);
 
 #endif
