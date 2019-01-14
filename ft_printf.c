@@ -35,23 +35,12 @@ void	set_values(t_pf *pf, char **str)
 
 void	can_set_color(t_pf *pf, char **str)
 {
-//	char 	*tmp = *str;
-	size_t	i;
-
-	if (!ft_strncmp(*str, "{RED}", i = 5))
-		set_color(pf, RED, i, str);
-	if (!ft_strncmp(*str, "{GREEN}", i = 7))
-		set_color(pf, GREEN, i, str);
-	if (!ft_strncmp(*str, "{YELLOW}", i = 8))
-		set_color(pf, YELLOW, i, str);
-	if (!ft_strncmp(*str, "{BLUE}", i = 6))
-		set_color(pf, BLUE, i, str);
-	if (!ft_strncmp(*str, "{PURPLE}", i = 8))
-		set_color(pf, PURPLE, i, str);
-	if (!ft_strncmp(*str, "{CYAN}", i = 6))
-		set_color(pf, CYAN, i, str);
-	if (!ft_strncmp(*str, "{EOC}", i = 5))
-		set_color(pf, EOC, i, str);
+	if (text_color(pf, str))
+		;
+	else if (bg_color(pf, str))
+		;
+	else
+		addition_options(pf, str);
 }
 
 void	move_str(t_pf *pf, char **str)

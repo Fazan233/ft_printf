@@ -18,13 +18,33 @@
 # define ABS(n) ((n) > 0) ? (n) : (n * -1)
 # define MANTISS_LEN 64
 
+# define STD		"\033[30m"
 # define RED		"\033[31m"
 # define GREEN		"\033[32m"
 # define YELLOW		"\033[33m"
 # define BLUE		"\033[34m"
 # define PURPLE		"\033[35m"
 # define CYAN		"\033[36m"
+# define GRAY		"\033[37m"
 # define EOC		"\033[0m"
+
+# define BGSTD		"\033[40m"
+# define BGRED		"\033[41m"
+# define BGGREEN	"\033[42m"
+# define BGYELLOW	"\033[43m"
+# define BGBLUE		"\033[44m"
+# define BGPURPLE	"\033[45m"
+# define BGCYAN		"\033[46m"
+# define BGGRAY		"\033[47m"
+
+# define NORMAL		"\033[0m"
+# define BOLD		"\033[1m"
+# define DBOLD		"\033[2m"
+# define NBOLD		"\033[22m"
+# define UNDERLINE	"\033[4m"
+# define BLINK		"\033[5m"
+# define INVERSE	"\033[7m"
+
 
 # include <stdio.h>
 # include "libft/libft.h"
@@ -120,5 +140,8 @@ size_t	f_feEgG(t_format *f, va_list *ap, char **str);
 void	min_plus_space(char **nbr, t_format *f);
 char 	*g_format(t_myfloat *mf, t_format *f);
 void	set_color(t_pf *pf, char *color, size_t i, char **str);
+size_t	text_color(t_pf *pf, char **str);
+size_t	bg_color(t_pf *pf, char **str);
+size_t	addition_options(t_pf *pf, char **str);
 
 #endif
