@@ -20,7 +20,7 @@ int main(void)
 
 //	ft_printf("%p\n", d);
 //	ft_printf("%f", d);
-	ft_printf("hello{RED}adf");
+	ft_printf("{RED}Hello {CYAN}there{EOC}, {YELLOW}Oleksii\n{GREEN}I've done that, {PURPLE}mazafaka");
 //	printf("%01000000llu\n", d);
 
 //	ft_printf("%p\n", d);
