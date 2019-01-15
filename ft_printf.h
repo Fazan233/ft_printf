@@ -144,6 +144,12 @@ size_t	text_color(t_pf *pf, char **str);
 size_t	bg_color(t_pf *pf, char **str);
 size_t	addition_options(t_pf *pf, char **str);
 int		ft_printf2(char *str, ...);
+/*
+ * 		precision - count of lines which will show
+ * 		minus - show lines without empty lines
+ * 		plus - separate lines by '\n'
+ * 		space - separate lines by spaces
+ */
 size_t	f_t(t_format *f, va_list *ap, char **str);
 
 #endif

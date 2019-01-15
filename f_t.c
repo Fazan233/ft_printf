@@ -4,7 +4,7 @@
 
 #include "ft_printf.h"
 
-size_t	f_t(t_format *f, va_list *ap, char **str)
+size_t		f_t(t_format *f, va_list *ap, char **str)
 {
 	int	fd;
 	int len_sum;
@@ -18,9 +18,13 @@ size_t	f_t(t_format *f, va_list *ap, char **str)
 	{
 		len_sum += (len_str = ft_strlen(*str));
 		if (f->minus && len_str == 0)
-			continue ;
+		{
+			free(*str);
+			continue;
+		}
 		count++;
 		ft_putmem(*str, len_str);
+		free(*str);
 		if (f->plus && ++len_sum)
 			ft_putchar('\n');
 		else if (f->space && ++len_sum)

@@ -98,6 +98,7 @@ int 	get_next_line(const int fd, char **line)
 		if (check_endline(tmp, line))
 			return (1);
 	}
+	free(*line);
 	delete_unused_fd(&list, tmp);
 	return (rd == -1 ? -1 : 0);
 }
