@@ -5,7 +5,7 @@
 #include "ft_printf.h"
 #include <stdlib.h>
 
-char	*get_good_func(void *n, t_format *f)
+static char	*get_good_func(void *n, t_format *f)
 {
 	char	*buf;
 	int 	base;
@@ -25,7 +25,7 @@ char	*get_good_func(void *n, t_format *f)
 	return (buf);
 }
 
-size_t	get_format_number1(t_format *f, void *n, char **str, int sig)
+size_t		get_format_number1(t_format *f, void *n, char **str, int sig)
 {
 	char    *buf;
 	size_t  lb;

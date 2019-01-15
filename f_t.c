@@ -11,9 +11,7 @@ size_t		f_t(t_format *f, va_list *ap, char **str)
 	int len_str;
 	int count;
 
-	count = 0;
-	len_sum = 0;
-	fd = va_arg(*ap, int);
+	((count = 0) || (len_sum = 0) || (fd = va_arg(*ap, int)));
 	while (get_next_line(fd, str) > 0)
 	{
 		len_sum += (len_str = ft_strlen(*str));

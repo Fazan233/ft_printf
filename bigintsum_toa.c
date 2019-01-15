@@ -4,7 +4,7 @@
 
 #include "ft_printf.h"
 
-size_t		get_len_and_makesame(char **num1, char **num2, int m)
+static size_t	get_len_and_makesame(char **num1, char **num2, int m)
 {
 	size_t	len1;
 	size_t	len2;
@@ -32,7 +32,7 @@ size_t		get_len_and_makesame(char **num1, char **num2, int m)
 	return (len);
 }
 
-char 	*bigintsum_toa(char *num1, char *num2, int mode)
+char 			*bigintsum_toa(char *num1, char *num2, int mode)
 {
 	size_t		len;
 	int 		*mas;

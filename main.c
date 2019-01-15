@@ -19,7 +19,7 @@ int main(void)
 	int fd;
 
 	fd = open("Garry.txt", O_RDONLY);
-	int a = ft_printf2("% .1000t", fd, 345.224, fd);
+	int a = ft_printf2("% .100000t", fd, 345.224, fd);
 	ft_printf2("{RED}{BOLD}\n%i", a);
 //	while (get_next_line(fd, &line))
 //	{

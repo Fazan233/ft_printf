@@ -4,7 +4,7 @@
 
 #include "ft_printf.h"
 
-char	*have_precision(t_myfloat *mf, t_format *f, int const *zeros)
+static char	*have_precision(t_myfloat *mf, t_format *f, int const *zeros)
 {
 	if (f->p_val < mf->len_i || (mf->intnum[0] && *zeros > 3))
 	{
@@ -25,7 +25,7 @@ char	*have_precision(t_myfloat *mf, t_format *f, int const *zeros)
 	}
 }
 
-char	*dont_have_precision(t_myfloat *mf, t_format *f, int const *zeros)
+static char	*dont_have_precision(t_myfloat *mf, t_format *f, int const *zeros)
 {
 	f->precision = 1;
 	if (mf->len_i > 6 || (mf->intnum[0] == '0' && *zeros > 3))
@@ -47,7 +47,7 @@ char	*dont_have_precision(t_myfloat *mf, t_format *f, int const *zeros)
 	}
 }
 
-void	check_sharp(char **strnum)
+static void	check_sharp(char **strnum)
 {
 	int		len;
 	char 	*b;
@@ -72,7 +72,7 @@ void	check_sharp(char **strnum)
 	}
 }
 
-char 	*g_format(t_myfloat *mf, t_format *f)
+char 		*g_format(t_myfloat *mf, t_format *f)
 {
 	char 	*strnum;
 	int 	zeros;

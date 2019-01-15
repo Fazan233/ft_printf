@@ -4,7 +4,7 @@
 
 #include "ft_printf.h"
 
-void	cast_float(long double *n, va_list *ap, t_format *f)
+static void	cast_float(long double *n, va_list *ap, t_format *f)
 {
 	if (!f->size || (f->size && f->s_val != 4))
 		*n = va_arg(*ap, double);
@@ -12,7 +12,7 @@ void	cast_float(long double *n, va_list *ap, t_format *f)
 		*n = va_arg(*ap, long double);
 }
 
-size_t	f_feEgG(t_format *f, va_list *ap, char **str)
+size_t		f_feEgG(t_format *f, va_list *ap, char **str)
 {
 	long double	n;
 	size_t 		len;

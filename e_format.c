@@ -4,7 +4,7 @@
 
 #include "ft_printf.h"
 
-void	e_plus(t_myfloat *mf, t_format *f)
+static void	e_plus(t_myfloat *mf, t_format *f)
 {
 	if (mf->len_i > 1)
 	{
@@ -21,7 +21,7 @@ void	e_plus(t_myfloat *mf, t_format *f)
 		e_plus(mf, f);
 }
 
-void	e_minus(t_myfloat *mf, t_format *f)
+static void	e_minus(t_myfloat *mf, t_format *f)
 {
 	char *tmp;
 
@@ -40,7 +40,7 @@ void	e_minus(t_myfloat *mf, t_format *f)
 	}
 }
 
-char	*e_format(t_myfloat *mf, t_format *f)
+char		*e_format(t_myfloat *mf, t_format *f)
 {
 	char 	*tmp;
 	char 	*strnum;
@@ -54,7 +54,6 @@ char	*e_format(t_myfloat *mf, t_format *f)
 	if (f->p_val != 0 || f->sharp)
 		mf->intnum = ft_strjoin_free(mf->intnum, ".", 0);
 	strnum = ft_strjoin(mf->intnum, mf->decimal);
-	//I have to make this function work with e and E     DONE:)
 	strnum = ft_strjoin_free(strnum, f->type == E ? "e" : "E", 0);
 	strnum = ft_strjoin_free(strnum, mf->exp_sign ? "-" : "+", 0);
 	pow = ft_itoa(mf->exp_count);

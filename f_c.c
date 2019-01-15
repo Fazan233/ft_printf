@@ -13,9 +13,9 @@ size_t	f_c(t_format *form, va_list *ap, char **buf)
 	{
 		get_strwidth(form, buf, form->w_val);
 		if (form->minus)
-			((char*)*buf)[0] = (char)c;
+			(*buf)[0] = (char)c;
 		else
-			((char*)*buf)[form->w_val - 1] = (char)c;
+			(*buf)[form->w_val - 1] = (char)c;
 	}
 	else
 		*buf = ft_memdup(&c, 1);

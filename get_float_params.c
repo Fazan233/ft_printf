@@ -6,9 +6,9 @@
 
 static char	*get_decimal(t_myfloat *f, int *i)
 {
-	char 	*decimal;
-	char 	*pow_num;
-	char 	*tmp_dec;
+	char 			*decimal;
+	char 			*pow_num;
+	char 			*tmp_dec;
 
 	decimal = ft_strdup("0");
 	f->e = ABS(f->e);
@@ -32,9 +32,9 @@ static char	*get_decimal(t_myfloat *f, int *i)
 
 static char	*get_intnum(t_myfloat *f, int *i)
 {
-	char	*intnum;
-	char 	*pow_num;
-	char 	*tmp_in;
+	char			*intnum;
+	char 			*pow_num;
+	char 			*tmp_in;
 
 	intnum = ft_strdup("0");
 	while ((*i) < MANTISS_LEN && f->e >= 0)
@@ -55,7 +55,7 @@ static char	*get_intnum(t_myfloat *f, int *i)
 
 static void	get_float_number(t_myfloat *f)
 {
-	int 	i;
+	int 			i;
 
 	i = 0;
 	f->intnum = (f->e < 0) ? ft_strdup("0") : get_intnum(f, &i);
@@ -64,7 +64,7 @@ static void	get_float_number(t_myfloat *f)
 	f->len_d = ft_strlen(f->decimal);
 }
 
-int		get_float_params(t_myfloat *mf, long double *n)
+int			get_float_params(t_myfloat *mf, long double *n)
 {
 	t_ull			*mantiss;
 	unsigned short	*s_exp;

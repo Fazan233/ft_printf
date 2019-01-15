@@ -4,7 +4,7 @@
 
 #include "ft_printf.h"
 
-void	good_flags(t_pf *pf, char **str)
+static void	good_flags(t_pf *pf, char **str)
 {
 	if (pf->form.type == T)
 		pf->len += f_t(&pf->form, &pf->ap, &pf->buf);
@@ -26,7 +26,7 @@ void	good_flags(t_pf *pf, char **str)
 	pf->i = 0;
 }
 
-void	can_set_color(t_pf *pf, char **str)
+static void	can_set_color(t_pf *pf, char **str)
 {
 	if (text_color(pf, str))
 		;
@@ -36,7 +36,7 @@ void	can_set_color(t_pf *pf, char **str)
 		addition_options(pf, str);
 }
 
-void	condition(t_pf *pf, char **str)
+static void	condition(t_pf *pf, char **str)
 {
 	if (**str == '%')
 	{
@@ -61,7 +61,7 @@ void	condition(t_pf *pf, char **str)
 	}
 }
 
-void	move_str(t_pf *pf, char **str)
+static void	move_str(t_pf *pf, char **str)
 {
 	while (**str != 0)
 	{
@@ -78,10 +78,9 @@ void	move_str(t_pf *pf, char **str)
 	}
 }
 
-int		ft_printf2(char *str, ...)
+int			ft_printf2(char *str, ...)
 {
 	t_pf		pf;
-	char 		*temp;
 
 	va_start(pf.ap, str);
 	pf.i = 0;

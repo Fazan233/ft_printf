@@ -4,7 +4,7 @@
 
 #include "ft_printf.h"
 
-void	set_conversation(t_format *f, int *i)
+static void	set_conversation(t_format *f, int const *i)
 {
 	*i == 0 ? f->type = C : 0;
 	*i == 1 ? f->type = S : 0;
@@ -23,7 +23,7 @@ void	set_conversation(t_format *f, int *i)
 	*i == 14 ? f->type = T : 0;
 }
 
-int 	conversion(t_format *form, char **str)
+int 		conversion(t_format *form, char **str)
 {
 	int	i;
 

@@ -5,9 +5,9 @@
 #include "get_next_line.h"
 #include "libft.h"
 
-void	delete_unused_fd(t_fdlst **begin, t_fdlst *lst)
+static void		delete_unused_fd(t_fdlst **begin, t_fdlst *lst)
 {
-	t_fdlst	*tmp;
+	t_fdlst			*tmp;
 
 	tmp = *begin;
 	if (*begin == lst)
@@ -27,11 +27,11 @@ void	delete_unused_fd(t_fdlst **begin, t_fdlst *lst)
 	}
 }
 
-int 	check_endline(t_fdlst *list, char **line)
+static int 		check_endline(t_fdlst *list, char **line)
 {
-	int 	i;
-	int 	len;
-	char 	*tmp;
+	int 			i;
+	int 			len;
+	char 			*tmp;
 
 	i = -1;
 	while (list->data[++i] != '\0')
@@ -53,9 +53,9 @@ int 	check_endline(t_fdlst *list, char **line)
 	return (0);
 }
 
-t_fdlst	*get_right_list(const int fd, t_fdlst **list)
+static t_fdlst	*get_right_list(const int fd, t_fdlst **list)
 {
-	t_fdlst *tmp;
+	t_fdlst 		*tmp;
 
 	tmp = *list;
 	if (tmp == NULL)
@@ -82,7 +82,7 @@ t_fdlst	*get_right_list(const int fd, t_fdlst **list)
 	return (tmp);
 }
 
-int 	get_next_line(const int fd, char **line)
+int 			get_next_line(const int fd, char **line)
 {
 	static t_fdlst	*list;
 	t_fdlst			*tmp;

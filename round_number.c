@@ -4,7 +4,7 @@
 
 #include "ft_printf.h"
 
-void	some_condition(t_myfloat *mf, t_format *f)
+static void	some_condition(t_myfloat *mf, t_format *f)
 {
 	char 	*one;
 	char 	*tmp;
@@ -33,7 +33,7 @@ void	some_condition(t_myfloat *mf, t_format *f)
 		mf->decimal[f->p_val] = '\0';
 }
 
-void	round_numstr(t_myfloat *mf, t_format *f)
+void		round_numstr(t_myfloat *mf, t_format *f)
 {
 	!f->precision ? f->p_val = 6 : 0;
 	if (f->p_val > mf->len_d)

@@ -15,7 +15,7 @@ static void rec_ultoa_base(unsigned long long n, int base, char **str, int *len)
     (*str)++;
 }
 
-char	*ft_ultoa_base(unsigned long long n, int base)
+char		*ft_ultoa_base(unsigned long long n, int base)
 {
 	char	*str;
 	int 	len;

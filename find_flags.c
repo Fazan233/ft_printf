@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	flags_to_zero(t_format *form)
+static void	flags_to_zero(t_format *form)
 {
 	form->minus = 0;
 	form->plus = 0;
@@ -24,7 +24,7 @@ void	flags_to_zero(t_format *form)
 	form->size = 0;
 }
 
-int	find_flags(char **str, t_format *form, va_list *ap)
+int			find_flags(char **str, t_format *form, va_list *ap)
 {
 	flags_to_zero(form);
 	while (1)

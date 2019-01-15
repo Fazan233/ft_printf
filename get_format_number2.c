@@ -4,7 +4,7 @@
 
 #include "ft_printf.h"
 
-char	*get_good_flag(long double *n, t_format *f)
+static char	*get_good_flag(long double *n, t_format *f)
 {
 	char 		*numstr;
 	int 		inf;
@@ -32,11 +32,11 @@ char	*get_good_flag(long double *n, t_format *f)
 	return (numstr);
 }
 
-size_t	get_format_number2(t_format *f, long double *n, char **str)
+size_t		get_format_number2(t_format *f, long double *n, char **str)
 {
-	char    *buf;
-	size_t  lb;
-	size_t  ls;
+	char    	*buf;
+	size_t  	lb;
+	size_t  	ls;
 
 	buf = get_good_flag(n, f);
 	lb = ft_strlen(buf);

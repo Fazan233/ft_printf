@@ -19,7 +19,7 @@ static void rec_ltoa_base(long long n, int base, char **str, int *len)
     (*str)++;
 }
 
-char	*ft_ltoa_base(long long n, int base)
+char	    *ft_ltoa_base(long long n, int base)
 {
     char	*str;
     int 	len;

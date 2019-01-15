@@ -4,7 +4,7 @@
 
 #include "ft_printf.h"
 
-void	set_nbr(char **nbr, t_format *f, size_t len, char *tmp)
+static void	set_nbr(char **nbr, t_format *f, size_t len, char *tmp)
 {
 	if (f->zero && f->w_val > len + 1 && !f->precision)
 	{
@@ -23,7 +23,7 @@ void	set_nbr(char **nbr, t_format *f, size_t len, char *tmp)
 	free(tmp);
 }
 
-void	min_plus_space(char **nbr, t_format *f)
+void		min_plus_space(char **nbr, t_format *f)
 {
 	char	*tmp;
 
@@ -39,7 +39,7 @@ void	min_plus_space(char **nbr, t_format *f)
 	}
 }
 
-void	check_poxX(t_format *f, char **str)
+static void	check_poxX(t_format *f, char **str)
 {
 	char	*tmp;
 
@@ -57,7 +57,7 @@ void	check_poxX(t_format *f, char **str)
 		ft_strtoupper(*str);
 }
 
-size_t	number_format(char **nbr, t_format *f)
+size_t		number_format(char **nbr, t_format *f)
 {
 	size_t 	len;
 	char	*tmp;

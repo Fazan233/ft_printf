@@ -15,7 +15,7 @@
 # define MODE_FLAGS 5
 # define CONVERSIONS "cspdiouxXfeEgGt"
 # define FLAGS "+- #0"
-# define ABS(n) ((n) > 0) ? (n) : (n * -1)
+# define ABS(n) ((n) > 0) ? (n) : (n * -1);
 # define MANTISS_LEN 64
 
 # define STD		"\033[30m"
@@ -100,56 +100,58 @@ typedef struct		s_pf
 int					find_flags(char **str, t_format *form, va_list *ap);
 void				flags(t_format *form, char **str);
 int					size(t_format *form, char **str);
-void	precision(t_format *form, char **str, va_list *ap);
-void	width(t_format *form, char **str, va_list *ap);
+void				precision(t_format *form, char **str, va_list *ap);
+void				width(t_format *form, char **str, va_list *ap);
 int 				conversion(t_format *form, char **str);
-size_t	f_c(t_format *form, va_list *ap, char **buf);
-size_t	f_s(t_format *form, va_list *ap, char **str);
-int					ft_printf(char *str, ...);
-void	get_strwidth(t_format *form, void **str, int count);
-void	cast_signed(long long int *n, va_list *ap, t_format *f);
-void	cast_unsigned(unsigned long long int *n, va_list *ap, t_format *f);
-size_t	number_format(char **nbr, t_format *f);
-size_t	f_pdiouxX(t_format *f, va_list *ap, char **str);
-size_t	get_format_number1(t_format *f, void *n, char **str, int sig);
-int 	count_digits(size_t digit);
-char	*pow_bigint_toa(size_t n, size_t pow);
+size_t				f_c(t_format *form, va_list *ap, char **buf);
+size_t				f_s(t_format *form, va_list *ap, char **str);
+//int					ft_printf(char *str, ...);
+void				get_strwidth(t_format *form, void **str, int count);
+void				cast_signed(long long int *n, va_list *ap, t_format *f);
+void				cast_unsigned(unsigned long long int *n, va_list *ap,
+									t_format *f);
+size_t				number_format(char **nbr, t_format *f);
+size_t				f_pdiouxX(t_format *f, va_list *ap, char **str);
+size_t				get_format_number1(t_format *f, void *n, char **str,
+										int sig);
+int 				count_digits(size_t digit);
+char				*pow_bigint_toa(size_t n, size_t pow);
 /*
- * 		Convert massive of integers to massive of characters.
- * 		In result we have number in string.
- */
-char	*conv_to_strnum(int *mas, int len);
+** 		Convert massive of integers to massive of characters.
+** 		In result we have number in string.
+*/
+char				*conv_to_strnum(int *mas, int len);
 /*
- * 	bigintsum has two mods:
- * 	1 - ignored '0' befor number (a usual work);
- * 	0 - calculate numbers with '0' befor number (I wrote it for numbers which
- * 		has floating point (its decimal part)).
- */
-char 	*bigintsum_toa(char *num1, char *num2, int mode);
+** 	bigintsum has two mods:
+** 	1 - ignored '0' befor number (a usual work);
+** 	0 - calculate numbers with '0' befor number (I wrote it for numbers which
+** 		has floating point (its decimal part)).
+*/
+char 				*bigintsum_toa(char *num1, char *num2, int mode);
 /*
- * 	1 - add zeros start
- * 	0 - add zeros end
- */
-void	add_0_for_numstr(char **num, int len_finish, int mode);
-int		get_float_params(t_myfloat *mf, long double *n);
-void	round_numstr(t_myfloat *mf, t_format *f);
-char	*e_format(t_myfloat *mf, t_format *f);
-char 	*f_format(t_myfloat *mf, t_format *f);
-size_t	get_format_number2(t_format *f, long double *n, char **str);
-size_t	f_feEgG(t_format *f, va_list *ap, char **str);
-void	min_plus_space(char **nbr, t_format *f);
-char 	*g_format(t_myfloat *mf, t_format *f);
-void	set_color(t_pf *pf, char *color, size_t i, char **str);
-size_t	text_color(t_pf *pf, char **str);
-size_t	bg_color(t_pf *pf, char **str);
-size_t	addition_options(t_pf *pf, char **str);
-int		ft_printf2(char *str, ...);
+** 	1 - add zeros start
+** 	0 - add zeros end
+*/
+void				add_0_for_numstr(char **num, int len_finish, int mode);
+int					get_float_params(t_myfloat *mf, long double *n);
+void				round_numstr(t_myfloat *mf, t_format *f);
+char				*e_format(t_myfloat *mf, t_format *f);
+char 				*f_format(t_myfloat *mf, t_format *f);
+size_t				get_format_number2(t_format *f, long double *n, char **str);
+size_t				f_feEgG(t_format *f, va_list *ap, char **str);
+void				min_plus_space(char **nbr, t_format *f);
+char 				*g_format(t_myfloat *mf, t_format *f);
+void				set_color(t_pf *pf, char *color, size_t i, char **str);
+size_t				text_color(t_pf *pf, char **str);
+size_t				bg_color(t_pf *pf, char **str);
+size_t				addition_options(t_pf *pf, char **str);
+int					ft_printf2(char *str, ...);
 /*
- * 		precision - count of lines which will show
- * 		minus - show lines without empty lines
- * 		plus - separate lines by '\n'
- * 		space - separate lines by spaces
- */
-size_t	f_t(t_format *f, va_list *ap, char **str);
+** 		precision - count of lines which will show
+** 		minus - show lines without empty lines
+** 		plus - separate lines by '\n'
+** 		space - separate lines by spaces
+*/
+size_t				f_t(t_format *f, va_list *ap, char **str);
 
 #endif

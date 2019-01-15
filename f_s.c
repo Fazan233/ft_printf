@@ -4,7 +4,7 @@
 
 #include "ft_printf.h"
 
-void	alloc_good_width(t_format *f, char **str, int len)
+static void		alloc_good_width(t_format *f, char **str, int len)
 {
 	if (f->precision || f->w_val)
 	{
@@ -25,7 +25,7 @@ void	alloc_good_width(t_format *f, char **str, int len)
 		*str = (char*)ft_memalloc_chr(len + 1, ' ');
 }
 
-size_t	oper_with_minus(t_format *f, char **str, char *buf, int len_buf)
+static size_t	oper_with_minus(t_format *f, char **str, char *buf, int len_buf)
 {
 	size_t	len_str;
 
@@ -48,7 +48,7 @@ size_t	oper_with_minus(t_format *f, char **str, char *buf, int len_buf)
 	return (len_str);
 }
 
-size_t	f_s(t_format *form, va_list *ap, char **str)
+size_t			f_s(t_format *form, va_list *ap, char **str)
 {
 	char 	*buf;
 	int 	len;
