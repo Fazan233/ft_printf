@@ -10,7 +10,7 @@ void 	*ft_memjoin(void *mem1, size_t len1, void *mem2, size_t len2)
 
 	if (!mem1 && !mem2  || len1 + len2 == 0)
 		return (0);
-	buf = malloc(len1 + len2);
+	buf = malloc(len1 + len2 + 1);
 	ft_memmove(buf, mem1, len1);
 	ft_memmove(buf + len1, mem2, len2);
 	return (buf);
