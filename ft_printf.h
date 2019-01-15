@@ -13,7 +13,7 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # define MODE_FLAGS 5
-# define CONVERSIONS "cspdiouxXfeEgG"
+# define CONVERSIONS "cspdiouxXfeEgGt"
 # define FLAGS "+- #0"
 # define ABS(n) ((n) > 0) ? (n) : (n * -1)
 # define MANTISS_LEN 64
@@ -50,7 +50,7 @@
 # include "libft/libft.h"
 # include <stdarg.h>
 
-enum	e_conv{C, S, P, D, I, O, U, X, UPP_X, F, E, UPP_E, G, UPP_G};
+enum	e_conv{C, S, P, D, I, O, U, X, UPP_X, F, E, UPP_E, G, UPP_G, T};
 typedef unsigned long long t_ull;
 typedef long long t_ll;
 
@@ -144,5 +144,6 @@ size_t	text_color(t_pf *pf, char **str);
 size_t	bg_color(t_pf *pf, char **str);
 size_t	addition_options(t_pf *pf, char **str);
 int		ft_printf2(char *str, ...);
+size_t	f_t(t_format *f, va_list *ap, char **str);
 
 #endif

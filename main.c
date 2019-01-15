@@ -12,7 +12,6 @@
 
 #include <fcntl.h>
 #include "ft_printf.h"
-#include "libft/get_next_line.h"
 
 int main(void)
 {
@@ -20,11 +19,12 @@ int main(void)
 	int fd;
 
 	fd = open("hello", O_RDONLY);
-	while (get_next_line(fd, &line))
-	{
-		ft_printf2("%s", line);
-		free(line);
-	}
+	ft_printf2("{BLUE}%+.t\a", fd);
+//	while (get_next_line(fd, &line))
+//	{
+//		ft_printf2("%s\n", line);
+//		free(line);
+//	}
 
 
 

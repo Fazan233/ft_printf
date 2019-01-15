@@ -6,17 +6,22 @@
 
 void	good_flags(t_pf *pf, char **str)
 {
-	if (pf->form.type == C)
-		pf->len_buf = f_c(&pf->form, &pf->ap, &pf->buf);
-	else if (pf->form.type == S)
-		pf->len_buf = f_s(&pf->form, &pf->ap, &pf->buf);
-	else if (pf->form.type >= P && pf->form.type <= UPP_X)
-		pf->len_buf = f_pdiouxX(&pf->form, &pf->ap, &pf->buf);
+	if (pf->form.type == T)
+		pf->len += f_t(&pf->form, &pf->ap, &pf->buf);
 	else
-		pf->len_buf = f_feEgG(&pf->form, &pf->ap, &pf->buf);
-	ft_putmem(pf->buf, pf->len_buf);
-	pf->len += pf->len_buf;
-	free(pf->buf);
+	{
+		if (pf->form.type == C)
+			pf->len_buf = f_c(&pf->form, &pf->ap, &pf->buf);
+		else if (pf->form.type == S)
+			pf->len_buf = f_s(&pf->form, &pf->ap, &pf->buf);
+		else if (pf->form.type >= P && pf->form.type <= UPP_X)
+			pf->len_buf = f_pdiouxX(&pf->form, &pf->ap, &pf->buf);
+		else
+			pf->len_buf = f_feEgG(&pf->form, &pf->ap, &pf->buf);
+		ft_putmem(pf->buf, pf->len_buf);
+		pf->len += pf->len_buf;
+		free(pf->buf);
+	}
 	pf->tmp = *str;
 	pf->i = 0;
 }

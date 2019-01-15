@@ -20,6 +20,7 @@ void	set_conversation(t_format *f, int *i)
 	*i == 11 ? f->type = UPP_E : 0;
 	*i == 12 ? f->type = G : 0;
 	*i == 13 ? f->type = UPP_G : 0;
+	*i == 14 ? f->type = T : 0;
 }
 
 int 	conversion(t_format *form, char **str)
