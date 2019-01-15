@@ -18,8 +18,8 @@ int main(void)
 	char *line;
 	int fd;
 
-	fd = open("hello", O_RDONLY);
-	ft_printf2("{BLUE}%+.t\a", fd);
+	fd = open("Garry.txt", O_RDONLY);
+	ft_printf2("{BLUE}{INVERSE}% -.1000t{RED}{BOLD}%.23f\n{BGSTD}%+-.10t", fd, 345.224, fd);
 //	while (get_next_line(fd, &line))
 //	{
 //		ft_printf2("%s\n", line);
