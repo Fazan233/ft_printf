@@ -10,16 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <fcntl.h>
 #include "ft_printf.h"
+#include "libft/get_next_line.h"
 
 int main(void)
 {
-	char *form = "%\n3423gdds23dfeffds342fghsd%%%fds %f";
+	char *line;
+	int fd;
 
-	int d = -23;
+	fd = open("hello", O_RDONLY);
+	while (get_next_line(fd, &line))
+	{
+		ft_printf2("%s", line);
+		free(line);
+	}
 
-	ft_printf2("%c", 10);
-	int one, two;
+
+
+
+//	char *form = "%\n3423gdds23dfeffds342fghsd%%%fds %f";
+//
+//	int d = -23;
+//
+//	ft_printf2("%c", 10);
+//	int one, two;
 //	printf(form, d);
 //	 ft_printf("{CYAN}{BGRED}%040.20d", 20);
 //	if((one = printf(form, d)) != (two = ft_printf2(form, d)))

@@ -11,7 +11,7 @@ int get_next_line(const int fd, char **line);
 
 typedef struct		s_fdlst
 {
-	void			*data;
+	char			*data;
 	int 			fd;
 	struct s_fdlst	*next;
 }					t_fdlst;

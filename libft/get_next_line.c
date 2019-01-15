@@ -5,6 +5,28 @@
 #include "get_next_line.h"
 #include "libft.h"
 
+void	delete_unused_fd(t_fdlst **begin, t_fdlst *lst)
+{
+	t_fdlst	*tmp;
+
+	tmp = *begin;
+	if (*begin == lst)
+	{
+		tmp = tmp->next;
+		free((*begin)->data);
+		free(*begin);
+		*begin = tmp;
+	}
+	else
+	{
+		while (tmp->next != lst)
+			tmp = tmp->next;
+		tmp->next = tmp->next->next;
+		free(lst->data);
+		free(lst);
+	}
+}
+
 int 	check_endline(t_fdlst *list, char **line)
 {
 	int 	i;
@@ -12,20 +34,21 @@ int 	check_endline(t_fdlst *list, char **line)
 	char 	*tmp;
 
 	i = -1;
-	while (((char*)list->data)[++i] != '\0')
+	while (list->data[++i] != '\0')
 	{
-		if (((char*)list->data)[i] == '\n')
+		if (list->data[i] == '\n')
 		{
 			tmp = *line;
 			*line = ft_memjoin(*line, len = ft_strlen(*line), list->data, i);
 			free(tmp);
-			(*line)[len] = '\0';
-			ft_strcpy(list->data, list->data + i);
+			(*line)[len + i] = '\0';
+			ft_strcpy(list->data, list->data + i + 1);
 			return (1);
 		}
 	}
 	tmp = *line;
-	*line = ft_memjoin(*line, ft_strlen(*line), list->data, i);
+	*line = ft_memjoin(*line, len = ft_strlen(*line), list->data, i);
+	(*line)[i + len] = '\0';
 	free(tmp);
 	return (0);
 }
@@ -65,16 +88,16 @@ int 	get_next_line(const int fd, char **line)
 	t_fdlst			*tmp;
 	int 			rd;
 
+	*line = ft_strdup("");
 	tmp = get_right_list(fd, &list);
 	if (check_endline(tmp, line))
 		return (1);
-	while ((rd = read(tmp->fd, tmp->data, BUF)))
+	while ((rd = read(tmp->fd, tmp->data, BUF)) && rd != -1)
 	{
-		if (rd == -1)
-			return (-1);
-		((char*)tmp->data)[rd] = '\0';
+		tmp->data[rd] = '\0';
 		if (check_endline(tmp, line))
 			return (1);
 	}
-	return (0);
+	delete_unused_fd(&list, tmp);
+	return (rd == -1 ? -1 : 0);
 }
