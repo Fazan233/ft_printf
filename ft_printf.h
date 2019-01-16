@@ -105,7 +105,7 @@ void				width(t_format *form, char **str, va_list *ap);
 int 				conversion(t_format *form, char **str);
 size_t				f_c(t_format *form, va_list *ap, char **buf);
 size_t				f_s(t_format *form, va_list *ap, char **str);
-//int					ft_printf(char *str, ...);
+int					ft_printf(char *str, ...);
 void				get_strwidth(t_format *form, void **str, int count);
 void				cast_signed(long long int *n, va_list *ap, t_format *f);
 void				cast_unsigned(unsigned long long int *n, va_list *ap,
@@ -145,7 +145,6 @@ void				set_color(t_pf *pf, char *color, size_t i, char **str);
 size_t				text_color(t_pf *pf, char **str);
 size_t				bg_color(t_pf *pf, char **str);
 size_t				addition_options(t_pf *pf, char **str);
-int					ft_printf2(char *str, ...);
 /*
 ** 		precision - count of lines which will show
 ** 		minus - show lines without empty lines

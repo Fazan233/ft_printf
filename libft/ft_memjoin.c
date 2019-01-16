@@ -1,10 +1,18 @@
-//
-// Created by Vladyslav USLYSTYI on 21.12.2018.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memjoin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/16 17:44:12 by vuslysty          #+#    #+#             */
+/*   Updated: 2019/01/16 17:44:23 by vuslysty         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "libft.h"
 
-void 	*ft_memjoin(void *mem1, size_t len1, void *mem2, size_t len2)
+void	*ft_memjoin(void *mem1, size_t len1, void *mem2, size_t len2)
 {
 	void	*buf;
 
