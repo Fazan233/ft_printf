@@ -13,24 +13,24 @@
 #include <fcntl.h>
 #include "ft_printf.h"
 #include <float.h>
-#define FORM "%#.100g\n", 1023433575423986798475983247598234759823475982347589243759823475982347598234759823475928375894375984.3
+#define FORM "%.15g\n", 1024529.2456534623465465463456463465547654
 
 int main(void)
 {
-	int fd;
-	char *line;
-
-	fd = open("test", O_RDONLY);
-	while (get_next_line(fd, &line))
-	{
-		ft_printf("%s\n", line);
-		free(line);
-	}
+//	int fd;
+//	char *line;
+//
+//	fd = open("test", O_RDONLY);
+//	while (get_next_line(fd, &line))
+//	{
+//		ft_printf("%s\n", line);
+//		free(line);
+//	}
 
 //	ft_putchar(34574);
 //	ft_printf(FORM);
 //	ft_printf("{RED}Привіт, пане Олексій");
-//	printf(FORM);
+	printf(FORM);
 //	ft_printf2(FORM);
 //	char *sum;
 //	sum = ft_strdup("1");

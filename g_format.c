@@ -72,20 +72,35 @@ static void	check_sharp(char **strnum)
 	}
 }
 
+int 		get_exp_count(t_myfloat *mf)
+{
+	int 	exp;
+
+	exp = 0;
+	while (mf->decimal[exp++] == '0')
+		;
+	if (mf->decimal[exp - 1] == '\0')
+		exp = -1;
+	return (exp);
+}
+
 char 		*g_format(t_myfloat *mf, t_format *f)
 {
 	char 	*strnum;
-	int 	zeros;
 
-	zeros = 0;
-	while (mf->decimal[zeros] == '0')
-		zeros++;
+	f->p_val = !f->precision ? 6 : f->p_val;
 	f->p_val == 0 ? f->p_val = 1 : 0;
-	if (f->precision)
-		strnum = have_precision(mf, f, &zeros);
+	mf->exp_count = get_exp_count(mf);
+	if (mf->len_i == 1 && mf->exp_count > 4)
+	{
+		f->p_val--;
+		strnum = e_format(mf, f);
+	}
 	else
-		strnum = dont_have_precision(mf, f, &zeros);
-	if (!f->sharp)
-		check_sharp(&strnum);
+	{
+
+	}
+
+
 	return (strnum);
 }

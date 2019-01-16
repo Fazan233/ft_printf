@@ -41,10 +41,10 @@ size_t		get_format_number2(t_format *f, long double *n, char **str)
 	buf = get_good_flag(n, f);
 	lb = ft_strlen(buf);
 	if (f->w_val > lb)
-		*str = ft_memalloc_chr((ls = f->w_val) + 1,
-							   f->zero ? '0' : ' ');
+		*str = ft_memalloc_chr(f->w_val + 1, f->zero ? '0' : ' ');
 	else
-		*str = ft_memalloc_chr((ls = lb) + 1, ' ');
+		*str = ft_memalloc_chr(lb + 1, ' ');
+	ls = f->w_val > lb ? f->w_val : lb;
 	if (f->minus)
 		ft_memmove(*str, buf, lb);
 	else
