@@ -13,7 +13,7 @@
 #include <fcntl.h>
 #include "ft_printf.h"
 #include <float.h>
-#define FORM "%.15g\n", 1024529.2456534623465465463456463465547654
+#define FORM "%#g\n", 0.00009999999
 
 int main(void)
 {
@@ -31,7 +31,7 @@ int main(void)
 //	ft_printf(FORM);
 //	ft_printf("{RED}Привіт, пане Олексій");
 	printf(FORM);
-//	ft_printf2(FORM);
+	ft_printf(FORM);
 //	char *sum;
 //	sum = ft_strdup("1");
 //

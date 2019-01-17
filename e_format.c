@@ -9,7 +9,7 @@ static void	e_plus(t_myfloat *mf, t_format *f)
 	if (mf->len_i > 1)
 	{
 		mf->decimal = ft_strjoin_free(mf->intnum + 1, mf->decimal, 1);
-		mf->exp_count += mf->len_i - 1;
+		mf->exp_count -= mf->len_i - 1; // + або -
 		mf->intnum[1] = '\0';
 	}
 	mf->len_d = ft_strlen(mf->decimal);
@@ -42,7 +42,6 @@ static void	e_minus(t_myfloat *mf, t_format *f)
 
 char		*e_format(t_myfloat *mf, t_format *f)
 {
-	char 	*tmp;
 	char 	*strnum;
 	char 	*pow;
 

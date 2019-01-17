@@ -77,7 +77,7 @@ int 		get_exp_count(t_myfloat *mf)
 	int 	exp;
 
 	exp = 0;
-	while (mf->decimal[exp++] == '0')
+	while (mf->intnum[0] == '0' && mf->decimal[exp++] == '0')
 		;
 	if (mf->decimal[exp - 1] == '\0')
 		exp = -1;
@@ -89,18 +89,24 @@ char 		*g_format(t_myfloat *mf, t_format *f)
 	char 	*strnum;
 
 	f->p_val = !f->precision ? 6 : f->p_val;
+	f->precision = 1;
 	f->p_val == 0 ? f->p_val = 1 : 0;
 	mf->exp_count = get_exp_count(mf);
-	if (mf->len_i == 1 && mf->exp_count > 4)
+	if ((mf->intnum[0] == '0' && mf->exp_count > 4) || (mf->len_i > f->p_val))
 	{
 		f->p_val--;
 		strnum = e_format(mf, f);
 	}
 	else
 	{
-
+		if (mf->intnum[0] != '0')
+			f->p_val = f->p_val - mf->len_i;
+		else if (mf->intnum[0] && mf->exp_count == -1)
+			f->p_val--;
+		else
+			f->p_val = f->p_val + mf->exp_count - 1;
+		round_numstr(mf, f);
+		strnum = f_format(mf, f);
 	}
-
-
 	return (strnum);
 }
