@@ -11,6 +11,9 @@ char 	*f_format(t_myfloat *mf, t_format *f)
 	round_numstr(mf, f, f->p_val);
 	if (f->p_val != 0 || f->sharp)
 		mf->intnum = ft_strjoin_free(mf->intnum, ".", 0);
-	strnum = ft_strjoin(mf->intnum, mf->decimal);
+	if (f->p_val == 0)
+		strnum = ft_strdup(mf->intnum);
+	else
+		strnum = ft_strjoin(mf->intnum, mf->decimal);
 	return (strnum);
 }
