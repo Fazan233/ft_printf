@@ -134,7 +134,7 @@ char 				*bigintsum_toa(char *num1, char *num2, int mode);
 */
 void				add_0_for_numstr(char **num, int len_finish, int mode);
 int					get_float_params(t_myfloat *mf, long double *n);
-void				round_numstr(t_myfloat *mf, t_format *f);
+void				round_numstr(t_myfloat *mf, t_format *f, int round_count);
 char				*e_format(t_myfloat *mf, t_format *f);
 char 				*f_format(t_myfloat *mf, t_format *f);
 size_t				get_format_number2(t_format *f, long double *n, char **str);
@@ -145,6 +145,7 @@ void				set_color(t_pf *pf, char *color, size_t i, char **str);
 size_t				text_color(t_pf *pf, char **str);
 size_t				bg_color(t_pf *pf, char **str);
 size_t				addition_options(t_pf *pf, char **str);
+void				get_exp_count(t_myfloat *mf);
 /*
 ** 		precision - count of lines which will show
 ** 		minus - show lines without empty lines

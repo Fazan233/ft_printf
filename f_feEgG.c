@@ -17,6 +17,11 @@ size_t		f_feEgG(t_format *f, va_list *ap, char **str)
 	long double	n;
 	size_t 		len;
 
+	if (!f->precision)
+	{
+		f->precision = 1;
+		f->p_val = 6;
+	}
 	if (f->minus && f->zero)
 		f->zero = 0;
 	cast_float(&n, ap, f);

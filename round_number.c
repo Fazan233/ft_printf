@@ -4,22 +4,22 @@
 
 #include "ft_printf.h"
 
-static void	some_condition(t_myfloat *mf, t_format *f)
+static void	some_condition(t_myfloat *mf, int round_count)
 {
 	char 	*one;
 	char 	*tmp;
 
-	if (mf->decimal[f->p_val] >= '5')
+	if (mf->decimal[round_count] >= '5')
 	{
-		mf->decimal[f->p_val] = '\0';
+		mf->decimal[round_count] = '\0';
 		tmp = mf->decimal;
 		one = ft_strdup("1");
-		add_0_for_numstr(&one, f->p_val, 1);
-		mf->decimal = bigintsum_toa(one, mf->decimal, 1);
+		add_0_for_numstr(&one, round_count, 1);
+		mf->decimal = bigintsum_toa(one, mf->decimal, 0); // 0 instead of 1
 		free(one);
-		add_0_for_numstr(&mf->decimal, f->p_val, 1);
+		add_0_for_numstr(&mf->decimal, round_count, 1);
 		free(tmp);
-		if (f->p_val != ft_strlen(mf->decimal))
+		if (round_count != ft_strlen(mf->decimal))
 		{
 			tmp = mf->intnum;
 			mf->intnum = bigintsum_toa(mf->intnum, "1", 1);
@@ -30,14 +30,18 @@ static void	some_condition(t_myfloat *mf, t_format *f)
 		}
 	}
 	else
-		mf->decimal[f->p_val] = '\0';
+		mf->decimal[round_count] = '\0';
 }
 
-void		round_numstr(t_myfloat *mf, t_format *f)
+void		round_numstr(t_myfloat *mf, t_format *f, int round_count)
 {
-	!f->precision ? f->p_val = 6 : 0;
-	if (f->p_val > mf->len_d)
-		add_0_for_numstr(&mf->decimal, f->p_val, 0);
-	else if (f->p_val < mf->len_d)
-		some_condition(mf, f);
+	if (round_count > mf->len_d)
+		add_0_for_numstr(&mf->decimal, round_count, 0);
+	if (!(mf->intnum[0] == '0' && mf->exp_count == 0))
+	{
+		if (round_count < mf->len_d)
+			some_condition(mf, round_count);
+		mf->len_d = ft_strlen(mf->decimal);
+		mf->len_i = ft_strlen(mf->intnum);
+	}
 }

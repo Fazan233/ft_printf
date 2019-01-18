@@ -79,5 +79,6 @@ int			get_float_params(t_myfloat *mf, long double *n)
 		return (1);
 	mf->e = (*s_exp & (short)0x7fff) - 0x3fff;
 	get_float_number(mf);
+	get_exp_count(mf);
 	return (0);
 }
