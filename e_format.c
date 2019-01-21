@@ -36,13 +36,25 @@ static void	e_minus(t_myfloat *mf)
 	mf->len_i = ft_strlen(mf->intnum);
 }
 
+static void	right_round(t_myfloat *mf, t_format *f)
+{
+	int 	round;
+
+	if (mf->intnum[0] == '0')
+		round = f->p_val + mf->exp_count;
+	else
+		round = f->p_val;
+	if (round >= 0)
+		round_numstr(mf, f, round);
+}
+
 char 		*e_format(t_myfloat *mf, t_format *f)
 {
 	char	*strnum;
 	char 	*pow;
 
 	get_exp_count(mf);
-	round_numstr(mf, f, f->p_val + mf->exp_count);
+	right_round(mf, f);
 	get_exp_count(mf);
 	if (mf->exp_sign == 1 && mf->exp_count != 0)
 		e_minus(mf);

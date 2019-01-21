@@ -6,6 +6,7 @@
 
 static void	good_flags(t_pf *pf, char **str)
 {
+	pf->form.p_val < 0 ? pf->form.p_val = 0 : 0;
 	if (pf->form.type == T)
 		pf->len += f_t(&pf->form, &pf->ap, &pf->buf);
 	else

@@ -13,7 +13,7 @@
 #include <fcntl.h>
 #include "ft_printf.h"
 #include <float.h>
-#define FORM "%#LG\n", 0.88888888888000007l
+#define FORM "%.0s\n", 3
 
 int main(void)
 {
