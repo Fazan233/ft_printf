@@ -1,6 +1,14 @@
-//
-// Created by Vladyslav USLYSTYI on 19.12.2018.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   conversion.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/21 16:58:41 by vuslysty          #+#    #+#             */
+/*   Updated: 2019/01/21 16:59:10 by vuslysty         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
@@ -23,7 +31,7 @@ static void	set_conversation(t_format *f, int const *i)
 	*i == 14 ? f->type = T : 0;
 }
 
-int 		conversion(t_format *form, char **str)
+int			conversion(t_format *form, char **str)
 {
 	int	i;
 

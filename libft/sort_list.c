@@ -6,7 +6,7 @@
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 17:01:59 by vuslysty          #+#    #+#             */
-/*   Updated: 2018/11/16 17:24:13 by vuslysty         ###   ########.fr       */
+/*   Updated: 2019/01/21 20:13:04 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	firstswap(t_list **begin)
 	*begin = tmp;
 }
 
-static void secondswap(t_list *list)
+static void	secondswap(t_list *list)
 {
 	t_list	*first;
 	t_list	*second;

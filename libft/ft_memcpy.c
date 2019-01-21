@@ -6,7 +6,7 @@
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 16:14:39 by vuslysty          #+#    #+#             */
-/*   Updated: 2018/11/01 14:21:42 by vuslysty         ###   ########.fr       */
+/*   Updated: 2019/01/21 20:03:55 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		*ft_memcpy(void *dst, const void *src, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		((t_byte *) dst)[i] = ((t_byte *) src)[i];
+		((t_byte*)dst)[i] = ((t_byte*)src)[i];
 		i++;
 	}
 	return (dst);

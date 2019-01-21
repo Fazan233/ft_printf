@@ -1,12 +1,20 @@
-//
-// Created by Vladyslav USLYSTYI on 2019-01-18.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_exp_count.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/21 19:00:22 by vuslysty          #+#    #+#             */
+/*   Updated: 2019/01/21 19:00:35 by vuslysty         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void 	get_exp_count(t_myfloat *mf)
+void	get_exp_count(t_myfloat *mf)
 {
-	int zeros;
+	int	zeros;
 
 	mf->exp_sign = 0;
 	mf->exp_count = 0;

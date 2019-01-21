@@ -6,7 +6,7 @@
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 12:43:24 by vuslysty          #+#    #+#             */
-/*   Updated: 2018/10/31 12:53:05 by vuslysty         ###   ########.fr       */
+/*   Updated: 2019/01/21 20:07:12 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char		*ft_strjoin_free(char *s1, char *s2, int mode)
 {
-	char 	*tmp;
+	char	*tmp;
 
 	tmp = mode ? s2 : s1;
 	if (mode)

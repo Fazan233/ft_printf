@@ -6,7 +6,7 @@
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 14:07:09 by vuslysty          #+#    #+#             */
-/*   Updated: 2018/11/06 14:16:23 by vuslysty         ###   ########.fr       */
+/*   Updated: 2019/01/21 19:55:47 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,3 @@ int						ft_atoi(const char *str)
 	}
 	return ((int)(res * sign));
 }
-
-

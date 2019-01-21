@@ -1,14 +1,24 @@
-//
-// Created by angryjoe on 01.01.19.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_format_number1.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/21 19:09:33 by vuslysty          #+#    #+#             */
+/*   Updated: 2019/01/21 19:32:00 by vuslysty         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdlib.h>
+#define SIGN (buf[0] == '-' || buf[0] == '+' || buf[0] == ' ')
+#define SPACES_OR_ZEROS f->zero && !f->precision ? '0' : ' '
 
 static char	*get_good_func(void *n, t_format *f)
 {
 	char	*buf;
-	int 	base;
+	int		base;
 
 	if (f->type == D || f->type == I || f->type == U)
 		base = 10;
@@ -25,30 +35,31 @@ static char	*get_good_func(void *n, t_format *f)
 	return (buf);
 }
 
-size_t		get_format_number1(t_format *f, void *n, char **str, int sig)
+size_t		get_format_number1(t_format *f, void *n, char **str)
 {
-	char    *buf;
-	size_t  lb;
-	size_t  ls;
+	char	*buf;
+	size_t	lb;
+	size_t	ls;
 
 	buf = get_good_func(n, f);
 	lb = number_format(&buf, f);
 	if (f->w_val > lb)
-		*str = ft_memalloc_chr((ls = f->w_val) + 1,
-							   f->zero && !f->precision ? '0' : ' ');
+		*str = ft_memalloc_chr(f->w_val + 1, SPACES_OR_ZEROS);
 	else
-		*str = ft_memalloc_chr((ls = lb) + 1, ' ');
+		*str = ft_memalloc_chr(lb + 1, ' ');
+	ls = f->w_val > lb ? f->w_val : lb;
 	if (f->minus)
 		ft_memmove(*str, buf, lb);
 	else
-		if (f->w_val > lb && f->zero && !f->precision &&
-			(buf[0] == '-' || buf[0] == '+' || buf[0] == ' '))
+	{
+		if (f->w_val > lb && f->zero && !f->precision && SIGN)
 		{
 			ft_memmove(*str + (ls - lb + 1), buf + 1, lb - 1);
 			(*str)[0] = buf[0];
 		}
 		else
 			ft_memmove(*str + (ls - lb), buf, lb);
+	}
 	free(buf);
 	return (ls);
 }

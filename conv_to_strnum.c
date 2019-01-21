@@ -1,40 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pow_bignum_toa.c                                   :+:      :+:    :+:   */
+/*   conv_to_strnum.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/21 19:41:28 by vuslysty          #+#    #+#             */
-/*   Updated: 2019/01/21 19:41:45 by vuslysty         ###   ########.fr       */
+/*   Created: 2019/01/21 16:58:02 by vuslysty          #+#    #+#             */
+/*   Updated: 2019/01/21 16:58:05 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft/libft.h"
 
-char	*pow_bigint_toa(size_t n, size_t pow)
+char	*conv_to_strnum(int *mas, int len)
 {
-	int		*mas;
+	char	*str;
+	int		flag;
 	int		i;
-	int		j;
-	size_t	len;
 
-	len = pow * count_digits(n) + 10;
-	mas = (int*)ft_memalloc(sizeof(int) * len);
-	mas[0] = 1;
+	str = (char*)ft_memalloc(len + 1);
+	flag = 1;
 	i = -1;
-	while (++i < pow)
+	while (--len >= 0)
 	{
-		j = 0;
-		while (j < len)
-			mas[j++] *= n;
-		j = -1;
-		while (++j < len - 1)
-			if (mas[j] >= 10)
-			{
-				mas[j + 1] += mas[j] / 10;
-				mas[j] %= 10;
-			}
+		if (flag == 1)
+		{
+			if (mas[len] == 0)
+				continue;
+			else
+				flag = 0;
+		}
+		str[++i] = '0' + mas[len];
 	}
-	return (conv_to_strnum(mas, len));
+	free(mas);
+	return (str);
 }

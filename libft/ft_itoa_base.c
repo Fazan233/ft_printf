@@ -6,13 +6,13 @@
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 13:08:02 by vuslysty          #+#    #+#             */
-/*   Updated: 2018/11/07 14:14:45 by vuslysty         ###   ########.fr       */
+/*   Updated: 2019/01/21 19:56:21 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void rec_itoa_base(int n, int base, char **str, int *len)
+static void	rec_itoa_base(int n, int base, char **str, int *len)
 {
 	(*len)++;
 	if (n > 0 ? n < base : n > -base)

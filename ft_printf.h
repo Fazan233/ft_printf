@@ -6,7 +6,7 @@
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 16:35:37 by vuslysty          #+#    #+#             */
-/*   Updated: 2018/12/09 21:45:13 by vuslysty         ###   ########.fr       */
+/*   Updated: 2019/01/21 19:04:47 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@
 # define BLINK		"\033[5m"
 # define INVERSE	"\033[7m"
 
-
 # include <stdio.h>
 # include "libft/libft.h"
 # include <stdarg.h>
@@ -53,7 +52,6 @@
 enum	e_conv{C, S, P, D, I, O, U, X, UPP_X, F, E, UPP_E, G, UPP_G, T};
 typedef unsigned long long t_ull;
 typedef long long t_ll;
-
 
 typedef struct		s_format
 {
@@ -73,48 +71,45 @@ typedef struct		s_format
 
 typedef struct		s_myfloat
 {
-	unsigned int 	exp_sign:1;
-	unsigned int 	s:1;
-	int 			e;
+	unsigned int	exp_sign:1;
+	unsigned int	s:1;
+	int				e;
 	t_ull			m;
-	char 			*intnum;
-	char 			*decimal;
-	int 			len_i;
-	int 			len_d;
-	int 			exp_count;
+	char			*intnum;
+	char			*decimal;
+	int				len_i;
+	int				len_d;
+	int				exp_count;
 }					t_myfloat;
 
 typedef struct		s_pf
 {
 	va_list			ap;
-	t_format 		form;
+	t_format		form;
 	void			*form_str;
-	void 			*buf;
-	size_t 			len_buf;
+	void			*buf;
+	size_t			len_buf;
 	int				len;
-	int 			i;
-	char 			*tmp;
+	int				i;
+	char			*tmp;
 }					t_pf;
-
 
 int					find_flags(char **str, t_format *form, va_list *ap);
 void				flags(t_format *form, char **str);
 int					size(t_format *form, char **str);
 void				precision(t_format *form, char **str, va_list *ap);
 void				width(t_format *form, char **str, va_list *ap);
-int 				conversion(t_format *form, char **str);
+int					conversion(t_format *form, char **str);
 size_t				f_c(t_format *form, va_list *ap, char **buf);
 size_t				f_s(t_format *form, va_list *ap, char **str);
 int					ft_printf(char *str, ...);
-void				get_strwidth(t_format *form, void **str, int count);
 void				cast_signed(long long int *n, va_list *ap, t_format *f);
 void				cast_unsigned(unsigned long long int *n, va_list *ap,
 									t_format *f);
 size_t				number_format(char **nbr, t_format *f);
-size_t				f_pdiouxX(t_format *f, va_list *ap, char **str);
-size_t				get_format_number1(t_format *f, void *n, char **str,
-										int sig);
-int 				count_digits(size_t digit);
+size_t				f_pdioux(t_format *f, va_list *ap, char **str);
+size_t				get_format_number1(t_format *f, void *n, char **str);
+int					count_digits(size_t digit);
 char				*pow_bigint_toa(size_t n, size_t pow);
 /*
 ** 		Convert massive of integers to massive of characters.
@@ -127,7 +122,7 @@ char				*conv_to_strnum(int *mas, int len);
 ** 	0 - calculate numbers with '0' befor number (I wrote it for numbers which
 ** 		has floating point (its decimal part)).
 */
-char 				*bigintsum_toa(char *num1, char *num2, int mode);
+char				*bigintsum_toa(char *num1, char *num2, int mode);
 /*
 ** 	1 - add zeros start
 ** 	0 - add zeros end
@@ -136,11 +131,11 @@ void				add_0_for_numstr(char **num, int len_finish, int mode);
 int					get_float_params(t_myfloat *mf, long double *n);
 void				round_numstr(t_myfloat *mf, t_format *f, int round_count);
 char				*e_format(t_myfloat *mf, t_format *f);
-char 				*f_format(t_myfloat *mf, t_format *f);
+char				*f_format(t_myfloat *mf, t_format *f);
 size_t				get_format_number2(t_format *f, long double *n, char **str);
-size_t				f_feEgG(t_format *f, va_list *ap, char **str);
+size_t				f_feg(t_format *f, va_list *ap, char **str);
 void				min_plus_space(char **nbr, t_format *f);
-char 				*g_format(t_myfloat *mf, t_format *f);
+char				*g_format(t_myfloat *mf, t_format *f);
 void				set_color(t_pf *pf, char *color, size_t i, char **str);
 size_t				text_color(t_pf *pf, char **str);
 size_t				bg_color(t_pf *pf, char **str);

@@ -1,6 +1,14 @@
-//
-// Created by angryjoe on 05.01.19.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bigintsum_toa.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/21 16:51:45 by vuslysty          #+#    #+#             */
+/*   Updated: 2019/01/21 16:53:30 by vuslysty         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
@@ -9,13 +17,13 @@ static size_t	get_len_and_makesame(char **num1, char **num2, int m)
 	size_t	len1;
 	size_t	len2;
 	size_t	len;
-	char 	*tmp;
+	char	*tmp;
 
 	len1 = ft_strlen(*num1);
 	len2 = ft_strlen(*num2);
 	len = (len1 > len2) ? len1 : len2;
 	if (len1 == len2)
-		return(len);
+		return (len);
 	tmp = ft_memalloc_chr(len + 1, '0');
 	if (len1 > len2)
 	{
@@ -32,10 +40,10 @@ static size_t	get_len_and_makesame(char **num1, char **num2, int m)
 	return (len);
 }
 
-char 			*bigintsum_toa(char *num1, char *num2, int mode)
+char			*bigintsum_toa(char *num1, char *num2, int mode)
 {
 	size_t		len;
-	int 		*mas;
+	int			*mas;
 	int			i;
 
 	num1 = ft_strdup(num1);

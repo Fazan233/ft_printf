@@ -1,6 +1,14 @@
-//
-// Created by Vladyslav USLYSTYI on 2019-01-18.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   e_format.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/21 18:42:00 by vuslysty          #+#    #+#             */
+/*   Updated: 2019/01/21 18:43:30 by vuslysty         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
@@ -8,7 +16,8 @@ static void	e_plus(t_myfloat *mf, t_format *f)
 {
 	if (mf->exp_sign == 0 && mf->exp_count != 0)
 	{
-		if (mf->len_i > 1) {
+		if (mf->len_i > 1)
+		{
 			mf->decimal = ft_strjoin_free(mf->intnum + 1, mf->decimal, 1);
 			mf->intnum[1] = '\0';
 		}
@@ -38,7 +47,7 @@ static void	e_minus(t_myfloat *mf)
 
 static void	right_round(t_myfloat *mf, t_format *f)
 {
-	int 	round;
+	int		round;
 
 	if (mf->intnum[0] == '0')
 		round = f->p_val + mf->exp_count;
@@ -48,10 +57,10 @@ static void	right_round(t_myfloat *mf, t_format *f)
 		round_numstr(mf, f, round);
 }
 
-char 		*e_format(t_myfloat *mf, t_format *f)
+char		*e_format(t_myfloat *mf, t_format *f)
 {
 	char	*strnum;
-	char 	*pow;
+	char	*pow;
 
 	get_exp_count(mf);
 	right_round(mf, f);

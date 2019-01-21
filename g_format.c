@@ -1,13 +1,21 @@
-//
-// Created by angryjoe on 12.01.19.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   g_format.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/21 19:06:26 by vuslysty          #+#    #+#             */
+/*   Updated: 2019/01/21 19:07:53 by vuslysty         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	check_sharp(char **strnum, t_format *f, t_myfloat *mf)
+static void		check_sharp(char **strnum, t_format *f, t_myfloat *mf)
 {
-	char 	*tmp;
-	int 	i;
+	char	*tmp;
+	int		i;
 
 	i = 0;
 	tmp = *strnum;
@@ -35,7 +43,7 @@ static void	check_sharp(char **strnum, t_format *f, t_myfloat *mf)
 
 static void		right_round(t_myfloat *mf, t_format *f)
 {
-	int 	round;
+	int		round;
 
 	if (mf->intnum[0] == '0')
 		round = (f->p_val - mf->len_i) + mf->exp_count;
@@ -45,9 +53,9 @@ static void		right_round(t_myfloat *mf, t_format *f)
 		round_numstr(mf, f, round);
 }
 
-char 		*g_format(t_myfloat *mf, t_format *f)
+char			*g_format(t_myfloat *mf, t_format *f)
 {
-	char 	*strnum;
+	char	*strnum;
 
 	f->p_val == 0 ? f->p_val = 1 : 0;
 	right_round(mf, f);

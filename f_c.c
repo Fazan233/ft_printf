@@ -1,12 +1,29 @@
-//
-// Created by Vladyslav USLYSTYI on 14.12.2018.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   f_c.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/21 18:43:52 by vuslysty          #+#    #+#             */
+/*   Updated: 2019/01/21 19:39:05 by vuslysty         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	f_c(t_format *form, va_list *ap, char **buf)
+static void	get_strwidth(t_format *form, void **str, int count)
 {
-	int 	c;
+	*str = malloc(count);
+	if (form->zero && !form->minus)
+		ft_memset(*str, '0', count);
+	else
+		ft_memset(*str, ' ', count);
+}
+
+size_t		f_c(t_format *form, va_list *ap, char **buf)
+{
+	int		c;
 
 	c = va_arg(*ap, int);
 	if (form->w_val > 1)

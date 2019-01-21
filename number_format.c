@@ -1,6 +1,14 @@
-//
-// Created by angryjoe on 31.12.18.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   number_format.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/21 19:39:30 by vuslysty          #+#    #+#             */
+/*   Updated: 2019/01/21 19:41:00 by vuslysty         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
@@ -27,8 +35,8 @@ void		min_plus_space(char **nbr, t_format *f)
 {
 	char	*tmp;
 
-	if (((f->type >= D && f->type <= I) || (f->type >= F && f->type <= UPP_G)) &&
-		(f->sign || f->plus || f->space))
+	if (((f->type >= D && f->type <= I) || (f->type >= F && f->type <= UPP_G))
+		&& (f->sign || f->plus || f->space))
 	{
 		tmp = *nbr;
 		if (f->sign)
@@ -39,7 +47,7 @@ void		min_plus_space(char **nbr, t_format *f)
 	}
 }
 
-static void	check_poxX(t_format *f, char **str)
+static void	check_pox(t_format *f, char **str)
 {
 	char	*tmp;
 
@@ -59,18 +67,18 @@ static void	check_poxX(t_format *f, char **str)
 
 size_t		number_format(char **nbr, t_format *f)
 {
-	size_t 	len;
+	size_t	len;
 	char	*tmp;
 
 	f->sign = (*nbr)[0] == '-' ? 1 : 0;
 	tmp = ft_strdup(*nbr + f->sign);
 	free(*nbr);
 	if (f->type == O)
-		check_poxX(f, &tmp);
+		check_pox(f, &tmp);
 	len = ft_strlen(tmp);
 	set_nbr(nbr, f, len, tmp);
 	if (f->type != O)
-		check_poxX(f, nbr);
+		check_pox(f, nbr);
 	min_plus_space(nbr, f);
 	return (ft_strlen(*nbr));
 }

@@ -1,17 +1,26 @@
-//
-// Created by User on 20.12.2018.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   count_digits.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/21 16:59:33 by vuslysty          #+#    #+#             */
+/*   Updated: 2019/01/21 18:41:29 by vuslysty         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft/libft.h"
 
-int 	count_digits(size_t digit)
+int	count_digits(size_t digit)
 {
-	static int	len = 0;
+	int	len;
 
-	if (digit / 10 == 0)
-		return (++len);
-	else{
+	len = 0;
+	while (digit / 10 > 0)
+	{
 		len++;
-		return (count_digits(digit / 10));
+		digit /= 10;
 	}
+	return (++len);
 }

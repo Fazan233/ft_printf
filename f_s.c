@@ -1,6 +1,14 @@
-//
-// Created by Vladyslav USLYSTYI on 19.12.2018.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   f_s.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/21 18:51:37 by vuslysty          #+#    #+#             */
+/*   Updated: 2019/01/21 18:52:14 by vuslysty         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
@@ -50,8 +58,8 @@ static size_t	oper_with_minus(t_format *f, char **str, char *buf, int len_buf)
 
 size_t			f_s(t_format *form, va_list *ap, char **str)
 {
-	char 	*buf;
-	int 	len;
+	char	*buf;
+	int		len;
 
 	buf = ft_strdup(va_arg(*ap, char*));
 	if (buf == NULL)

@@ -1,13 +1,21 @@
-//
-// Created by angryjoe on 08.01.19.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   round_number.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/21 19:42:52 by vuslysty          #+#    #+#             */
+/*   Updated: 2019/01/21 19:43:03 by vuslysty         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
 static void	some_condition(t_myfloat *mf, int round_count)
 {
-	char 	*one;
-	char 	*tmp;
+	char	*one;
+	char	*tmp;
 
 	if (mf->decimal[round_count] >= '5')
 	{
@@ -15,7 +23,7 @@ static void	some_condition(t_myfloat *mf, int round_count)
 		tmp = mf->decimal;
 		one = ft_strdup("1");
 		add_0_for_numstr(&one, round_count, 1);
-		mf->decimal = bigintsum_toa(one, mf->decimal, 0); // 0 instead of 1
+		mf->decimal = bigintsum_toa(one, mf->decimal, 0);
 		free(one);
 		add_0_for_numstr(&mf->decimal, round_count, 1);
 		free(tmp);

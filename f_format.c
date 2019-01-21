@@ -1,12 +1,20 @@
-//
-// Created by angryjoe on 09.01.19.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   f_format.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/21 18:50:08 by vuslysty          #+#    #+#             */
+/*   Updated: 2019/01/21 18:50:30 by vuslysty         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char 	*f_format(t_myfloat *mf, t_format *f)
+char	*f_format(t_myfloat *mf, t_format *f)
 {
-	char 	*strnum;
+	char	*strnum;
 
 	round_numstr(mf, f, f->p_val);
 	if (f->p_val != 0 || f->sharp)
