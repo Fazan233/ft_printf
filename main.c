@@ -13,10 +13,12 @@
 #include <fcntl.h>
 #include "ft_printf.h"
 #include <float.h>
-#define FORM "%.20Lg\n", 2323948579283467249837598437524598679248768945374.325234l
+#define FORM "%0s\n", "dsdegdf"
 
 int main(void)
 {
+	double a = 45.3;
+
 	printf(FORM);
 	ft_printf(FORM);
 
