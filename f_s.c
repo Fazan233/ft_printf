@@ -65,7 +65,7 @@ size_t			f_s(t_format *form, va_list *ap, char **str)
 	if (buf == NULL)
 		buf = ft_strdup("(null)");
 	len = ft_strlen(buf);
-	len > form->w_val ? form->w_val = len : 0;
+//	len > form->w_val ? form->w_val = len : 0;
 	alloc_good_width(form, str, len);
 	return (oper_with_minus(form, str, buf, len));
 }

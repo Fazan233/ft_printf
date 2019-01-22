@@ -27,7 +27,7 @@ static void	flags_to_zero(t_format *form)
 int			find_flags(char **str, t_format *form, va_list *ap)
 {
 	flags_to_zero(form);
-	while (1)
+	while (**str != 0)
 	{
 		if (ft_strchr(FLAGS, **str))
 			flags(form, str);
@@ -40,4 +40,5 @@ int			find_flags(char **str, t_format *form, va_list *ap)
 		else
 			return ((conversion(form, str)) ? 1 : 0);
 	}
+	return (0);
 }

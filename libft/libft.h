@@ -107,5 +107,6 @@ void					*ft_memdup(void *mem, size_t len);
 void					ft_putmem(void *mem, size_t len);
 void					ft_strreverse(char *str);
 char					*ft_strjoin_free(char *s1, char *s2, int mode);
+size_t					ft_unistrlen(unsigned char *str);
 
 #endif

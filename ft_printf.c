@@ -45,6 +45,31 @@ static void	can_set_color(t_pf *pf, char **str)
 		addition_options(pf, str);
 }
 
+//static void	condition(t_pf *pf, char **str)
+//{
+//	if (**str == '%')
+//	{
+//		ft_putmem(*str, 1);
+//		*str = *str + 1;
+//		pf->tmp = *str;
+//		pf->i = 0;
+//		pf->len++;
+//	}
+//	else if (**str != 0 && find_flags(str, &pf->form, &pf->ap))
+//		good_flags(pf, str);
+//	else if (**str != '\0' || pf->len > 0)
+//	{
+//		*str = pf->tmp + pf->i + 1;
+//		pf->tmp += pf->i;
+//		pf->i = 1;
+//	}
+//	else
+//	{
+//		pf->i = 0;
+//		pf->len = -1;
+//	}
+//}
+
 static void	condition(t_pf *pf, char **str)
 {
 	if (**str == '%')
@@ -57,16 +82,16 @@ static void	condition(t_pf *pf, char **str)
 	}
 	else if (**str != 0 && find_flags(str, &pf->form, &pf->ap))
 		good_flags(pf, str);
-	else if (**str != '\0' || pf->len > 0)
-	{
-		*str = pf->tmp + pf->i + 1;
-		pf->tmp += pf->i;
-		pf->i = 1;
-	}
 	else
 	{
+		if (pf->form.w_val > 1)
+		{
+			pf->tmp = ft_memalloc_chr(pf->form.w_val, pf->form.zero ? '0' : ' ');
+			ft_putmem(pf->tmp, pf->form.w_val - 1);
+			free(pf->tmp);
+		}
+		pf->tmp = *str;
 		pf->i = 0;
-		pf->len = -1;
 	}
 }
 

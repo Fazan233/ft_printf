@@ -13,14 +13,16 @@
 #include <fcntl.h>
 #include "ft_printf.h"
 #include <float.h>
-#define FORM "%0s\n", "dsdegdf"
+#define FORM "%020llx\n", -23l
 
 int main(void)
 {
-	double a = 45.3;
-
+//	double a = 45.3;
+//
 	printf(FORM);
 	ft_printf(FORM);
+//
+//	ft_putnbr(ft_unistrlen("異体"));
 
 	return (0);
 }

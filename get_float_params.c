@@ -76,14 +76,14 @@ int			get_float_params(t_myfloat *mf, long double *n)
 {
 	t_ull			*mantiss;
 	unsigned short	*s_exp;
-	char			*tmp;
 
 	mantiss = n;
 	mf->m = *mantiss;
 	s_exp = n;
 	s_exp += 4;
 	mf->s = *s_exp >> 15 & 0b1;
-	if (*s_exp == 0xffff || *s_exp == 0x7fff)
+	if ((*mantiss == 0xffffffffffffffff && *s_exp == 0x7fff)
+		|| *s_exp == 0xffff || *s_exp == 0x7fff)
 		return (1);
 	mf->e = (*s_exp & (short)0x7fff) - 0x3fff;
 	get_float_number(mf);
