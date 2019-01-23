@@ -25,8 +25,10 @@ static void	good_flags(t_pf *pf, char **str)
 			pf->len_buf = f_s(&pf->form, &pf->ap, &pf->buf);
 		else if (pf->form.type >= P && pf->form.type <= UPP_X)
 			pf->len_buf = f_pdioux(&pf->form, &pf->ap, &pf->buf);
-		else
+		else if (pf->form.type >= F && pf->form.type <= UPP_G)
 			pf->len_buf = f_feg(&pf->form, &pf->ap, &pf->buf);
+		else
+			pf->len_buf = f_b(&pf->form, &pf->ap, &pf->buf);
 		ft_putmem(pf->buf, pf->len_buf);
 		pf->len += pf->len_buf;
 		free(pf->buf);

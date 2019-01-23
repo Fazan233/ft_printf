@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char			g_modeflags[MODE_FLAGS][3] = {"hh", "h", "ll", "l", "L"};
+char			g_modeflags[MODE_FLAGS][3] = {"hh", "h", "ll", "l", "L", "mL"};
 
 int		size(t_format *form, char **str)
 {
