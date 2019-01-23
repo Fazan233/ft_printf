@@ -30,6 +30,8 @@ void	cast_unsigned(unsigned long long int *n, va_list *ap, t_format *f)
 				*n = (unsigned short int) *n;
 			else if (f->s_val == 3)
 				*n = (unsigned long int) *n;
+			else if (f->s_val == 4)
+				*n = (unsigned int)*n;
 		} else
 			*n = (unsigned int) *n;
 	}

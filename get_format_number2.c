@@ -13,19 +13,24 @@
 #include "ft_printf.h"
 #define SIGN (buf[0] == '-' || buf[0] == '+' || buf[0] == ' ')
 
+static void	infiniti_nan(t_format *f, int mode, char **numstr)
+{
+	*numstr = ft_strdup(mode == 1 ? "inf" : "nan");
+	f->type == UPP_E || f->type == UPP_G ? ft_strtoupper(*numstr) : 0;
+	f->zero = 0;
+}
+
+
 static char	*get_good_flag(long double *n, t_format *f)
 {
 	char		*numstr;
-	int			inf;
+	int			inf_nan;
 	t_myfloat	mf;
 
-	inf = get_float_params(&mf, n);
+	inf_nan = get_float_params(&mf, n);
 	f->sign = mf.s;
-	if (inf)
-	{
-		numstr = ft_strdup("inf");
-		f->zero = 0;
-	}
+	if (inf_nan)
+		infiniti_nan(f, inf_nan, &numstr);
 	else if (f->type == F)
 		numstr = f_format(&mf, f);
 	else if (f->type == E || f->type == UPP_E)
@@ -33,7 +38,7 @@ static char	*get_good_flag(long double *n, t_format *f)
 	else
 		numstr = g_format(&mf, f);
 	min_plus_space(&numstr, f);
-	if (!inf)
+	if (!inf_nan)
 	{
 		free(mf.intnum);
 		free(mf.decimal);

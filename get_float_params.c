@@ -82,9 +82,24 @@ int			get_float_params(t_myfloat *mf, long double *n)
 	s_exp = n;
 	s_exp += 4;
 	mf->s = *s_exp >> 15 & 0b1;
-	if ((*mantiss == 0xffffffffffffffff && *s_exp == 0x7fff)
-		|| *s_exp == 0xffff || *s_exp == 0x7fff)
+
+	int i = 16;
+	while (--i >= 0)
+		ft_printf("%i", *s_exp >> i & 0b1);
+	ft_putchar(' ');
+
+	i = 64;
+	while (--i >= 0)
+		ft_printf("%i", *mantiss >> i & 0b1);
+	ft_putchar('\n');
+	if (*mantiss == 0xc000000000000000 && *s_exp == 0x7fff)
+		return (2);
+	if (*s_exp == 0xffff || *s_exp == 0x7fff)
 		return (1);
+
+
+
+
 	mf->e = (*s_exp & (short)0x7fff) - 0x3fff;
 	get_float_number(mf);
 	get_exp_count(mf);
