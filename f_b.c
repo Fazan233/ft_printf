@@ -4,25 +4,25 @@ static int			get_right_count_mem(t_format *f, char **buf, void *str)
 {
 	int	bytes;
 
-	bytes = 0;
-	if (f->size)
+	if (f->size == 0)
 	{
-		if (f->s_val == 6)
-			while (*(char*)str++ != 0)
-				bytes++;
-		else if (f->s_val == 0)
-			bytes = 1;
-		else if (f->s_val == 1)
-			bytes = 2;
-		else if (f->s_val == 2 || f->s_val == 5)
-			bytes = 8;
-		else if (f->s_val == 3)
-			bytes = 4;
-		else
-			bytes = 10;
+		f->size = 1;
+		f->s_val = 2;
 	}
-	else
+	bytes = 0;
+	if (f->s_val == 6)
+		while (*(char*)str++ != 0)
+			bytes++;
+	else if (f->s_val == 0)
+		bytes = 1;
+	else if (f->s_val == 1)
+		bytes = 2;
+	else if (f->s_val == 2 || f->s_val == 5)
 		bytes = 8;
+	else if (f->s_val == 3)
+		bytes = 4;
+	else
+		bytes = 10;
 	*buf = (char*)ft_memalloc((bytes * 8) + 1);
 	return (bytes * 8);
 }
@@ -65,11 +65,7 @@ void			read_binary(void *b, t_format *f, char *str, int bits)
 
 static void		get_rigth_param(t_format *f, void **b, va_list *ap, t_conv *c)
 {
-	if (f->size == 0)
-	{
-		f->size = 1;
-		f->s_val = 2;
-	}
+	f->s_val == 6 || f->plus ? f->zero = 1 : 0;
 	if (f->s_val == 4)
 	{
 		c->ld = va_arg(*ap, long double);
@@ -104,12 +100,16 @@ size_t		f_b(t_format *f, va_list *ap, char **buf)
 	if (f->s_val == 6)
 		b_size_mode_T(*buf, b, f);
 	else
-		read_binary(b, f, buf, bits);
+		read_binary(b, f, *buf, bits);
 	if (f->plus)
 	{
 		spaces = (bits / 8) - 1;
 		spaces < 0 ? spaces = 0 : 0;
 		b_flag_plus(buf, bits, spaces);
+		bits = bits + spaces;
+		b_flag_precision(f, *buf);
 	}
-	return (bits + (f->plus ? spaces : 0));
+	bits = b_flag_nozero(f, bits, buf);
+	bits = get_format_binary(f, buf, bits);
+	return (bits);
 }

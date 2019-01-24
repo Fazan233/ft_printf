@@ -160,5 +160,8 @@ size_t				f_b(t_format *form, va_list *ap, char **buf);
 void				b_flag_plus(char **buf, int bits, int spaces);
 void				b_size_mode_T(char *buf, void *b, t_format *f);
 void				read_binary(void *b, t_format *f, char *str, int bits);
+int					b_flag_nozero(t_format *f, int len, char **str);
+size_t				get_format_binary(t_format *f, char **str, int lb);
+void				b_flag_precision(t_format *f, char *str);
 
 #endif
