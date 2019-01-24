@@ -12,7 +12,7 @@
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-# define MODE_FLAGS 6
+# define MODE_FLAGS 7
 # define CONVERSIONS "cspdiouxXfeEgGtb"
 # define FLAGS "+- #0"
 # define ABS(n) ((n) > 0) ? (n) : (n * -1);
@@ -52,6 +52,14 @@
 enum	e_conv{C, S, P, D, I, O, U, X, UPP_X, F, E, UPP_E, G, UPP_G, T, B};
 typedef unsigned long long t_ull;
 typedef long long t_ll;
+
+typedef union		u_conv
+{
+	long double		ld;
+	long int		li;
+	double			d;
+	char 			*str;
+}					t_conv;
 
 typedef struct		s_format
 {
@@ -149,5 +157,8 @@ void				get_exp_count(t_myfloat *mf);
 */
 size_t				f_t(t_format *f, va_list *ap, char **str);
 size_t				f_b(t_format *form, va_list *ap, char **buf);
+void				b_flag_plus(char **buf, int bits, int spaces);
+void				b_size_mode_T(char *buf, void *b, t_format *f);
+void				read_binary(void *b, t_format *f, char *str, int bits);
 
 #endif

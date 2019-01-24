@@ -1,12 +1,16 @@
 #include "ft_printf.h"
 
-static int			get_right_count_mem(t_format *f, char **buf)
+static int			get_right_count_mem(t_format *f, char **buf, void *str)
 {
 	int	bytes;
 
+	bytes = 0;
 	if (f->size)
 	{
-		if (f->s_val == 0)
+		if (f->s_val == 6)
+			while (*(char*)str++ != 0)
+				bytes++;
+		else if (f->s_val == 0)
 			bytes = 1;
 		else if (f->s_val == 1)
 			bytes = 2;
@@ -23,7 +27,7 @@ static int			get_right_count_mem(t_format *f, char **buf)
 	return (bytes * 8);
 }
 
-static void		for_long_double(void *b, char **str)
+static void		for_long_double(void *b, char *str)
 {
 	int	i;
 	int shift;
@@ -31,62 +35,81 @@ static void		for_long_double(void *b, char **str)
 	i = 0;
 	shift = 16;
 	while (--shift >= 0)
-		(*str)[i++] = (*((short int*)b + 4) >> shift & 0b1) + '0';
+		str[i++] = (*((short int*)b + 4) >> shift & 0b1) + '0';
 	shift = 64;
 	while (--shift >= 0)
-		(*str)[i++] = (*(t_ll*)b >> shift & 0b1) + '0';
+		str[i++] = (*(t_ll*)b >> shift & 0b1) + '0';
 }
 
-static void		read_binary(void *b, t_format *f, char **str, int bits)
+void			read_binary(void *b, t_format *f, char *str, int bits)
 {
 	int	i;
 
 	i = 0;
 	if (f->size)
 		while (--bits >= 0)
-			if (f->s_val == 0)
-				(*str)[i++] = (*(t_byte*)b >> bits & 0b1) + '0';
+			if (f->s_val == 0 || f->s_val == 6)
+				str[i++] = (*(t_byte*)b >> bits & 0b1) + '0';
 			else if (f->s_val == 1)
-				(*str)[i++] = (*(short int*)b >> bits & 0b1) + '0';
+				str[i++] = (*(short int*)b >> bits & 0b1) + '0';
 			else if (f->s_val == 2 || f->s_val == 5)
-				(*str)[i++] = (*(t_ll*)b >> bits & 0b1) + '0';
-			else if (f->s_val == 3 || f->s_val == 6)
-				(*str)[i++] = (*(int*)b >> bits & 0b1) + '0';
+				str[i++] = (*(t_ll*)b >> bits & 0b1) + '0';
+			else if (f->s_val == 3)
+				str[i++] = (*(int*)b >> bits & 0b1) + '0';
 			else
 			{
 				for_long_double(b, str);
 				break ;
 			}
-	else
-		(*str)[i++] = (*(t_ll*)b >> bits & 0b1) + '0';
 }
 
-size_t		f_b(t_format *form, va_list *ap, char **buf)
+static void		get_rigth_param(t_format *f, void **b, va_list *ap, t_conv *c)
 {
-	void	*b;
-	int 	bits;
-	long double ld;
-	long int li;
-	double d;
-	float f;
-
-	if (form->s_val == 4)
+	if (f->size == 0)
 	{
-		ld = va_arg(*ap, long double);
-		b = &ld;
+		f->size = 1;
+		f->s_val = 2;
 	}
-	else if (form->s_val == 5)
+	if (f->s_val == 4)
 	{
-		d = va_arg(*ap, double);
-		b = &d;
+		c->ld = va_arg(*ap, long double);
+		*b = &c->ld;
+	}
+	else if (f->s_val == 5)
+	{
+		c->d = va_arg(*ap, double);
+		*b = &c->d;
+	}
+	else if (f->s_val == 6)
+	{
+		c->str = va_arg(*ap, char*);
+		*b = c->str; // maybe I have to add & before C
 	}
 	else
 	{
-		li = va_arg(*ap, long int);
-		b = &li;
+		c->li = va_arg(*ap, long int);
+		*b = &c->li;
 	}
-	form->plus ? form->plus = 0 : 0;
-	bits = get_right_count_mem(form, buf);
-	read_binary(b, form, buf, bits);
-	return (bits);
+}
+
+size_t		f_b(t_format *f, va_list *ap, char **buf)
+{
+	int 	spaces;
+	void	*b;
+	int 	bits;
+	t_conv	c;
+
+	get_rigth_param(f, &b, ap, &c);
+	bits = get_right_count_mem(f, buf, b);
+	if (f->s_val == 6)
+		b_size_mode_T(*buf, b, f);
+	else
+		read_binary(b, f, buf, bits);
+	if (f->plus)
+	{
+		spaces = (bits / 8) - 1;
+		spaces < 0 ? spaces = 0 : 0;
+		b_flag_plus(buf, bits, spaces);
+	}
+	return (bits + (f->plus ? spaces : 0));
 }

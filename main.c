@@ -13,12 +13,18 @@
 #include <fcntl.h>
 #include "ft_printf.h"
 #include <float.h>
-#define FORM "%X\n", 34
+#define FORM "%0100.s\n", "Hello"
 
 int main(void)
 {
 	double ld = -0.2;
-	ft_printf("%hhb", '\n');
+	int i;
+	i = 0;
+
+	ft_printf("%+Tb", "HHHH");
+//	printf(FORM);
+//	ft_printf(FORM);
+
 //	double a = 45.3;
 //
 //	printf(FORM);

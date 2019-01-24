@@ -23,7 +23,7 @@ void	cast_signed(long long int *n, va_list *ap, t_format *f)
 			*n = (short int)*n;
 		else if (f->s_val == 3)
 			*n = (long int)*n;
-		else if (f->s_val == 4)
+		else if (f->s_val == 4 || f->s_val == 5)
 			*n = (int)*n;
 	}
 	else
