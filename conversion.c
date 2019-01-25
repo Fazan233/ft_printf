@@ -17,7 +17,7 @@ static void	set_conversation(t_format *f, int const *i)
 	int count;
 
 	count = -1;
-	while (++count < 17)
+	while (++count < 18)
 		*i == count ? f->type = count : 0;
 //	*i == 0 ? f->type = C : 0;
 //	*i == 1 ? f->type = S : 0;

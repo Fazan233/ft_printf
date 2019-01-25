@@ -15,7 +15,7 @@
 #include <float.h>
 #include <printf.h>
 
-#define FORM "%05%\n"
+#define FORM "%lld\n", -9223372036854775808ul
 
 int main(void)
 {

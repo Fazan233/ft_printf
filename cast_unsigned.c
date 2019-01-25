@@ -35,6 +35,7 @@ void	cast_unsigned(unsigned long long int *n, va_list *ap, t_format *f)
 				*n = (unsigned int)*n;
 		}
 		else
-			*n = (unsigned int)*n;
+			*n = f->type == UPP_U ? (t_ull)*n : (unsigned int)*n;
 	}
+	f->type == UPP_U ? f->type = U : 0;
 }
