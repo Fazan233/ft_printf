@@ -38,8 +38,8 @@ static char	*get_good_func(void *n, t_format *f)
 size_t		get_format_number1(t_format *f, void *n, char **str)
 {
 	char	*buf;
-	size_t	lb;
-	size_t	ls;
+	int 	lb;
+	int 	ls;
 
 	buf = get_good_func(n, f);
 	lb = number_format(&buf, f);

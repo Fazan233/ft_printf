@@ -27,7 +27,7 @@ static void	some_condition(t_myfloat *mf, int round_count)
 		free(one);
 		add_0_for_numstr(&mf->decimal, round_count, 1);
 		free(tmp);
-		if (round_count != ft_strlen(mf->decimal))
+		if (round_count != (int)ft_strlen(mf->decimal))
 		{
 			tmp = mf->intnum;
 			mf->intnum = bigintsum_toa(mf->intnum, "1", 1);
@@ -41,7 +41,7 @@ static void	some_condition(t_myfloat *mf, int round_count)
 		mf->decimal[round_count] = '\0';
 }
 
-void		round_numstr(t_myfloat *mf, t_format *f, int round_count)
+void		round_numstr(t_myfloat *mf, int round_count)
 {
 	if (round_count > mf->len_d)
 		add_0_for_numstr(&mf->decimal, round_count, 0);

@@ -1,15 +1,23 @@
-//
-// Created by Vladyslav USLYSTYI on 2019-01-24.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   b_options.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/25 11:30:27 by vuslysty          #+#    #+#             */
+/*   Updated: 2019/01/25 11:31:52 by vuslysty         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
 void		b_flag_plus(char **buf, int bits, int spaces)
 {
-	char 	*tmp_buf;
-	int 	i;
-	char 	*tmp;
-	char 	*formated_binary;
+	char	*tmp_buf;
+	int		i;
+	char	*tmp;
+	char	*formated_binary;
 
 	tmp_buf = *buf;
 	tmp = (char*)ft_memalloc_chr((bits + spaces + 1), ' ');
@@ -29,7 +37,7 @@ void		b_flag_plus(char **buf, int bits, int spaces)
 	*buf = formated_binary;
 }
 
-void		b_size_mode_T(char *buf, void *b, t_format *f)
+void		b_size_mode_t(char *buf, void *b, t_format *f)
 {
 	int		i;
 
@@ -44,8 +52,8 @@ void		b_size_mode_T(char *buf, void *b, t_format *f)
 
 int			b_flag_nozero(t_format *f, int len, char **str)
 {
-	char 	*tmp;
-	int 	i;
+	char	*tmp;
+	int		i;
 
 	i = 0;
 	tmp = *str;

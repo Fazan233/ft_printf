@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "libft.h"
 
 void	ft_putmem(void *mem, size_t len)
 {

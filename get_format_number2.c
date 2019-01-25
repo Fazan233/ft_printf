@@ -6,7 +6,7 @@
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 19:32:29 by vuslysty          #+#    #+#             */
-/*   Updated: 2019/01/21 19:35:40 by vuslysty         ###   ########.fr       */
+/*   Updated: 2019/01/25 12:42:50 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static void	infiniti_nan(t_format *f, int mode, char **numstr)
 	f->type == UPP_E || f->type == UPP_G ? ft_strtoupper(*numstr) : 0;
 	f->zero = 0;
 }
-
 
 static char	*get_good_flag(long double *n, t_format *f)
 {
@@ -49,8 +48,8 @@ static char	*get_good_flag(long double *n, t_format *f)
 size_t		get_format_number2(t_format *f, long double *n, char **str)
 {
 	char		*buf;
-	size_t		lb;
-	size_t		ls;
+	int 		lb;
+	int 		ls;
 
 	buf = get_good_flag(n, f);
 	lb = ft_strlen(buf);

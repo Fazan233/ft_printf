@@ -13,17 +13,21 @@
 #include <fcntl.h>
 #include "ft_printf.h"
 #include <float.h>
-#define FORM "%.30Tb", "Привіт, я написав програму прінтф, яка працює з бінарниками."
+#include <printf.h>
+
+#define FORM "%05%\n"
 
 int main(void)
 {
-	int fd;
-	char *p = "string";
 
-	fd = open("README.txt", O_RDONLY);
-//	printf(FORM);
-	int i = 0;
-//	while (i < 128)
-		ft_printf(FORM);
+//	printf("%010+%");
+//	int fd;
+//	char *p = "string";
+//
+//	fd = open("test.txt", O_RDWR);
+////	ft_putstr_fd("Hello", fd);
+//	int i = 0;
+	printf(FORM);
+	ft_printf(FORM);
 	return (0);
 }

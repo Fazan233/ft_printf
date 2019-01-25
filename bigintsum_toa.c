@@ -44,7 +44,7 @@ char			*bigintsum_toa(char *num1, char *num2, int mode)
 {
 	size_t		len;
 	int			*mas;
-	int			i;
+	size_t		i;
 
 	num1 = ft_strdup(num1);
 	ft_strreverse(num1);

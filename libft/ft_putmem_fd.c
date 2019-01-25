@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cast_signed.c                                      :+:      :+:    :+:   */
+/*   ft_putmem_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/21 16:53:59 by vuslysty          #+#    #+#             */
-/*   Updated: 2019/01/21 16:54:26 by vuslysty         ###   ########.fr       */
+/*   Created: 2019/01/25 15:11:27 by vuslysty          #+#    #+#             */
+/*   Updated: 2019/01/25 15:11:34 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	cast_signed(long long int *n, va_list *ap, t_format *f)
+void	ft_putmem_fd(void *mem, size_t len, int fd)
 {
-	*n = va_arg(*ap, long long int);
-	if (f->size)
-	{
-		if (f->s_val == 0)
-			*n = (char)*n;
-		else if (f->s_val == 1)
-			*n = (short int)*n;
-		else if (f->s_val == 3)
-			*n = (long int)*n;
-		else if (f->s_val == 4 || f->s_val == 5 || f->s_val == 6)
-			*n = (int)*n;
-	}
-	else
-		*n = (int)*n;
+	write(fd, mem, len);
 }

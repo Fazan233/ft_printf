@@ -6,7 +6,7 @@
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 18:51:37 by vuslysty          #+#    #+#             */
-/*   Updated: 2019/01/21 18:52:14 by vuslysty         ###   ########.fr       */
+/*   Updated: 2019/01/25 12:31:21 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ size_t			f_s(t_format *form, va_list *ap, char **str)
 	if (buf == NULL)
 		buf = ft_strdup("(null)");
 	len = ft_strlen(buf);
-//	len > form->w_val ? form->w_val = len : 0;
 	alloc_good_width(form, str, len);
 	return (oper_with_minus(form, str, buf, len));
 }

@@ -92,9 +92,9 @@ void	set_color(t_pf *pf, char *color, size_t i, char **str)
 	int		color_len;
 
 	color_len = ft_strlen(color);
-	ft_putmem(pf->tmp, pf->i);
+	ft_putmem_fd(pf->tmp, pf->i, pf->fd);
 	pf->len += pf->i;
-	ft_putmem(color, color_len);
+	ft_putmem_fd(color, color_len, pf->fd);
 	pf->len += color_len;
 	*str = *str + (i - 1);
 	pf->tmp = *str + 1;

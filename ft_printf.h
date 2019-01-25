@@ -6,14 +6,14 @@
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 16:35:37 by vuslysty          #+#    #+#             */
-/*   Updated: 2019/01/21 19:04:47 by vuslysty         ###   ########.fr       */
+/*   Updated: 2019/01/25 15:10:56 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # define MODE_FLAGS 7
-# define CONVERSIONS "cspdiouxXfeEgGtb"
+# define CONVERSIONS "cspdiouxXfeEgGtb%"
 # define FLAGS "+- #0"
 # define ABS(n) ((n) > 0) ? (n) : (n * -1);
 # define MANTISS_LEN 64
@@ -45,11 +45,15 @@
 # define BLINK		"\033[5m"
 # define INVERSE	"\033[7m"
 
-# include <stdio.h>
+/*
+**		There is a possibility to combine COLOR + BG + FORMAT_TEXT.
+**		FOR EXAMPLE: "{GREEN}{BGRED}{BOLD}Hello world{EOC}".
+*/
+
 # include "libft/libft.h"
 # include <stdarg.h>
 
-enum	e_conv{C, S, P, D, I, O, U, X, UPP_X, F, E, UPP_E, G, UPP_G, T, B};
+enum	e_conv{C, S, P, D, I, O, U, X, UPP_X, F, E, UPP_E, G, UPP_G, T, B, PR};
 typedef unsigned long long t_ull;
 typedef long long t_ll;
 
@@ -58,7 +62,7 @@ typedef union		u_conv
 	long double		ld;
 	long int		li;
 	double			d;
-	char 			*str;
+	char			*str;
 }					t_conv;
 
 typedef struct		s_format
@@ -95,11 +99,12 @@ typedef struct		s_pf
 	va_list			ap;
 	t_format		form;
 	void			*form_str;
-	void			*buf;
+	char			*buf;
 	size_t			len_buf;
 	int				len;
 	int				i;
 	char			*tmp;
+	int				fd;
 }					t_pf;
 
 int					find_flags(char **str, t_format *form, va_list *ap);
@@ -118,26 +123,26 @@ size_t				number_format(char **nbr, t_format *f);
 size_t				f_pdioux(t_format *f, va_list *ap, char **str);
 size_t				get_format_number1(t_format *f, void *n, char **str);
 int					count_digits(size_t digit);
-char				*pow_bigint_toa(size_t n, size_t pow);
+char				*pow_bigint_toa(size_t n, int pow);
 /*
 ** 		Convert massive of integers to massive of characters.
 ** 		In result we have number in string.
 */
 char				*conv_to_strnum(int *mas, int len);
 /*
-** 	bigintsum has two mods:
-** 	1 - ignored '0' befor number (a usual work);
-** 	0 - calculate numbers with '0' befor number (I wrote it for numbers which
-** 		has floating point (its decimal part)).
+**		bigintsum has two mods:
+**		1 - ignored '0' befor number (a usual work);
+**		0 - calculate numbers with '0' befor number (I wrote it for numbers
+**			which has floating point (its decimal part)).
 */
 char				*bigintsum_toa(char *num1, char *num2, int mode);
 /*
-** 	1 - add zeros start
-** 	0 - add zeros end
+**		1 - add zeros start
+**		0 - add zeros end
 */
 void				add_0_for_numstr(char **num, int len_finish, int mode);
 int					get_float_params(t_myfloat *mf, long double *n);
-void				round_numstr(t_myfloat *mf, t_format *f, int round_count);
+void				round_numstr(t_myfloat *mf, int round_count);
 char				*e_format(t_myfloat *mf, t_format *f);
 char				*f_format(t_myfloat *mf, t_format *f);
 size_t				get_format_number2(t_format *f, long double *n, char **str);
@@ -155,13 +160,37 @@ void				get_exp_count(t_myfloat *mf);
 ** 		plus - separate lines by '\n'
 ** 		space - separate lines by spaces
 */
-size_t				f_t(t_format *f, va_list *ap, char **str);
+size_t				f_t(t_format *f, va_list *ap, char **str, t_pf *pf);
+/*
+**		width - standart width.
+**		0 - print bits with zeros at start.
+**		- - print bits on the left side (default right),
+**			work when -width is present.
+**		+ - raises flag -0 and lowers flag of width, sets spaces between bytes.
+**		. - works in cases when flag + is present, divided lines by N bytes,
+**			sets '\n' at the end of each line.
+**		---------------------------------------------------------------------
+**		SIZE_MODE_FLAGS:
+**		default (when nothing flags is present) - print 4 bytes (32 bits) max;
+**		-FLAGS FOR INTEGERS-
+**		hh - print 1 byte (8 bits) max;
+**		h  - print 2 bytes (16 bits) max;
+**		l  - print 4 bytes (32 bits) max;
+**		ll - print 8 bytes (64 bits) max;
+**		-FLAGS FOR NUMBERS WITH FLOATING POINTS-
+**		D  - print 8 bytes (64 bits) max; DOUBLE
+**		L  - print 10 bytes (80 bits) max; LONG DOUBLE
+**		-FLAG FOR PRINTING STRING BY BYTES (BY BITS)-
+**		T  - print each character of string by bytes,
+**			 raises flag -0.
+*/
 size_t				f_b(t_format *form, va_list *ap, char **buf);
 void				b_flag_plus(char **buf, int bits, int spaces);
-void				b_size_mode_T(char *buf, void *b, t_format *f);
+void				b_size_mode_t(char *buf, void *b, t_format *f);
 void				read_binary(void *b, t_format *f, char *str, int bits);
 int					b_flag_nozero(t_format *f, int len, char **str);
 size_t				get_format_binary(t_format *f, char **str, int lb);
 void				b_flag_precision(t_format *f, char *str);
+int					ft_fprintf(int fd, char *str, ...);
 
 #endif

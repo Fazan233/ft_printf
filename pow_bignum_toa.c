@@ -12,12 +12,12 @@
 
 #include "ft_printf.h"
 
-char	*pow_bigint_toa(size_t n, size_t pow)
+char	*pow_bigint_toa(size_t n, int pow)
 {
 	int		*mas;
 	int		i;
 	int		j;
-	size_t	len;
+	int 	len;
 
 	len = pow * count_digits(n) + 10;
 	mas = (int*)ft_memalloc(sizeof(int) * len);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_fprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/21 19:05:14 by vuslysty          #+#    #+#             */
-/*   Updated: 2019/01/25 12:44:46 by vuslysty         ###   ########.fr       */
+/*   Created: 2019/01/25 15:08:19 by vuslysty          #+#    #+#             */
+/*   Updated: 2019/01/25 15:09:36 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	good_flags(t_pf *pf, char **str)
 		pf->len += f_t(&pf->form, &pf->ap, &pf->buf, pf);
 	else
 	{
-		if (pf->form.type == C || pf->form.type == PR)
+		if (pf->form.type == C)
 			pf->len_buf = f_c(&pf->form, &pf->ap, &pf->buf);
 		else if (pf->form.type == S)
 			pf->len_buf = f_s(&pf->form, &pf->ap, &pf->buf);
@@ -49,15 +49,15 @@ static void	can_set_color(t_pf *pf, char **str)
 
 static void	condition(t_pf *pf, char **str)
 {
-//	if (**str == '%')
-//	{
-//		ft_putmem_fd(*str, 1, pf->fd);
-//		*str = *str + 1;
-//		pf->tmp = *str;
-//		pf->i = 0;
-//		pf->len++;
-//	}
-	if (**str != 0 && find_flags(str, &pf->form, &pf->ap))
+	if (**str == '%')
+	{
+		ft_putmem_fd(*str, 1, pf->fd);
+		*str = *str + 1;
+		pf->tmp = *str;
+		pf->i = 0;
+		pf->len++;
+	}
+	else if (**str != 0 && find_flags(str, &pf->form, &pf->ap))
 		good_flags(pf, str);
 	else
 	{
@@ -90,12 +90,12 @@ static void	move_str(t_pf *pf, char **str)
 	}
 }
 
-int			ft_printf(char *str, ...)
+int			ft_fprintf(int fd, char *str, ...)
 {
 	t_pf		pf;
 
 	va_start(pf.ap, str);
-	pf.fd = 1;
+	pf.fd = fd;
 	pf.i = 0;
 	pf.len = 0;
 	pf.tmp = str;

@@ -6,13 +6,15 @@
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 19:44:20 by vuslysty          #+#    #+#             */
-/*   Updated: 2019/01/21 19:44:53 by vuslysty         ###   ########.fr       */
+/*   Updated: 2019/01/25 11:29:37 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char			g_modeflags[MODE_FLAGS][3] = {"hh", "h", "ll", "l", "L", "D", "T"};
+char			g_modeflags[MODE_FLAGS][3] = {
+	"hh", "h", "ll", "l", "L", "D", "T"
+};
 
 int		size(t_format *form, char **str)
 {

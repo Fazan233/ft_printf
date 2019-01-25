@@ -50,7 +50,7 @@ static void		right_round(t_myfloat *mf, t_format *f)
 	else
 		round = f->p_val - mf->len_i;
 	if (round >= 0)
-		round_numstr(mf, f, round);
+		round_numstr(mf, round);
 }
 
 char			*g_format(t_myfloat *mf, t_format *f)

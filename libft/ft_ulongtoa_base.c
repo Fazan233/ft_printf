@@ -15,7 +15,7 @@
 static void	rec_ultoa_base(unsigned long long n, int base, char **str, int *len)
 {
 	(*len)++;
-	if (n < base)
+	if (n < (long long)base)
 		*str = (char*)ft_memalloc(sizeof(char) * (*len + 1));
 	else
 		rec_ultoa_base(n / base, base, str, len);

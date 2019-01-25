@@ -26,9 +26,13 @@ static void	flags_to_zero(t_format *form)
 
 int			find_flags(char **str, t_format *form, va_list *ap)
 {
+	int check_conv;
+
+	check_conv = 0;
 	flags_to_zero(form);
-	while (**str != 0)
+	while (**str != 0 && check_conv == 0)
 	{
+		check_conv = 0;
 		if (ft_strchr(FLAGS, **str))
 			flags(form, str);
 		else if (**str == '*' || (ft_isdigit(**str) && **str != '0'))
@@ -37,8 +41,8 @@ int			find_flags(char **str, t_format *form, va_list *ap)
 			precision(form, str, ap);
 		else if (size(form, str))
 			form->size = 1;
-		else
-			return ((conversion(form, str)) ? 1 : 0);
+		else if (conversion(form, str))
+			check_conv = 1;
 	}
-	return (0);
+	return (check_conv);
 }

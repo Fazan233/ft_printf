@@ -12,9 +12,9 @@
 
 #include "ft_printf.h"
 
-static void	get_strwidth(t_format *form, void **str, int count)
+static void	get_strwidth(t_format *form, char **str, int count)
 {
-	*str = malloc(count);
+	*str = (char*)malloc(count);
 	if (form->zero && !form->minus)
 		ft_memset(*str, '0', count);
 	else
@@ -25,7 +25,7 @@ size_t		f_c(t_format *form, va_list *ap, char **buf)
 {
 	int		c;
 
-	c = va_arg(*ap, int);
+	c = form->type == C ? va_arg(*ap, int) : '%';
 	if (form->w_val > 1)
 	{
 		get_strwidth(form, buf, form->w_val);

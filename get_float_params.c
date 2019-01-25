@@ -6,7 +6,7 @@
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 19:08:10 by vuslysty          #+#    #+#             */
-/*   Updated: 2019/01/21 19:08:53 by vuslysty         ###   ########.fr       */
+/*   Updated: 2019/01/25 12:29:21 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,29 +77,15 @@ int			get_float_params(t_myfloat *mf, long double *n)
 	t_ull			*mantiss;
 	unsigned short	*s_exp;
 
-	mantiss = n;
+	mantiss = (t_ull*)n;
 	mf->m = *mantiss;
-	s_exp = n;
+	s_exp = (unsigned short*)n;
 	s_exp += 4;
 	mf->s = *s_exp >> 15 & 0b1;
-
-//	int i = 16;
-//	while (--i >= 0)
-//		ft_printf("%i", *s_exp >> i & 0b1);
-//	ft_putchar(' ');
-//
-//	i = 64;
-//	while (--i >= 0)
-//		ft_printf("%i", *mantiss >> i & 0b1);
-//	ft_putchar('\n');
 	if (*mantiss == 0xc000000000000000 && *s_exp == 0x7fff)
 		return (2);
 	if (*s_exp == 0xffff || *s_exp == 0x7fff)
 		return (1);
-
-
-
-
 	mf->e = (*s_exp & (short)0x7fff) - 0x3fff;
 	get_float_number(mf);
 	get_exp_count(mf);

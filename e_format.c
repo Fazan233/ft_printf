@@ -23,14 +23,14 @@ static void	e_plus(t_myfloat *mf, t_format *f)
 		}
 		mf->len_d = ft_strlen(mf->decimal);
 		mf->len_i = ft_strlen(mf->intnum);
-		round_numstr(mf, f, f->p_val);
+		round_numstr(mf, f->p_val);
 		if (mf->len_i > 1)
 		{
 			mf->exp_count += mf->len_i - 1;
 			e_plus(mf, f);
 		}
 	}
-	round_numstr(mf, f, f->p_val);
+	round_numstr(mf, f->p_val);
 }
 
 static void	e_minus(t_myfloat *mf)
@@ -54,7 +54,7 @@ static void	right_round(t_myfloat *mf, t_format *f)
 	else
 		round = f->p_val;
 	if (round >= 0)
-		round_numstr(mf, f, round);
+		round_numstr(mf, round);
 }
 
 char		*e_format(t_myfloat *mf, t_format *f)

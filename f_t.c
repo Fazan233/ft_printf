@@ -6,7 +6,7 @@
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 18:52:42 by vuslysty          #+#    #+#             */
-/*   Updated: 2019/01/21 18:57:47 by vuslysty         ###   ########.fr       */
+/*   Updated: 2019/01/25 11:35:03 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		set_values(int *count, int *len_sum, int *fd, va_list *ap)
 	*fd = va_arg(*ap, int);
 }
 
-size_t		f_t(t_format *f, va_list *ap, char **str)
+size_t		f_t(t_format *f, va_list *ap, char **str, t_pf *pf)
 {
 	int	fd;
 	int len_sum;
@@ -36,12 +36,12 @@ size_t		f_t(t_format *f, va_list *ap, char **str)
 			continue;
 		}
 		count++;
-		ft_putmem(*str, len_str);
+		ft_putmem_fd(*str, len_str, pf->fd);
 		free(*str);
 		if (f->plus && ++len_sum)
-			ft_putchar('\n');
+			ft_putchar_fd('\n', pf->fd);
 		else if (f->space && ++len_sum)
-			ft_putchar(' ');
+			ft_putchar_fd(' ', pf->fd);
 		if (f->precision && f->p_val == count)
 			break ;
 	}

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   f_b.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/25 11:32:21 by vuslysty          #+#    #+#             */
+/*   Updated: 2019/01/25 11:34:17 by vuslysty         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-static int			get_right_count_mem(t_format *f, char **buf, void *str)
+static int		get_right_count_mem(t_format *f, char **buf, void *str)
 {
-	int	bytes;
+	int		bytes;
 
 	if (f->size == 0)
 	{
@@ -29,8 +41,8 @@ static int			get_right_count_mem(t_format *f, char **buf, void *str)
 
 static void		for_long_double(void *b, char *str)
 {
-	int	i;
-	int shift;
+	int		i;
+	int		shift;
 
 	i = 0;
 	shift = 16;
@@ -43,11 +55,12 @@ static void		for_long_double(void *b, char *str)
 
 void			read_binary(void *b, t_format *f, char *str, int bits)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	if (f->size)
 		while (--bits >= 0)
+        {
 			if (f->s_val == 0 || f->s_val == 6)
 				str[i++] = (*(t_byte*)b >> bits & 0b1) + '0';
 			else if (f->s_val == 1)
@@ -61,6 +74,7 @@ void			read_binary(void *b, t_format *f, char *str, int bits)
 				for_long_double(b, str);
 				break ;
 			}
+        }
 }
 
 static void		get_rigth_param(t_format *f, void **b, va_list *ap, t_conv *c)
@@ -79,7 +93,7 @@ static void		get_rigth_param(t_format *f, void **b, va_list *ap, t_conv *c)
 	else if (f->s_val == 6)
 	{
 		c->str = va_arg(*ap, char*);
-		*b = c->str; // maybe I have to add & before C
+		*b = c->str;
 	}
 	else
 	{
@@ -88,17 +102,17 @@ static void		get_rigth_param(t_format *f, void **b, va_list *ap, t_conv *c)
 	}
 }
 
-size_t		f_b(t_format *f, va_list *ap, char **buf)
+size_t			f_b(t_format *f, va_list *ap, char **buf)
 {
-	int 	spaces;
+	int		spaces;
 	void	*b;
-	int 	bits;
+	int		bits;
 	t_conv	c;
 
 	get_rigth_param(f, &b, ap, &c);
 	bits = get_right_count_mem(f, buf, b);
 	if (f->s_val == 6)
-		b_size_mode_T(*buf, b, f);
+		b_size_mode_t(*buf, b, f);
 	else
 		read_binary(b, f, *buf, bits);
 	if (f->plus)

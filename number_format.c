@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void	set_nbr(char **nbr, t_format *f, size_t len, char *tmp)
+static void	set_nbr(char **nbr, t_format *f, int len, char *tmp)
 {
 	if (f->zero && f->w_val > len + 1 && !f->precision)
 	{
@@ -67,7 +67,7 @@ static void	check_pox(t_format *f, char **str)
 
 size_t		number_format(char **nbr, t_format *f)
 {
-	size_t	len;
+	int	    len;
 	char	*tmp;
 
 	f->sign = (*nbr)[0] == '-' ? 1 : 0;
