@@ -6,7 +6,7 @@
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 11:32:21 by vuslysty          #+#    #+#             */
-/*   Updated: 2019/01/25 11:34:17 by vuslysty         ###   ########.fr       */
+/*   Updated: 2019/01/26 16:40:33 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void			read_binary(void *b, t_format *f, char *str, int bits)
 	i = 0;
 	if (f->size)
 		while (--bits >= 0)
-        {
+		{
 			if (f->s_val == 0 || f->s_val == 6)
 				str[i++] = (*(t_byte*)b >> bits & 0b1) + '0';
 			else if (f->s_val == 1)
@@ -74,7 +74,7 @@ void			read_binary(void *b, t_format *f, char *str, int bits)
 				for_long_double(b, str);
 				break ;
 			}
-        }
+		}
 }
 
 static void		get_rigth_param(t_format *f, void **b, va_list *ap, t_conv *c)

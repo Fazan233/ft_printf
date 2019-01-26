@@ -6,7 +6,7 @@
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 19:39:30 by vuslysty          #+#    #+#             */
-/*   Updated: 2019/01/21 19:41:00 by vuslysty         ###   ########.fr       */
+/*   Updated: 2019/01/26 18:04:05 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ static void	set_nbr(char **nbr, t_format *f, int len, char *tmp)
 		*nbr = ft_memalloc_chr(f->w_val - 1, '0');
 		ft_memmove(*nbr + (f->w_val - 2 - len), tmp, len);
 	}
-//	else if (len == 1 && tmp[0] == '0' && f->precision && f->p_val == 0)
-//		*nbr = ft_strdup("");
+	else if (len == 1 && tmp[0] == '0' && f->precision && f->p_val == 0 &&
+			f->type != O)
+		*nbr = ft_strdup("");
 	else if (f->precision && f->p_val > len)
 	{
 		*nbr = ft_memalloc_chr(f->p_val + 1, '0');
@@ -53,7 +54,7 @@ static void	check_pox(t_format *f, char **str)
 
 	tmp = *str;
 	if (f->sharp && (f->type == O || f->type == X || f->type == UPP_X ||
-		f->type == P) && **str != '0' && **str != '\0')
+		f->type == P))
 	{
 		if (f->type == O)
 			*str = ft_strjoin("0", *str);
@@ -67,7 +68,7 @@ static void	check_pox(t_format *f, char **str)
 
 size_t		number_format(char **nbr, t_format *f)
 {
-	int	    len;
+	int		len;
 	char	*tmp;
 
 	f->sign = (*nbr)[0] == '-' ? 1 : 0;

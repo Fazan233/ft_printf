@@ -6,7 +6,7 @@
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 19:28:40 by vuslysty          #+#    #+#             */
-/*   Updated: 2019/01/21 18:58:44 by vuslysty         ###   ########.fr       */
+/*   Updated: 2019/01/26 16:44:55 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,9 @@ static void	flags_to_zero(t_format *form)
 
 int			find_flags(char **str, t_format *form, va_list *ap)
 {
-	int check_conv;
-
-	check_conv = 0;
 	flags_to_zero(form);
-	while (**str != 0 && check_conv == 0)
+	while (**str != 0)
 	{
-		check_conv = 0;
 		if (ft_strchr(FLAGS, **str))
 			flags(form, str);
 		else if (**str == '*' || (ft_isdigit(**str) && **str != '0'))
@@ -41,8 +37,8 @@ int			find_flags(char **str, t_format *form, va_list *ap)
 			precision(form, str, ap);
 		else if (size(form, str))
 			form->size = 1;
-		else if (conversion(form, str))
-			check_conv = 1;
+		else
+			return (conversion(form, str));
 	}
-	return (check_conv);
+	return (0);
 }

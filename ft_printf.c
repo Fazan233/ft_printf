@@ -6,7 +6,7 @@
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 19:05:14 by vuslysty          #+#    #+#             */
-/*   Updated: 2019/01/25 12:44:46 by vuslysty         ###   ########.fr       */
+/*   Updated: 2019/01/26 16:45:20 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,6 @@ static void	can_set_color(t_pf *pf, char **str)
 
 static void	condition(t_pf *pf, char **str)
 {
-//	if (**str == '%')
-//	{
-//		ft_putmem_fd(*str, 1, pf->fd);
-//		*str = *str + 1;
-//		pf->tmp = *str;
-//		pf->i = 0;
-//		pf->len++;
-//	}
 	if (**str != 0 && find_flags(str, &pf->form, &pf->ap))
 		good_flags(pf, str);
 	else

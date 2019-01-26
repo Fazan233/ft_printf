@@ -6,12 +6,11 @@
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 19:09:33 by vuslysty          #+#    #+#             */
-/*   Updated: 2019/01/21 19:32:00 by vuslysty         ###   ########.fr       */
+/*   Updated: 2019/01/26 18:00:41 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdlib.h>
 #define SIGN (buf[0] == '-' || buf[0] == '+' || buf[0] == ' ')
 #define SPACES_OR_ZEROS f->zero && !f->precision ? '0' : ' '
 
@@ -30,17 +29,21 @@ static char	*get_good_func(void *n, t_format *f)
 		buf = ft_ltoa_base(*(long long*)n, base);
 	else
 		buf = ft_ultoa_base(*(unsigned long long*)n, base);
-	if (f->type != P && buf[0] == '0' && f->precision && f->p_val == 0 &&
-		f->type != O)
-		buf[0] = '\0';
+	if (f->type != P && buf[0] == '0')
+	{
+		if (f->precision)
+			buf[0] = '\0';
+		if (f->type != O)
+			f->sharp = 0;
+	}
 	return (buf);
 }
 
 size_t		get_format_number1(t_format *f, void *n, char **str)
 {
 	char	*buf;
-	int 	lb;
-	int 	ls;
+	int		lb;
+	int		ls;
 
 	buf = get_good_func(n, f);
 	lb = number_format(&buf, f);

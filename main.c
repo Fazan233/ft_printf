@@ -15,18 +15,10 @@
 #include <float.h>
 #include <printf.h>
 
-#define FORM "%lld\n", -9223372036854775808ul
+#define FORM "%9.0o\n", 0
 
 int main(void)
 {
-
-//	printf("%010+%");
-//	int fd;
-//	char *p = "string";
-//
-//	fd = open("test.txt", O_RDWR);
-////	ft_putstr_fd("Hello", fd);
-//	int i = 0;
 	printf(FORM);
 	ft_printf(FORM);
 	return (0);

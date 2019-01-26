@@ -6,7 +6,7 @@
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 19:41:28 by vuslysty          #+#    #+#             */
-/*   Updated: 2019/01/21 19:41:45 by vuslysty         ###   ########.fr       */
+/*   Updated: 2019/01/26 18:03:32 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*pow_bigint_toa(size_t n, int pow)
 	int		*mas;
 	int		i;
 	int		j;
-	int 	len;
+	int		len;
 
 	len = pow * count_digits(n) + 10;
 	mas = (int*)ft_memalloc(sizeof(int) * len);

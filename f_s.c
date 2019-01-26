@@ -6,7 +6,7 @@
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 18:51:37 by vuslysty          #+#    #+#             */
-/*   Updated: 2019/01/25 12:31:21 by vuslysty         ###   ########.fr       */
+/*   Updated: 2019/01/26 16:44:03 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ static void		alloc_good_width(t_format *f, char **str, int len)
 			else
 				*str = (char*)ft_memalloc_chr(len + 1, ' ');
 		else if (f->precision)
-			*str = (char*)ft_memalloc_chr(1 + (f->p_val <= len ?
-					f->p_val : len), ' ');
+			*str = (char*)ft_memalloc_chr(1 +
+					(f->p_val <= len ? f->p_val : len), ' ');
 		else
-			*str = (char*)ft_memalloc_chr(f->w_val + 1, ' ');
+			*str = (char*)ft_memalloc_chr((f->w_val > len ?
+									f->w_val : len) + 1, ' ');
 	}
 	else
 		*str = (char*)ft_memalloc_chr(len + 1, ' ');

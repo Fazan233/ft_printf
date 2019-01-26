@@ -6,7 +6,7 @@
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 19:32:29 by vuslysty          #+#    #+#             */
-/*   Updated: 2019/01/25 12:42:50 by vuslysty         ###   ########.fr       */
+/*   Updated: 2019/01/26 18:01:24 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 static void	infiniti_nan(t_format *f, int mode, char **numstr)
 {
 	*numstr = ft_strdup(mode == 1 ? "inf" : "nan");
-	f->type == UPP_E || f->type == UPP_G ? ft_strtoupper(*numstr) : 0;
+	f->type == UPP_F || f->type == UPP_E || f->type == UPP_G ?
+	ft_strtoupper(*numstr) : 0;
 	f->zero = 0;
 }
 
@@ -30,7 +31,7 @@ static char	*get_good_flag(long double *n, t_format *f)
 	f->sign = mf.s;
 	if (inf_nan)
 		infiniti_nan(f, inf_nan, &numstr);
-	else if (f->type == F)
+	else if (f->type == F || f->type == UPP_F)
 		numstr = f_format(&mf, f);
 	else if (f->type == E || f->type == UPP_E)
 		numstr = e_format(&mf, f);
@@ -48,8 +49,8 @@ static char	*get_good_flag(long double *n, t_format *f)
 size_t		get_format_number2(t_format *f, long double *n, char **str)
 {
 	char		*buf;
-	int 		lb;
-	int 		ls;
+	int			lb;
+	int			ls;
 
 	buf = get_good_flag(n, f);
 	lb = ft_strlen(buf);

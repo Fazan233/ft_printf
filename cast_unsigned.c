@@ -6,7 +6,7 @@
 /*   By: vuslysty <vuslysty@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 16:54:42 by vuslysty          #+#    #+#             */
-/*   Updated: 2019/01/25 11:26:27 by vuslysty         ###   ########.fr       */
+/*   Updated: 2019/01/26 16:38:29 by vuslysty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	cast_unsigned(unsigned long long int *n, va_list *ap, t_format *f)
 	if (f->type == P)
 	{
 		f->sharp = 1;
-        *n = (unsigned long long)(va_arg(*ap, void*));
+		*n = (unsigned long long)(va_arg(*ap, void*));
 	}
 	else
 		*n = va_arg(*ap, unsigned long long int);
@@ -35,7 +35,6 @@ void	cast_unsigned(unsigned long long int *n, va_list *ap, t_format *f)
 				*n = (unsigned int)*n;
 		}
 		else
-			*n = f->type == UPP_U ? (t_ull)*n : (unsigned int)*n;
+			*n = (unsigned int)*n;
 	}
-	f->type == UPP_U ? f->type = U : 0;
 }

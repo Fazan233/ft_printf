@@ -14,6 +14,8 @@
 
 static void	rec_ltoa_base(long long n, int base, char **str, int *len)
 {
+	int 	tmp;
+
 	(*len)++;
 	if (n > 0 ? n < base : n > -base)
 	{
@@ -23,7 +25,11 @@ static void	rec_ltoa_base(long long n, int base, char **str, int *len)
 	}
 	else
 		rec_ltoa_base(n / base, base, str, len);
-	**str = write_digit_base((int)((n > 0 ? n : -n) % base));
+	if (n < -9223372036854775807)
+		tmp = 8;
+	else
+		tmp = (n > 0 ? n : -n) % base;
+	**str = write_digit_base(tmp);
 	(*str)++;
 }
 
