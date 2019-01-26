@@ -13,7 +13,7 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # define MODE_FLAGS 7
-# define CONVERSIONS "cspdiouxXfFeEgGtb%"
+# define CONVERSIONS "cspdiouxXfFeEgGb%"
 # define FLAGS "+- #0"
 # define ABS(n) ((n) > 0) ? (n) : (n * -1);
 # define MANTISS_LEN 64
@@ -55,7 +55,7 @@
 
 enum	e_conv
 {
-	C, S, P, D, I, O, U, X, UPP_X, F, UPP_F, E, UPP_E, G, UPP_G, T, B, PR
+	C, S, P, D, I, O, U, X, UPP_X, F, UPP_F, E, UPP_E, G, UPP_G, B, PR
 };
 typedef unsigned long long t_ull;
 typedef long long t_ll;
@@ -158,13 +158,6 @@ size_t				bg_color(t_pf *pf, char **str);
 size_t				addition_options(t_pf *pf, char **str);
 void				get_exp_count(t_myfloat *mf);
 /*
-** 		precision - count of lines which will show
-** 		minus - show lines without empty lines
-** 		plus - separate lines by '\n'
-** 		space - separate lines by spaces
-*/
-size_t				f_t(t_format *f, va_list *ap, char **str, t_pf *pf);
-/*
 **		width - standart width.
 **		0 - print bits with zeros at start.
 **		- - print bits on the left side (default right),
@@ -181,7 +174,7 @@ size_t				f_t(t_format *f, va_list *ap, char **str, t_pf *pf);
 **		l  - print 4 bytes (32 bits) max;
 **		ll - print 8 bytes (64 bits) max;
 **		-FLAGS FOR NUMBERS WITH FLOATING POINTS-
-**		D  - print 8 bytes (64 bits) max; DOUBLE
+**		mD  - print 8 bytes (64 bits) max; DOUBLE
 **		L  - print 10 bytes (80 bits) max; LONG DOUBLE
 **		-FLAG FOR PRINTING STRING BY BYTES (BY BITS)-
 **		T  - print each character of string by bytes,
